@@ -6,7 +6,6 @@ import {
   FormLabel,
   Input,
   Stack,
-  Link,
   Button,
   Heading,
   useColorModeValue,
@@ -38,12 +37,6 @@ function Login() {
               <Input type="password" />
             </FormControl>
             <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'center'}
-                justify={'space-between'}>
-                <Link color={'blue.400'}>Forgot password?</Link>
-              </Stack>
               <Button
                 bg={'blue.400'}
                 color={'white'}
