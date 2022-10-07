@@ -46,6 +46,16 @@ function Login() {
                 Sign in
               </Button>
             </Stack>
+            <Stack spacing={10}>
+              <Button 
+                bg={'blue.400'}
+                color={'white'}
+                _hover={{
+                  bg: 'blue.500'
+                }}>
+                Sign Up
+              </Button>
+            </Stack>
           </Stack>
         </Box>
       </Stack>
