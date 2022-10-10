@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ChakraProvider>
-      {/* <Login /> */}
-      <Navbar />
+      <Login />
+      {/* <Navbar /> */}
     </ChakraProvider>
   </StrictMode>
 );
