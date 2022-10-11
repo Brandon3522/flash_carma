@@ -3,6 +3,8 @@ import * as ReactDOM from 'react-dom/client';
 import { ChakraProvider } from "@chakra-ui/react";
 import Login from './Login';
 import Navbar from './Navbar';
+import Home from './Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -10,8 +12,12 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ChakraProvider>
-      <Login />
-      {/* <Navbar /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
+        </Routes>
+      </BrowserRouter>
     </ChakraProvider>
   </StrictMode>
 );

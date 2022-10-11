@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Flex, Link, Input, Button, Box } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image } from '@chakra-ui/react';
 // import { Link as ReachLink } from 'react-router-dom';
 
 function Navbar() {
@@ -29,9 +29,11 @@ function Navbar() {
         justifyContent="space-between"
       >
         {/* Change to Image */}
+        <Image></Image>
         <Link fontSize="xl" fontWeight="bold" mr="10" to="/Home">
           Logo
         </Link>
+        
 
         <Link mr="10">View Study Decks</Link>
         <Link>Study Session</Link>
