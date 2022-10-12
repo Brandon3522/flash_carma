@@ -6,6 +6,9 @@ import Login from './Login';
 import Navbar from './Navbar';
 import Home from './Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './Navbar';
+import Home from './Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -13,10 +16,15 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ChakraProvider>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />} />
+          <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
+        </Routes>
+      </BrowserRouter>} />
           <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
         </Routes>
       </BrowserRouter>
