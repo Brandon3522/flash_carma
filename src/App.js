@@ -9,9 +9,17 @@ import {
   Button,
   Heading,
   useColorModeValue,
+  Link
 } from '@chakra-ui/react';
+import {
+  BrowserRouter as Router, 
+  Route, 
+  Routes,
+  Link as RouteLink
+} from 'react-router-dom';
+import { SignUp } from './routes';
 
-function Login() {
+function App() {
   return (
     <Flex
       minH={'100vh'}
@@ -43,7 +51,7 @@ function Login() {
                 _hover={{
                   bg: 'blue.500',
                 }}>
-                Sign in
+                Sign In
               </Button>
             </Stack>
             <Stack spacing={10}>
@@ -53,7 +61,7 @@ function Login() {
                 _hover={{
                   bg: 'blue.500'
                 }}>
-                Sign Up
+                  SignUp
               </Button>
             </Stack>
           </Stack>
@@ -63,4 +71,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default App;
