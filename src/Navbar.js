@@ -33,9 +33,8 @@ function Navbar() {
           <Image
             src={logo}
             // objectFit="cover"
-            mt={'6'}
+            mt={'8'}
             ml={'-10'}
-            boxSize=""
           />
         </Link>
 
