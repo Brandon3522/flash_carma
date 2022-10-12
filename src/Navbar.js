@@ -35,6 +35,8 @@ function Navbar() {
             // objectFit="cover"
             mt={'8'}
             ml={'-10'}
+            // width="100%"
+            // height="auto"
           />
         </Link>
 
