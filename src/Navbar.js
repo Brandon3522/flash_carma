@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image } from '@chakra-ui/react';
-// import { Link as ReachLink } from 'react-router-dom';
+import logo from './images/logo.png';
+import { Link as ReachLink } from 'react-router-dom';
 
 function Navbar() {
   const [scroll, setScroll] = useState(false);
@@ -28,13 +29,17 @@ function Navbar() {
         fontSize="large"
         justifyContent="space-between"
       >
-        {/* Change to Image */}
-        <Image></Image>
-        <Link fontSize="xl" fontWeight="bold" mr="10" to="/Home">
-          Logo
+        <Link as={ReachLink} to="/home">
+          <Image
+            src={logo}
+            // objectFit="cover"
+            mt={'6'}
+            ml={'-10'}
+            boxSize=""
+          />
         </Link>
-        
 
+        {/* Add links */}
         <Link mr="10">View Study Decks</Link>
         <Link>Study Session</Link>
 
@@ -53,6 +58,7 @@ function Navbar() {
           </Button>
         </Flex>
 
+        {/* Add links */}
         <Flex>
           <Link mr="10">Settings</Link>
           <Link>Profile</Link>
