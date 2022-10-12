@@ -2,6 +2,10 @@ import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { ChakraProvider } from "@chakra-ui/react";
 import App from './App';
+import Login from './Login';
+import Navbar from './Navbar';
+import Home from './Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -10,6 +14,12 @@ root.render(
   <StrictMode>
     <ChakraProvider>
       <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
+        </Routes>
+      </BrowserRouter>
     </ChakraProvider>
   </StrictMode>
 );
