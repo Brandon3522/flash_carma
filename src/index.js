@@ -20,8 +20,6 @@ root.render(
         </Routes>
       </BrowserRouter>
           <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
-        </Routes>
-      </BrowserRouter>
     </ChakraProvider>
   </StrictMode>
 );
