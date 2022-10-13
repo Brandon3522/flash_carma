@@ -12,7 +12,6 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ChakraProvider>
-      <App />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<App />} />
