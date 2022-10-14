@@ -39,18 +39,10 @@ import {
             p={8}>
             <Stack spacing={4}>
               <HStack>
-                <Box>
-                  <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
-                <Box>
-                  <FormControl id="lastName">
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
+                <FormControl id="firstName" isRequired>
+                  <FormLabel>User Name</FormLabel>
+                  <Input type="text" />
+                </FormControl>
               </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>

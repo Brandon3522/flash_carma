@@ -11,13 +11,6 @@ import {
   useColorModeValue,
   Link
 } from '@chakra-ui/react';
-import {
-  BrowserRouter as Router, 
-  Route, 
-  Routes,
-  Link as RouteLink
-} from 'react-router-dom';
-import { SignUp } from './routes';
 
 function App() {
   return (
