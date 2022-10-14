@@ -54,7 +54,7 @@ function App() {
                 _hover={{
                   bg: 'blue.500'
                 }}>
-                  Sign Up
+                  <Link color={'blue.400'}>Sign Up</Link>
               </Button>
             </Stack>
           </Stack>
