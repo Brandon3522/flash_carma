@@ -18,6 +18,7 @@ import {
   Link as RouteLink
 } from 'react-router-dom';
 import { SignUp } from './routes';
+import { Link as ReachLink } from 'react-router-dom';
 
 function Login() {
   return (
