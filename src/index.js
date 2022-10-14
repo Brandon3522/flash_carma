@@ -20,7 +20,6 @@ root.render(
           <Route path='/' element={<Login />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
-          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
