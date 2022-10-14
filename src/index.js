@@ -5,6 +5,7 @@ import App from './App';
 import { SignUp } from './routes';
 import Navbar from './Navbar';
 import Home from './Home';
+import Login from './Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const container = document.getElementById('root');
@@ -15,9 +16,9 @@ root.render(
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<App />} />
+          <Route path='/' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
           <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
-          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
