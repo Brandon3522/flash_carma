@@ -11,13 +11,6 @@ import {
   useColorModeValue,
   Link
 } from '@chakra-ui/react';
-import {
-  BrowserRouter as Router, 
-  Route, 
-  Routes,
-  Link as RouteLink
-} from 'react-router-dom';
-import { SignUp } from './routes';
 import { Link as ReachLink } from 'react-router-dom';
 
 function Login() {
@@ -62,7 +55,7 @@ function Login() {
                 _hover={{
                   bg: 'blue.500'
                 }}>
-                  SignUp
+                  <Link color={'blue.400'} as={ReachLink} to='/'>Sign Up</Link>
               </Button>
             </Stack>
           </Stack>
