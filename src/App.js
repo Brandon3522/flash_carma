@@ -11,16 +11,8 @@ import {
   useColorModeValue,
   Link
 } from '@chakra-ui/react';
-import {
-  BrowserRouter as Router, 
-  Route, 
-  Routes,
-  Link as RouteLink
-} from 'react-router-dom';
-import { SignUp } from './routes';
-import { Link as ReachLink } from 'react-router-dom';
 
-function Login() {
+function App() {
   return (
     <Flex
       minH={'100vh'}
@@ -72,4 +64,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default App;
