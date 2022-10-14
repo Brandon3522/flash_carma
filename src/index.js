@@ -4,6 +4,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import App from './App';
 import Navbar from './Navbar';
 import Home from './Home';
+import Login from './Login';
+import { SignUp } from './routes/SignUpPage/SignUp';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const container = document.getElementById('root');
@@ -14,7 +16,8 @@ root.render(
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<App />} />
+          <Route path='/' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
           <Route path='/home' element={<><Navbar></Navbar><Home></Home></>} />
         </Routes>
       </BrowserRouter>
