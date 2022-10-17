@@ -17,9 +17,24 @@ import {
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   import { Link as ReachLink } from 'react-router-dom';
+  import { auth } from '../../firebase';
   
   export const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const register = () => {
+      e.preventDefault(); // Prevent entire page refresh
+
+      // Firebase registration
+      auth.createUserWithEmailAndPassword(email, password)
+      
+
+    }
+
+    
   
     return (
       <Flex
@@ -47,12 +62,12 @@ import {
               </HStack>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" onChange={e => setEmail(e.target.value)}/>
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} />
+                  <Input type={showPassword ? 'text' : 'password'} onChange={e => setPassword(e.target.value)} />
                   <InputRightElement h={'full'}>
                     <Button
                       variant={'ghost'}
@@ -66,6 +81,7 @@ import {
               </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
+                  onClick={register}
                   loadingText="Submitting"
                   size="lg"
                   bg={'blue.400'}
