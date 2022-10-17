@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
 
-function Login() {
+export const Login = () => {
   return (
     <Flex
       minH={'100vh'}
@@ -64,5 +64,3 @@ function Login() {
     </Flex>
   );
 }
-
-export default Login;

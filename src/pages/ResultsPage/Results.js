@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Flex, Link, Input, Button, Box, Image, Heading, Spacer } from '@chakra-ui/react';
 
-function Results() {
+export const Results = () => {
   return (
     <Flex align="center" direction="column">
         <Heading textAlign="center">Results</Heading>
@@ -40,5 +40,3 @@ function Results() {
     </Flex>
   )
 }
-
-export default Results
