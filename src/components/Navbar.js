@@ -3,7 +3,7 @@ import { Text, Flex, Link, Input, Button, Box, Image } from '@chakra-ui/react';
 import logo from './images/logo.png'
 import { Link as ReachLink } from 'react-router-dom';
 
-export const Navbar = () => {
+function Navbar() {
   const [scroll, setScroll] = useState(false);
 
   const changeScroll = () =>
@@ -68,3 +68,5 @@ export const Navbar = () => {
     </Box>
   );
 }
+
+export default Navbar;
