@@ -1,7 +1,6 @@
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { ChakraProvider } from "@chakra-ui/react";
-import App from './App';
 import { SignUp } from './routes';
 import Navbar from './Navbar';
 import Home from './Home';

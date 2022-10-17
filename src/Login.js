@@ -55,7 +55,7 @@ function Login() {
                 _hover={{
                   bg: 'blue.500'
                 }}>
-                  <Link color={'blue.400'} as={ReachLink} to='/'>Sign Up</Link>
+                  <Link as={ReachLink} to='/signup'>Sign Up</Link>
               </Button>
             </Stack>
           </Stack>
