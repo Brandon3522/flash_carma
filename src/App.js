@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <ChakraProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />} />
@@ -15,7 +14,6 @@ function App() {
           <Route path='/results' element={<><Navbar></Navbar><Results></Results></>} />
         </Routes>
       </BrowserRouter>
-    </ChakraProvider>
   );
 }
 
