@@ -25,7 +25,7 @@ import {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const register = () => {
+    const register = (e) => {
       e.preventDefault(); // Prevent entire page refresh
 
       // Firebase registration
