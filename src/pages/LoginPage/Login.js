@@ -11,9 +11,31 @@ import {
   useColorModeValue,
   Link
 } from '@chakra-ui/react';
-import { Link as ReachLink } from 'react-router-dom';
+import { Link as ReachLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { auth } from '../../firebase.js';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+
+  const signIn = (e) => {
+    // Prevent entire page refresh
+    e.preventDefault();
+
+    // Firebase sign in
+    signInWithEmailAndPassword(auth, email, password)
+      .then((auth) => {
+        alert('Login successful')
+        navigate('/home')
+      })
+      .catch((error) => alert(error.message))
+  } 
+
+
   return (
     <Flex
       minH={'100vh'}
@@ -32,14 +54,15 @@ export const Login = () => {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" onChange={e => setEmail(e.target.value)}/>
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" onChange={e => setPassword(e.target.value)}/>
             </FormControl>
             <Stack spacing={10}>
               <Button
+                onClick={signIn}
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{

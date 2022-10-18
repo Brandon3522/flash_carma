@@ -16,8 +16,9 @@ import {
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-  import { Link as ReachLink } from 'react-router-dom';
+  import { Link as ReachLink, useNavigate } from 'react-router-dom';
   import { auth } from '../../firebase';
+  import { createUserWithEmailAndPassword } from 'firebase/auth';
   
   export const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -25,13 +26,20 @@ import {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const register = (e) => {
       e.preventDefault(); // Prevent entire page refresh
 
       // Firebase registration
-      auth.createUserWithEmailAndPassword(email, password)
-      
-
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((auth) => {
+          if (auth) {
+            alert('Registration successful')
+            navigate('/')
+          }
+        })
+        .catch((error) => alert(error.message))
     }
 
     
