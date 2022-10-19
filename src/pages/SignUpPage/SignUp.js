@@ -42,6 +42,8 @@ import {
         .catch((error) => alert(error.message))
     }
 
+    // Add the user to the database
+
     
   
     return (
