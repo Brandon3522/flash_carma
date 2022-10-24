@@ -19,15 +19,37 @@ import {
   import { Link as ReachLink, useNavigate } from 'react-router-dom';
   import { auth } from '../../firebase';
   import { createUserWithEmailAndPassword } from 'firebase/auth';
+  import { setDoc, doc } from 'firebase/firestore';
+  import { database } from '../../firebase';
   
   export const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [score, setScore] = useState(0);
 
     const navigate = useNavigate();
 
+    // Add user to the database
+    function add_user(auth) {
+      const user_ref = doc(database, 'users', auth.user.uid)
+
+      setDoc(user_ref, {
+          username: username,
+          email: email,
+          password: password,
+          score: score
+      })
+          .then(() => {
+              alert('Data Added');
+          })
+          .catch((err) => {
+              alert(err.message);
+          });
+    };
+
+    // Register user
     const register = (e) => {
       e.preventDefault(); // Prevent entire page refresh
 
@@ -35,6 +57,9 @@ import {
       createUserWithEmailAndPassword(auth, email, password)
         .then((auth) => {
           if (auth) {
+            // Create user in database
+            add_user(auth)
+            
             alert('Registration successful')
             navigate('/')
           }
@@ -43,7 +68,6 @@ import {
     }
 
     
-  
     return (
       <Flex
         minH={'100vh'}
@@ -65,7 +89,7 @@ import {
               <HStack>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>User Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" onChange={e => setUsername(e.target.value)}/>
                 </FormControl>
               </HStack>
               <FormControl id="email" isRequired>
