@@ -27,7 +27,7 @@ export const auth = getAuth(app);
   // Add study deck to database
   // Database reference: const user_studyDeck_ref = collection(database, 'users', userID, 'study-decks');
   // State: const [studyDeck_name, setStudyDeck_name] = useState('');
-  function add_studyDeck() {
+ /*  function add_studyDeck() {
     addDoc(user_studyDeck_ref, {
         name: studyDeck_name,
     })
@@ -37,12 +37,12 @@ export const auth = getAuth(app);
         .catch((err) => {
             alert(err.message);
         });
-  };
+  }; */
 
   // Get user score
   // Database reference: const user_ref = doc(database, 'users', userID);
   // State: const [user_score, setUsers_score] = useState(0);
-  useEffect(() => {
+ /*  useEffect(() => {
     const getUser_score = async () => {
       const data =  await getDoc(user_ref);
 
@@ -52,14 +52,14 @@ export const auth = getAuth(app);
 
     }
     getUser_score();
-  }, [])
+  }, []) */
 
 
   // Create a flashcard subcollection within a studydeck, and add a flashcard
   // Database reference: In function
   // State: const [flashcard_question, setFlashcard_question] = useState('');
   //        const [flashcard_answer, setFlashcard_answer] = useState('');
-  const add_flashcard = () => {
+  /* const add_flashcard = () => {
     const ref = collection(database, 'users', userID, 'study-decks', 'bVNiowOIVvDtSMffcsCc', 'flashcards');
     addDoc(ref, {
       question: flashcard_question,
@@ -72,12 +72,12 @@ export const auth = getAuth(app);
           alert(err.message);
       });
 
-  }
+  } */
 
   // Retrieve the flashcards under the specified user when called
   // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
   // State: None, console.log info
-  const getData = () => {
+  /* const getData = () => {
     getDocs(flashcards_ref).then(response => {
       console.log(
         response.docs.map(item => {
@@ -85,12 +85,12 @@ export const auth = getAuth(app);
         })
       );
     });
-  };
+  }; */
 
   // Get all study decks from user on page load
   // Database reference: const studyDecks_ref = collection(database,'users',userID,'study-decks')
   // State: const [studyDecks, setStudyDecks] = useState([]);
-  useEffect(() => {
+  /* useEffect(() => {
     const getStudyDecks = async () => {
       const data =  await getDocs(studyDecks_ref);
 
@@ -100,13 +100,13 @@ export const auth = getAuth(app);
 
     }
     getStudyDecks();
-  }, [])
+  }, []) */
 
   // Retrieve study decks, limit the number of study decks retrieved to 4
   // Database reference: const studyDecks_ref = collection(database,'users',userID,'study-decks')
   // and query located in function
   // State: const [studyDecks_limit, setStudyDecks_limit] = useState([]);
-  useEffect(() => {
+  /* useEffect(() => {
     const q = query(studyDecks_ref, limit(4))
     const getStudyDecks_limit = async () => {
       const data =  await getDocs(q);
@@ -117,12 +117,12 @@ export const auth = getAuth(app);
 
     }
     getStudyDecks_limit();
-  }, [])
+  }, []) */
 
   // Get all flashcards from study deck on page load
   // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
   // State: const [flashcards, setFlashcards] = useState([]);
-  useEffect(() => {
+  /* useEffect(() => {
     const getFlashcards = async () => {
       const data = await getDocs(flashcards_ref);
 
@@ -132,11 +132,11 @@ export const auth = getAuth(app);
     }
 
     getFlashcards()
-  }, [])
+  }, []) */
 
 
   // Get all users on page load
-  useEffect(() => {
+  /* useEffect(() => {
 
     // Asynchronous function
     const getUsers = async () => {
@@ -148,4 +148,4 @@ export const auth = getAuth(app);
     }
 
     getUsers()
-  }, [])
+  }, []) */
