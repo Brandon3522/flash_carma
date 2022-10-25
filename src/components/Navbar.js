@@ -29,6 +29,7 @@ function Navbar() {
         fontSize="large"
         justifyContent="space-between"
       >
+      <Box minW={'300px'}>
         <Link as={ReachLink} to="/home">
           <Image
             src={logo}
@@ -39,6 +40,7 @@ function Navbar() {
             // height="auto"
           />
         </Link>
+      </Box>
 
         {/* Add links */}
         <Link mr="10">View Study Decks</Link>
