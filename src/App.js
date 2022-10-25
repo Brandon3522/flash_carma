@@ -1,6 +1,5 @@
 import React from 'react';
-import { ChakraProvider } from "@chakra-ui/react";
-import { SignUp, Login, Home, Results } from './pages';
+import { Login, SignUp, Home, Results } from './pages'
 import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
