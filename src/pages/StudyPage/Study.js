@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background } from '@chakra-ui/react';
-import correct from "../images/correctButton.png"
-import incorrect from "../images/incorrectButton.png"
-import "../components/Study.css"
-
+import correct from "../../components/images/correctButton.png"
+import incorrect from "../../components/images/incorrectButton.png"
+import "../../components/Study.css"
 
 export function StudyPage(props){
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
-import "../components/Edit.css";
-import {Card} from "../components/Card.js";
+import "../../components/Edit.css";
+import {Card} from "../../components/Card.js";
 
 
 
