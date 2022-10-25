@@ -1,0 +1,32 @@
+#newdeck{
+    background: rgb(70, 153, 189);
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 700px;
+    margin-top: 20px;
+}
+
+#card{
+    background: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+#cardtext{
+    margin-left: 20px;
+    word-wrap: break-word;
+}
+
+#textprompt{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#deletebutton{
+    background-color: rgb(252, 22, 22);
+    margin: 10px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
