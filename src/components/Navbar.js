@@ -31,6 +31,8 @@ function Navbar() {
         justifyContent="space-between"
       >
         <Flex display={['none', 'none', 'flex', 'flex']}>
+
+          {/** make image */}
           <Link as={ReachLink} to='/home'>
             <Button
               as='a'
