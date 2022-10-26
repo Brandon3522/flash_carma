@@ -24,6 +24,19 @@ function Navbar() {
                 Home
             </Button>
           </Link>
+
+          <Link as={ReachLink} to='\viewdeck'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                View Study Decks
+            </Button>
+          </Link>
+
+          
         </Flex>
       </Flex>
     </Flex>
