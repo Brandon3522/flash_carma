@@ -36,6 +36,7 @@ function Navbar() {
             </Button>
           </Link>
 
+          {/* page not made yet
           <Link as={ReachLink} to='/study'>
             <Button
               as='a'
@@ -46,6 +47,7 @@ function Navbar() {
                 Study Session
             </Button>
           </Link>
+          */}
         </Flex>
       </Flex>
     </Flex>
