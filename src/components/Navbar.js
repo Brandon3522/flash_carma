@@ -48,6 +48,19 @@ function Navbar() {
             </Button>
           </Link>
           */}
+
+          {/*
+          <Link as={ReachLink} to='\settings'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                settings
+            </Button>
+          </Link>
+          */}
         </Flex>
       </Flex>
     </Flex>
