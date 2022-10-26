@@ -14,7 +14,7 @@ function Navbar() {
         align='center'
       >
         <Flex display={['none', 'none', 'flex', 'flex']}>
-          <Link as={ReachLink} to='\home'>
+          <Link as={ReachLink} to='/home'>
             <Button
               as='a'
               variant='ghost'
@@ -25,7 +25,7 @@ function Navbar() {
             </Button>
           </Link>
 
-          <Link as={ReachLink} to='\viewdeck'>
+          <Link as={ReachLink} to='/viewdeck'>
             <Button
               as='a'
               variant='ghost'
@@ -36,7 +36,16 @@ function Navbar() {
             </Button>
           </Link>
 
-          
+          <Link as={ReachLink} to='/study'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                Study Session
+            </Button>
+          </Link>
         </Flex>
       </Flex>
     </Flex>
