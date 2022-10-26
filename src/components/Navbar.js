@@ -20,6 +20,7 @@ function Navbar() {
         h="10vh"
         alignItems="center"
         p="6"
+        boxShadow={scroll ? 'base' : 'none'}
         position="sticky"
         top="0"
         zIndex="sticky"
