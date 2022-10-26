@@ -49,7 +49,7 @@ function Navbar() {
           </Link>
           */}
 
-          {/*
+          {/* todo: make icon
           <Link as={ReachLink} to='\settings'>
             <Button
               as='a'
@@ -58,6 +58,19 @@ function Navbar() {
               my={5}
               w='100%'>
                 settings
+            </Button>
+          </Link>
+          */}
+
+          {/* todo: make icon
+          <Link as={ReachLink} to='\profile'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                profile
             </Button>
           </Link>
           */}
