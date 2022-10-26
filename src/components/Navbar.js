@@ -8,10 +8,17 @@ function Navbar() {
   return (
     <Flex>
       <Flex
-        position='fixed'
-        top='1rem'
-        right='1rem'
-        align='center'
+        h="10vh"
+        alignItems="center"
+        p="6"
+        position="sticky"
+        top="0"
+        zIndex="sticky"
+        w="full"
+        backgroundColor="grey"
+        color="white"
+        fontSize="large"
+        justifyContent="space-between"
       >
         <Flex display={['none', 'none', 'flex', 'flex']}>
           <Link as={ReachLink} to='/home'>
