@@ -5,6 +5,15 @@ import { Link as ReachLink } from 'react-router-dom';
 
 function Navbar() {
   const [display, changeDisplay] = useState('none')
+
+  const [scroll, setScroll] = useState(false);
+
+  const changeScroll = () =>
+    document.body.scrollTop > 80 || document.documentElement.scrollTop > 80
+      ? setScroll(true)
+      : setScroll(false);
+
+  window.addEventListener('scroll', changeScroll);
   return (
     <Flex>
       <Flex
