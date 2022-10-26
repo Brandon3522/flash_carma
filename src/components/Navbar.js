@@ -24,12 +24,6 @@ function Navbar() {
                 Home
             </Button>
           </Link>
-
-      
-          //view
-          //session
-          //settings
-          //profile
         </Flex>
       </Flex>
     </Flex>
