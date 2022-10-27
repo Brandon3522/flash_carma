@@ -3,6 +3,7 @@ import { Text, Flex, Link, Input, Button, Box, Image, background } from '@chakra
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "../../components/Study.css"
+import { Link as ReachLink } from 'react-router-dom';
 
 export function StudyPage(props){
 
@@ -36,7 +37,13 @@ export function StudyPage(props){
     }]
   }
 
+   //function to get a card from the database
+
+  //assign the first card
   
+  //change card
+
+  //initializes first card
   currentCard.front = deck.cardset[0].front
   currentCard.back = deck.cardset[0].back
   cardtext = currentCard.front;
@@ -47,18 +54,6 @@ export function StudyPage(props){
     cardtext = currentCard.front
     document.getElementById("cardtext").innerHTML = cardtext
   }
-
-
-  //function to get a card from the database
-
-  //assign the first card
-  
-  //change card
-  
-
-
-
-
 
   function flipCard(){  //swaps the text on the card to the other value stored
     isFlipped = !isFlipped;
@@ -95,9 +90,6 @@ export function StudyPage(props){
     }
   }
 
-
-
-
   function incrementCardCount(){ //increments card count/moves to results page
     if(cardNumber === totalCard){
       //sessionStorage.setItem('streak', JSON.stringify(streak));
@@ -109,20 +101,48 @@ export function StudyPage(props){
     }
     else{
       cardNumber++;
+      document.getElementById('cardnumber').innerHTML = "Cards: " + cardNumber + " / " + totalCard;
       changeCard();
     }
   }
 
- 
+ function StoreResultsValues(){
+   sessionStorage.setItem('streak', JSON.stringify(streak));
+   sessionStorage.setItem('score', JSON.stringify(score));
+   sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
+   sessionStorage.setItem('totalcard', JSON.stringify(totalCard));
+ }
+
+ sessionStorage.clear()
   
   return(
-    
-    <><Box>
-        <Text fontSize={'4rem'} align='center'> Study Session </Text>
-      <Text fontSize={'3rem'} align='center'> {deck.deckName} </Text>
-      <Text fontSize={'2rem'} align='center'id='streak'> {streak} </Text> 
-      <Text fontSize={'2rem'} align='center' id="score"> Score: {score} </Text>
-    </Box>
+
+    <>
+      {/* title of Study Session page */}
+      <Text fontSize={'4rem'} align='center'> Study Session </Text>
+
+      <Flex justifyContent={'center'}>
+        <Text fontSize={'1.5rem'} id='cardnumber'> Cards: {cardNumber} / {totalCard} </Text>
+
+      
+        <Link as={ReachLink} to='/results'>
+        <Button onClick={StoreResultsValues} id='endsession'> End Session </Button>
+        </Link> 
+      </Flex>
+
+      <Box>
+       {/* displays deck's name */}
+        <Text fontSize={'3rem'} align='center'> {deck.deckName} </Text>
+
+        {/* displays user's current streak */}
+        <Text fontSize={'2rem'} align='center'id='streak'> {streak} </Text> 
+
+        {/* displays user's current score */}
+        <Text fontSize={'2rem'} align='center' id='score'> Score: {score} </Text>
+      </Box>
+
+    {/* displays a card and the text inside the card */}
+
 
     <Flex justifyContent={'center'}>
       <Box id='flashcard' onClick={flipCard}>
@@ -131,6 +151,7 @@ export function StudyPage(props){
     </Flex>
     
     <Flex justifyContent={'center'}>
+      {/* incorrect */}
         <Box>
           <Image
             boxSize='500px'
@@ -139,6 +160,8 @@ export function StudyPage(props){
             alt='incorrect' 
             onClick={incorrectAns}/>
         </Box>
+
+        {/* correct */}
         <Box> 
           <Image
             boxSize='500px'
