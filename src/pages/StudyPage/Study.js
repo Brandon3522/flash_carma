@@ -121,10 +121,11 @@ export function StudyPage(props){
       {/* title of Study Session page */}
       <Text fontSize={'4rem'} align='center'> Study Session </Text>
 
+      {/* Displays the number of cards studied out of the total in the deck*/}
       <Flex justifyContent={'center'}>
         <Text fontSize={'1.5rem'} id='cardnumber'> Cards: {cardNumber} / {totalCard} </Text>
 
-      
+        {/* Results button */}
         <Link as={ReachLink} to='/results'>
         <Button onClick={StoreResultsValues} id='endsession'> End Session </Button>
         </Link> 
