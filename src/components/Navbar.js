@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Switch, Flex, Link, Input, Button, Box, Image, IconButton } from '@chakra-ui/react';
 import logo from './images/logo.png'
 import { Link as ReachLink } from 'react-router-dom';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 function Navbar() {
   const [display, changeDisplay] = useState('none')
 
-  const [scroll, setScroll] = useState(false);
+  const [scroll, setScroll] = useState('none');
 
   const changeScroll = () =>
     document.body.scrollTop > 80 || document.documentElement.scrollTop > 80
@@ -117,6 +117,78 @@ function Navbar() {
         overflowY='auto'
         flexDir='column'
         >
+        <Flex justify='flex-end'>
+          <IconButton
+            mt={2}
+            mr={2}
+            aria-label='Open Menu'
+            size='lg'
+            icon={<CloseIcon />}
+            onClick={() => changeDisplay('none')}
+          />
+        </Flex>
+        <Flex flexDir='column' align='center'>
+        <Link as={ReachLink} to='/home'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                Home
+            </Button>
+          </Link>
+
+          <Link as={ReachLink} to='/viewdeck'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                View Study Decks
+            </Button>
+          </Link>
+
+          {/* page not made yet
+          <Link as={ReachLink} to='/study'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                Study Session
+            </Button>
+          </Link>
+          */}
+
+          {/* todo: make icon
+          <Link as={ReachLink} to='\settings'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                settings
+            </Button>
+          </Link>
+          */}
+
+          {/* todo: make icon
+          <Link as={ReachLink} to='\profile'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                profile
+            </Button>
+          </Link>
+          */}
+        </Flex>
       </Flex>
     </Flex>
   )
