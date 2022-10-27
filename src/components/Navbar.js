@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Switch, Flex, Link, Input, Button, Box, Image } from '@chakra-ui/react';
+import { Switch, Flex, Link, Input, Button, Box, Image, IconButton } from '@chakra-ui/react';
 import logo from './images/logo.png'
 import { Link as ReachLink } from 'react-router-dom';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 function Navbar() {
   const [display, changeDisplay] = useState('none')
@@ -94,6 +95,16 @@ function Navbar() {
           </Link>
           */}
         </Flex>
+
+        <IconButton
+          aria-label='Open Menu'
+          size='lg'
+          mr={2}
+          icon={<HamburgerIcon />}
+          onClick={() => changeDisplay('flex')}
+          display={['flex', 'flex', 'none', 'none']}>
+
+        </IconButton>
       </Flex>
     </Flex>
   )
