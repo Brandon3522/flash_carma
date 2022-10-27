@@ -106,7 +106,7 @@ export function StudyPage(props){
     }
   }
 
- function StoreResultsValues(){
+ function StoreResultsValues(){ //stores data in user's current session (meant for results)
    sessionStorage.setItem('streak', JSON.stringify(streak));
    sessionStorage.setItem('score', JSON.stringify(score));
    sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
@@ -143,8 +143,6 @@ export function StudyPage(props){
       </Box>
 
     {/* displays a card and the text inside the card */}
-
-
     <Flex justifyContent={'center'}>
       <Box id='flashcard' onClick={flipCard}>
         <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}> {cardtext} </Text>
