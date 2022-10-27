@@ -4,11 +4,15 @@
     width: 500px;
     border: 2px solid black;
     border-radius: 8px;
-   
+   align-content: center;
 }
 
 #cardtext{
     word-wrap: break-word;
-    padding: 5px;
-    padding-right: 10px;
+    margin-top: 10px;
+}
+
+#endsession{
+    background: red;
+    margin-left: 500px;
 }
