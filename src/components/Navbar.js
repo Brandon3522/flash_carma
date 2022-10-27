@@ -102,9 +102,21 @@ function Navbar() {
           mr={2}
           icon={<HamburgerIcon />}
           onClick={() => changeDisplay('flex')}
-          display={['flex', 'flex', 'none', 'none']}>
+          display={['flex', 'flex', 'none', 'none']} />
+      </Flex>
 
-        </IconButton>
+      <Flex
+        w='100vw'
+        display={display}
+        bgColor='gray.50'
+        zIndex={20}
+        h='100vh'
+        pos='fixed'
+        top='0'
+        left='0'
+        overflowY='auto'
+        flexDir='column'
+        >
       </Flex>
     </Flex>
   )
