@@ -77,7 +77,6 @@ export default function Simple() {
                 <MenuList>
                   <MenuItem>Link 1</MenuItem>
                   <MenuItem>Link 2</MenuItem>
-                  <MenuDivider />
                   <MenuItem>Link 3</MenuItem>
                 </MenuList>
               </Menu>
