@@ -24,6 +24,10 @@ export const auth = getAuth(app);
 
 // Examples in my github repo: react_chakra_firebase_testing - src/home.js
 
+// Each function is contained in a block comment: /* Funcion */
+
+// The use effect function runs automatically when the page is loaded
+
   // Add study deck to database
   // Database reference: const user_studyDeck_ref = collection(database, 'users', userID, 'study-decks');
   // State: const [studyDeck_name, setStudyDeck_name] = useState('');
