@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image } from '@chakra-ui/react';
+import { Switch, Flex, Link, Input, Button, Box, Image } from '@chakra-ui/react';
 import logo from './images/logo.png'
 import { Link as ReachLink } from 'react-router-dom';
 
 function Navbar() {
+  const [display, changeDisplay] = useState('none')
+
   const [scroll, setScroll] = useState(false);
 
   const changeScroll = () =>
@@ -12,9 +14,8 @@ function Navbar() {
       : setScroll(false);
 
   window.addEventListener('scroll', changeScroll);
-
   return (
-    <Box>
+    <Flex>
       <Flex
         h="10vh"
         alignItems="center"
@@ -29,46 +30,73 @@ function Navbar() {
         fontSize="large"
         justifyContent="space-between"
       >
-      <Box minW={'300px'}>
-        <Link as={ReachLink} to="/home">
-          <Image
-            src={logo}
-            // objectFit="cover"
-            mt={'8'}
-            ml={'-10'}
-            // width="100%"
-            // height="auto"
-          />
-        </Link>
-      </Box>
+        <Flex display={['none', 'none', 'flex', 'flex']}>
 
-        {/* Add links */}
-        <Link mr="10">View Study Decks</Link>
-        <Link>Study Session</Link>
+          {/** make image */}
+          <Link as={ReachLink} to='/home'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                Home
+            </Button>
+          </Link>
 
-        <Flex>
-          <Input
-            placeholder="Search"
-            backgroundColor="white"
-            textColor="grey"
-            ml="10"
-            size="md"
-            htmlSize={40}
-            width="auto"
-          ></Input>
-          <Button fontSize="large" ml="3" color="white" variant="link">
-            Search
-          </Button>
-        </Flex>
+          <Link as={ReachLink} to='/viewdeck'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                View Study Decks
+            </Button>
+          </Link>
 
-        {/* Add links */}
-        <Flex>
-          <Link mr="10">Settings</Link>
-          <Link>Profile</Link>
+          {/* page not made yet
+          <Link as={ReachLink} to='/study'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                Study Session
+            </Button>
+          </Link>
+          */}
+
+          {/* todo: make icon
+          <Link as={ReachLink} to='\settings'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                settings
+            </Button>
+          </Link>
+          */}
+
+          {/* todo: make icon
+          <Link as={ReachLink} to='\profile'>
+            <Button
+              as='a'
+              variant='ghost'
+              aria-label='home'
+              my={5}
+              w='100%'>
+                profile
+            </Button>
+          </Link>
+          */}
         </Flex>
       </Flex>
-    </Box>
-  );
+    </Flex>
+  )
 }
 
 export default Navbar;
