@@ -1,197 +1,101 @@
-import React, { useState } from 'react';
-import { Switch, Flex, Link, Input, Button, Box, Image, IconButton } from '@chakra-ui/react';
-import logo from './images/logo.png'
-import { Link as ReachLink } from 'react-router-dom';
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { ReactNode } from 'react';
+import {
+  Box,
+  Flex,
+  Avatar,
+  HStack,
+  Link,
+  IconButton,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-function Navbar() {
-  const [display, changeDisplay] = useState('none')
+const Links = ['Dashboard', 'Projects', 'Team'];
 
-  const [scroll, setScroll] = useState('none');
+const NavLink = ({children}) => (
+    <Link
+        px={2}
+        py={1}
+        rounded={'md'}
+        _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('gray.200', 'gray.700'),
+        }}
+        href={'#'}>
+        {children}
+    </Link>
+)
 
-  const changeScroll = () =>
-    document.body.scrollTop > 80 || document.documentElement.scrollTop > 80
-      ? setScroll(true)
-      : setScroll(false);
-
-  window.addEventListener('scroll', changeScroll);
-  return (
-    <Flex>
-      <Flex
-        h="10vh"
-        alignItems="center"
-        p="6"
-        boxShadow={scroll ? 'base' : 'none'}
-        position="sticky"
-        top="0"
-        zIndex="sticky"
-        w="full"
-        backgroundColor="grey"
-        color="white"
-        fontSize="large"
-        justifyContent="space-between"
-      >
-        <Flex display={['none', 'none', 'flex', 'flex']}>
-
-          {/** make image */}
-          <Link as={ReachLink} to='/home'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                Home
-            </Button>
-          </Link>
-
-          <Link as={ReachLink} to='/viewdeck'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                View Study Decks
-            </Button>
-          </Link>
-
-          {/* page not made yet
-          <Link as={ReachLink} to='/study'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                Study Session
-            </Button>
-          </Link>
-          */}
-
-          {/* todo: make icon
-          <Link as={ReachLink} to='\settings'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                settings
-            </Button>
-          </Link>
-          */}
-
-          {/* todo: make icon
-          <Link as={ReachLink} to='\profile'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                profile
-            </Button>
-          </Link>
-          */}
-        </Flex>
-
-        <IconButton
-          aria-label='Open Menu'
-          size='lg'
-          mr={2}
-          icon={<HamburgerIcon />}
-          onClick={() => changeDisplay('flex')}
-          display={['flex', 'flex', 'none', 'none']} />
-      </Flex>
-
-      <Flex
-        w='100vw'
-        display={display}
-        bgColor='gray.50'
-        zIndex={20}
-        h='100vh'
-        pos='fixed'
-        top='0'
-        left='0'
-        overflowY='auto'
-        flexDir='column'
-        >
-        <Flex justify='flex-end'>
-          <IconButton
-            mt={2}
-            mr={2}
-            aria-label='Open Menu'
-            size='lg'
-            icon={<CloseIcon />}
-            onClick={() => changeDisplay('none')}
-          />
-        </Flex>
-        <Flex flexDir='column' align='center'>
-        <Link as={ReachLink} to='/home'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                Home
-            </Button>
-          </Link>
-
-          <Link as={ReachLink} to='/viewdeck'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                View Study Decks
-            </Button>
-          </Link>
-
-          {/* page not made yet
-          <Link as={ReachLink} to='/study'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                Study Session
-            </Button>
-          </Link>
-          */}
-
-          {/* todo: make icon
-          <Link as={ReachLink} to='\settings'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                settings
-            </Button>
-          </Link>
-          */}
-
-          {/* todo: make icon
-          <Link as={ReachLink} to='\profile'>
-            <Button
-              as='a'
-              variant='ghost'
-              aria-label='home'
-              my={5}
-              w='100%'>
-                profile
-            </Button>
-          </Link>
-          */}
-        </Flex>
-      </Flex>
-    </Flex>
-  )
-}
-
-export default Navbar;
+export default function Simple() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+  
+    return (
+      <>
+        <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+          <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <IconButton
+              size={'md'}
+              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              aria-label={'Open Menu'}
+              display={{ md: 'none' }}
+              onClick={isOpen ? onClose : onOpen}
+            />
+            <HStack spacing={8} alignItems={'center'}>
+              <Box>Logo</Box>
+              <HStack
+                as={'nav'}
+                spacing={4}
+                display={{ base: 'none', md: 'flex' }}>
+                {Links.map((link) => (
+                  <NavLink key={link}>{link}</NavLink>
+                ))}
+              </HStack>
+            </HStack>
+            <Flex alignItems={'center'}>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded={'full'}
+                  variant={'link'}
+                  cursor={'pointer'}
+                  minW={0}>
+                  <Avatar
+                    size={'sm'}
+                    src={
+                      'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                    }
+                  />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem>Link 1</MenuItem>
+                  <MenuItem>Link 2</MenuItem>
+                  <MenuDivider />
+                  <MenuItem>Link 3</MenuItem>
+                </MenuList>
+              </Menu>
+            </Flex>
+          </Flex>
+  
+          {isOpen ? (
+            <Box pb={4} display={{ md: 'none' }}>
+              <Stack as={'nav'} spacing={4}>
+                {Links.map((link) => (
+                  <NavLink key={link}>{link}</NavLink>
+                ))}
+              </Stack>
+            </Box>
+          ) : null}
+        </Box>
+  
+        <Box p={4}>Main Content Here</Box>
+      </>
+    );
+  }
