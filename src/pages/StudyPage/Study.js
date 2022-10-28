@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "../../components/Study.css"
 import { Link as ReachLink } from 'react-router-dom';
+import { getDocs, collection } from 'firebase/firestore';
+import { database } from '../../firebase';
+
 
 export function StudyPage(props){
+  // State: 
+  const [flashcards, setFlashcards] = useState([]);
 
+  const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
+  const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
+  // Database reference: 
+  const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+  
+  
   //card status
   var cardtext; //text currently on the card
   var isFlipped = false; //whether the card is facing front or back
@@ -36,6 +47,23 @@ export function StudyPage(props){
       back: "Electric boogaloo",
     }]
   }
+  
+  // Get all flashcards from study deck on page load
+  useEffect(() => {
+    const getFlashcards = async () => {
+      const data = await getDocs(flashcards_ref);
+
+      setFlashcards(data.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+
+      data.docs.map((doc) => {
+        console.log(doc.data())
+      })
+    }
+
+    getFlashcards()
+  }, []) 
 
    //function to get a card from the database
 
