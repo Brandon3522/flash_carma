@@ -4,18 +4,21 @@ import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "../../components/Study.css"
 import { Link as ReachLink } from 'react-router-dom';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 
 
 export function StudyPage(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
+  const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  
 
   const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
   // Database reference: 
   const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+  const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
   
   
   //card status
@@ -63,6 +66,19 @@ export function StudyPage(props){
     }
 
     getFlashcards()
+  }, [])
+
+  // Get study name
+    useEffect(() => {
+    const getStudyDeckName = async () => {
+      const data =  await getDoc(studyDeckName_ref);
+
+      const name = data.data().name;
+
+      setDislpay_studyDeckName(name);
+      console.log(name);
+    }
+    getStudyDeckName();
   }, []) 
 
    //function to get a card from the database
