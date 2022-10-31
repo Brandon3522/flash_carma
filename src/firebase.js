@@ -43,6 +43,21 @@ export const auth = getAuth(app);
         });
   }; */
 
+  // Get study name
+  // Database reference: const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
+  // State: const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  /*  useEffect(() => {
+    const getStudyDeckName = async () => {
+      const data =  await getDoc(studyDeckName_ref);
+
+      const name = data.data().name;
+
+      setDislpay_studyDeckName(name);
+
+    }
+    getStudyDeckName();
+  }, []) */
+
   // Get user score
   // Database reference: const user_ref = doc(database, 'users', userID);
   // State: const [user_score, setUsers_score] = useState(0);
