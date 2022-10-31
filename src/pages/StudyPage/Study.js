@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "../../components/Study.css"
@@ -12,6 +12,7 @@ export function StudyPage(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  const [loading, setLoading] = useState(true);
   
 
   const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
@@ -37,6 +38,19 @@ export function StudyPage(props){
     back: ""
   }
 
+  // Get study name
+  useEffect(() => {
+    const getStudyDeckName = async () => {
+      const data =  await getDoc(studyDeckName_ref);
+
+      const name = data.data().name;
+
+      setDislpay_studyDeckName(name);
+      console.log(name);
+    }
+    getStudyDeckName();
+  }, [])
+
   // Get all flashcards from study deck on page load
   useEffect(() => {
     const getFlashcards = async () => {
@@ -49,23 +63,14 @@ export function StudyPage(props){
       data.docs.map((doc) => {
         console.log(doc.data())
       })
+
+      setLoading(false);
     }
 
     getFlashcards()
   }, [])
 
-  // Get study name
-    useEffect(() => {
-    const getStudyDeckName = async () => {
-      const data =  await getDoc(studyDeckName_ref);
-
-      const name = data.data().name;
-
-      setDislpay_studyDeckName(name);
-      console.log(name);
-    }
-    getStudyDeckName();
-  }, []) 
+   
 
 
   //Test Deck
@@ -155,6 +160,12 @@ export function StudyPage(props){
  }
 
  sessionStorage.clear()
+
+ if (loading) {
+  return (
+    <Heading textAlign={'center'}>Loading...</Heading>
+  )
+}
   
   return(
 
