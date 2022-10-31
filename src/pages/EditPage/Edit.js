@@ -36,12 +36,12 @@ function getTextToAdd (){ //gets texts and prepares it to be added to the card l
 
     if(trimtext(f) == '') //checks if frontside textarea is empty
     {      
-         alert("Please Fill in Front!");
+         alert("Please fill in Front!");
          return false;       
     }
     else if(trimtext(b) == '') //checks if backside textarea is empty
     {      
-          alert("Please FIll in Back!");
+          alert("Please fill in Back!");
           return false;       
    }
     else
@@ -76,7 +76,7 @@ function deleteCard(id){ //removes a card from list based on id
 
     <Flex justifyContent={'center'}> 
     <Button id='newdeck' align={'center'} fontSize={'1.5rem'}
-    onClick={getTextToAdd}> Create a new deck </Button>
+    onClick={getTextToAdd}> Create a new card </Button>
     </Flex>
 
     <Text fontSize={'2rem'} align={'center'}> Cards: </Text>
