@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "../../components/Study.css"
 import { Link as ReachLink } from 'react-router-dom';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 
 
 export function StudyPage(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
+  const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  const [loading, setLoading] = useState(true);
+  
 
   const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
   // Database reference: 
   const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+  const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
   
   
   //card status
@@ -34,20 +38,19 @@ export function StudyPage(props){
     back: ""
   }
 
-  //Test Deck
-  let deck = {
-    deckName: "Test Deck",
-    cardset: [{
-      id: 1,
-      front: "Hello",
-      back: "World"
-    },{
-      id: 2,
-      front: "The second one",
-      back: "Electric boogaloo",
-    }]
-  }
-  
+  // Get study name
+  useEffect(() => {
+    const getStudyDeckName = async () => {
+      const data =  await getDoc(studyDeckName_ref);
+
+      const name = data.data().name;
+
+      setDislpay_studyDeckName(name);
+      console.log(name);
+    }
+    getStudyDeckName();
+  }, [])
+
   // Get all flashcards from study deck on page load
   useEffect(() => {
     const getFlashcards = async () => {
@@ -60,25 +63,32 @@ export function StudyPage(props){
       data.docs.map((doc) => {
         console.log(doc.data())
       })
+
+      setLoading(false);
     }
-
     getFlashcards()
-  }, []) 
+  }, [])
 
-   //function to get a card from the database
 
-  //assign the first card
-  
-  //change card
+//loading screen buffer 
+  if (loading) {
+    return (
+      <Heading textAlign={'center'}>Loading...</Heading>
+    )
+  }
+
+  let deckName= display_studyDeckName; //name of the study deck
+  totalCard = flashcards.length //updates total to how many entries there are
+ 
 
   //initializes first card
-  currentCard.front = deck.cardset[0].front
-  currentCard.back = deck.cardset[0].back
+  currentCard.front = flashcards[0].question
+  currentCard.back = flashcards[0].answer
   cardtext = currentCard.front;
 
   function changeCard(){ //swaps to next card in deck
-    currentCard.front = deck.cardset[cardNumber-1].front
-    currentCard.back = deck.cardset[cardNumber-1].back
+    currentCard.front = flashcards[cardNumber-1].question
+    currentCard.back = flashcards[cardNumber-1].answer
     cardtext = currentCard.front
     document.getElementById("cardtext").innerHTML = cardtext
   }
@@ -142,6 +152,8 @@ export function StudyPage(props){
  }
 
  sessionStorage.clear()
+
+
   
   return(
 
@@ -161,7 +173,7 @@ export function StudyPage(props){
 
       <Box>
        {/* displays deck's name */}
-        <Text fontSize={'3rem'} align='center'> {deck.deckName} </Text>
+        <Text fontSize={'3rem'} align='center'> {deckName} </Text>
 
         {/* displays user's current streak */}
         <Text fontSize={'2rem'} align='center'id='streak'> {streak} </Text> 

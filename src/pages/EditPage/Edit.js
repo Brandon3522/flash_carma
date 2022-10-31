@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
 import "../../components/Edit.css";
 import {Card} from "../../components/Card.js";
+import { stringify } from '@firebase/util';
 
 
 
@@ -14,22 +15,37 @@ export function EditPage(props){
 
     
 
-    const addCardToList = (front, back) => { //adds a card to list
+const addCardToList = (front, back) => { //adds a card to list
 
-        const card = {
-            front,
-            back,
-            id: Math.random()
-        }
-        setCards([card, ...cardset])
-
+    const card = {
+         front,
+         back,
+         id: Math.random()
     }
-    
-function getTextToAdd (){ //gets texts and prepares it to be added to the card list
-    var f = document.getElementById('TBfront').value;
-    var b = document.getElementById('TBback').value;
+    setCards([card, ...cardset])
 
-    addCardToList(f, b);
+}
+
+function trimtext(text) 
+{ 
+    return text.replace(/^\s+|\s+$/g,''); 
+}
+function getTextToAdd (){ //gets texts and prepares it to be added to the card list
+    var f = document.getElementById('TBfront').value 
+    var b = document.getElementById('TBback').value
+
+    if(trimtext(f) == '') //checks if frontside textarea is empty
+    {      
+         alert("Please fill in Front!");
+         return false;       
+    }
+    else if(trimtext(b) == '') //checks if backside textarea is empty
+    {      
+          alert("Please fill in Back!");
+          return false;       
+   }
+    else
+      addCardToList(f, b);
 
 }
 
@@ -60,7 +76,7 @@ function deleteCard(id){ //removes a card from list based on id
 
     <Flex justifyContent={'center'}> 
     <Button id='newdeck' align={'center'} fontSize={'1.5rem'}
-    onClick={getTextToAdd}> Create a new deck </Button>
+    onClick={getTextToAdd}> Create a new card </Button>
     </Flex>
 
     <Text fontSize={'2rem'} align={'center'}> Cards: </Text>
