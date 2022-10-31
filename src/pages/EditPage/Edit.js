@@ -36,12 +36,12 @@ function getTextToAdd (){ //gets texts and prepares it to be added to the card l
 
     if(trimtext(f) == '') //checks if frontside textarea is empty
     {      
-         alert("Please Provide Front!");
+         alert("Please Fill in Front!");
          return false;       
     }
     else if(trimtext(b) == '') //checks if backside textarea is empty
     {      
-          alert("Please Provide Back!");
+          alert("Please FIll in Back!");
           return false;       
    }
     else
