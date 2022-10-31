@@ -66,37 +66,29 @@ export function StudyPage(props){
 
       setLoading(false);
     }
-
     getFlashcards()
   }, [])
 
-   
 
-
-  //Test Deck
-  let deck = {
-    deckName: display_studyDeckName,
-    cardset: [{
-      id: 1,
-      front: "Hello",
-      back: "World"
-    },{
-      id: 2,
-      front: "The second one",
-      back: "Electric boogaloo",
-    }]
+//loading screen buffer 
+  if (loading) {
+    return (
+      <Heading textAlign={'center'}>Loading...</Heading>
+    )
   }
 
+  let deckName= display_studyDeckName; //name of the study deck
+  totalCard = flashcards.length //updates total to how many entries there are
  
 
   //initializes first card
-  currentCard.front = deck.cardset[0].front
-  currentCard.back = deck.cardset[0].back
+  currentCard.front = flashcards[0].question
+  currentCard.back = flashcards[0].answer
   cardtext = currentCard.front;
 
   function changeCard(){ //swaps to next card in deck
-    currentCard.front = deck.cardset[cardNumber-1].front
-    currentCard.back = deck.cardset[cardNumber-1].back
+    currentCard.front = flashcards[cardNumber-1].question
+    currentCard.back = flashcards[cardNumber-1].answer
     cardtext = currentCard.front
     document.getElementById("cardtext").innerHTML = cardtext
   }
@@ -161,11 +153,7 @@ export function StudyPage(props){
 
  sessionStorage.clear()
 
- if (loading) {
-  return (
-    <Heading textAlign={'center'}>Loading...</Heading>
-  )
-}
+
   
   return(
 
@@ -185,7 +173,7 @@ export function StudyPage(props){
 
       <Box>
        {/* displays deck's name */}
-        <Text fontSize={'3rem'} align='center'> {deck.deckName} </Text>
+        <Text fontSize={'3rem'} align='center'> {deckName} </Text>
 
         {/* displays user's current streak */}
         <Text fontSize={'2rem'} align='center'id='streak'> {streak} </Text> 
