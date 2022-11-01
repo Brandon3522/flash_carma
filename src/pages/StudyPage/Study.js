@@ -206,7 +206,8 @@ export function Study(props){
     {/* displays a card and the text inside the card */}
     <Flex justifyContent={'center'}>
       <Box id='flashcard' onClick={flipCard}>
-        <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}> {cardtext} </Text>
+        <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
+        color='black'> {cardtext} </Text>
       </Box>
     </Flex>
     
