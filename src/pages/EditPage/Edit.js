@@ -1,19 +1,68 @@
-import React, { useState } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
+import React, { useState, useEffect } from 'react';
+import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
 import "../../components/Edit.css";
 import {Card} from "../../components/Card.js";
 import { stringify } from '@firebase/util';
-
+import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
+import { database } from '../../firebase';
 
 
 
 export function EditPage(props){
-    
-    var deckname = "Test deck" 
 
-    const [cardset, setCards] = useState( [] ); //array of cards
+  const [cardset, setCards] = useState( [] ); //array of cards
+ // State: 
+  const [flashcards, setFlashcards] = useState([]);
+  const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  const [loading, setLoading] = useState(true);
+  
 
-    
+    const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
+    const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
+    // Database reference: 
+    const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+    const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
+
+ // Get deck name
+ useEffect(() => {
+    const getStudyDeckName = async () => {
+      const data =  await getDoc(studyDeckName_ref);
+
+      const name = data.data().name;
+
+      setDislpay_studyDeckName(name);
+      console.log(name);
+    }
+    getStudyDeckName();
+  }, [])
+
+  // Get all flashcards from study deck on page load
+  useEffect(() => {
+    const getFlashcards = async () => {
+      const data = await getDocs(flashcards_ref);
+
+      setFlashcards(data.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+
+      data.docs.map((doc) => {
+        console.log(doc.data())
+      })
+
+      setLoading(false);
+    }
+    getFlashcards()
+  }, [])
+
+
+//loading screen buffer 
+  if (loading) {
+    return (
+      <Heading textAlign={'center'}>Loading...</Heading>
+    )
+  }
+
+  var deckname = display_studyDeckName
 
 const addCardToList = (front, back) => { //adds a card to list
 
