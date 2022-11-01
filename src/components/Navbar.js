@@ -17,9 +17,9 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
 
-const Links = ['View Study Decks', 'Study Session'];
+const Links = ['View Study Decks', {name: 'Study Session', href: '/study'}];
 
-const NavLink = ({children}) => (
+const NavLink = ({children, href}) => (
     <Link
         px={2}
         py={1}
@@ -28,7 +28,7 @@ const NavLink = ({children}) => (
         textDecoration: 'none',
         bg: useColorModeValue('gray.200', 'gray.700'),
         }}
-        href={'/'}>
+        href={href}>
         {children}
     </Link>
 )
@@ -54,7 +54,7 @@ export default function Simple() {
                 spacing={4}
                 display={{ base: 'none', md: 'flex' }}>
                 {Links.map((link) => (
-                  <NavLink key={link}>{link}</NavLink>
+                  <NavLink key={link.name} href={link.href}>{link.name}</NavLink>
                 ))}
               </HStack>
             </HStack>
