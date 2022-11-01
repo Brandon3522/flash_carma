@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
-import "../../components/Edit.css";
+import "./Edit.css";
 import {Card} from "../../components/Card.js";
 import { stringify } from '@firebase/util';
 import { getDocs, collection, doc, getDoc } from 'firebase/firestore';

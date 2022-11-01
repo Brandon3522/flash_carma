@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background, Heading } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
-import "../../components/Study.css"
+import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
