@@ -4,3 +4,4 @@ export * from './HomePage';
 export * from './ResultsPage';
 export * from './EditPage';
 export * from './StudyPage';
+export * from './ViewStudyDecksPage'

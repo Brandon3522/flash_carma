@@ -8,7 +8,7 @@ import { database } from '../../firebase';
 
 
 
-export function EditPage(props){
+export function Edit(props){
 
   const [cardset, setCards] = useState( [] ); //array of cards
  // State: 

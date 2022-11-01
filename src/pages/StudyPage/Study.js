@@ -8,7 +8,7 @@ import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 
 
-export function StudyPage(props){
+export function Study(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
