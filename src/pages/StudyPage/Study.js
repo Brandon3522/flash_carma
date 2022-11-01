@@ -38,7 +38,7 @@ export function StudyPage(props){
     back: ""
   }
 
-  // Get study name
+  // Get deck name
   useEffect(() => {
     const getStudyDeckName = async () => {
       const data =  await getDoc(studyDeckName_ref);
