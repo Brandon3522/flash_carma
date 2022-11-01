@@ -12,6 +12,7 @@ export function StudyPage(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  const [user_score, setUsers_score] = useState(0);
   const [loading, setLoading] = useState(true);
   
 
@@ -20,6 +21,7 @@ export function StudyPage(props){
   // Database reference: 
   const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
   const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
+  const user_ref = doc(database, 'users', userID);
   
   
   //card status
@@ -68,6 +70,19 @@ export function StudyPage(props){
     }
     getFlashcards()
   }, [])
+
+  // Get user score
+  useEffect(() => {
+    const getUser_score = async () => {
+      const data =  await getDoc(user_ref);
+
+      const score = data.data().score;
+      console.log(score)
+      setUsers_score(score)
+
+    }
+    getUser_score();
+  }, []) 
 
 
 //loading screen buffer 
