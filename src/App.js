@@ -1,6 +1,5 @@
 import React from 'react';
 import { SignUp, Login, Home, Edit, Study, Results, ViewStudyDecks } from './pages';
-//import { ViewStudyDecks } from './pages/ViewStudyDecksPage'; // transfer to ./pages
 import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
