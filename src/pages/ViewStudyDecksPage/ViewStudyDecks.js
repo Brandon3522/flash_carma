@@ -13,22 +13,28 @@ export const Results = () => {
        {/* Grid of Study Decks */}
        <Grid templateColumns='repeats(4, 1fr)' gap={14}>
          {/* Create new study deck button */}
-         <GridItem w='100px' h='100px' bg='chartreuse'>
+         <LinkOverlay href='#'>
+            <GridItem w='100px' h='100px' bg='chartreuse'>
 
-         </GridItem>
+            </GridItem>
+         </LinkOverlay>
          
          {/* From here on, it's the user's existing study decks */}
-         <GridItem w='100px' h='100px' bg='chartreuse'>
+         <LinkOverlay href='#'>
+           <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 1</GridItem>
+         </LinkOverlay>
 
-         </GridItem>
+         <LinkOverlay href='#'>
+         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 2</GridItem>
+         </LinkOverlay>
 
-         <GridItem w='100px' h='100px' bg='chartreuse'>
+         <LinkOverlay href='#'>
+         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 3</GridItem>
+         </LinkOverlay>
 
-         </GridItem>
-
-         <GridItem w='100px' h='100px' bg='chartreuse'>
-
-         </GridItem>
+         <LinkOverlay href='#'>
+         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 4</GridItem>
+         </LinkOverlay>
        </Grid>
      </Flex>
    )
