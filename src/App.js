@@ -13,6 +13,7 @@ function App() {
           <Route path='/results' element={<><Navbar></Navbar><Results></Results></>} />
           <Route path='/study' element={<><Navbar></Navbar><StudyPage></StudyPage></>} />
           <Route path='/editpage' element={<><Navbar></Navbar><EditPage></EditPage></>} />
+          <Route path='/view' element={<><Navbar></Navbar></>} /> 
         </Routes>
       </BrowserRouter>
   );
