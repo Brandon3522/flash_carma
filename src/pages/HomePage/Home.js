@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Heading, Text, Box } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
@@ -63,10 +63,25 @@ export const Home = () => {
 
   return (
     <Box>
-    <Heading>Home</Heading>
-    <Heading>{username}</Heading>
-    <Text>Current User ID: {user.uid}</Text>
-    <Text>User Score: {user_score}</Text>
+      <Box>
+        <Heading>Home</Heading>
+        <Heading>{username}</Heading>
+        <Text>Current User ID: {user.uid}</Text>
+        <Text>User Score: {user_score}</Text>
+      </Box>
+
+      <Spacer
+      margin={'100px'}/>
+
+      <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
+       <Box
+       background= 'teal'
+       height='400px'>
+
+      </Box>
+
+      {/* Containder for recent decks idea */}
+
     </Box>
   )
 }

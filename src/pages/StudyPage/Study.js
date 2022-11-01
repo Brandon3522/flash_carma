@@ -4,11 +4,11 @@ import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
-import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
+import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 
 
-export function StudyPage(props){
+export function Study(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
@@ -20,6 +20,7 @@ export function StudyPage(props){
   // Database reference: 
   const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
   const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
+  const user_ref = doc(database, 'users', userID);
   
   
   //card status
@@ -69,6 +70,20 @@ export function StudyPage(props){
     getFlashcards()
   }, [])
 
+  // Update user score
+  const updateUserScore = async (value) => {
+   const data =  await getDoc(user_ref);
+
+    var score = data.data().score + value;
+    console.log(score) 
+
+    await updateDoc(user_ref, {
+      score: score
+    })
+
+    console.log('Score updated');
+  }
+
 
 //loading screen buffer 
   if (loading) {
@@ -105,17 +120,21 @@ export function StudyPage(props){
   }
 
   function incorrectAns(){ //when you click the incorrect buttton
+    if(cardNumber <= totalCard){
     isStreaking = false;
     streak = 0;
     document.getElementById("streak").innerHTML = streak;
     incrementCardCount();
+    }
   }
 
   function correctAns(){ //when you click the correct button
+    if(cardNumber <= totalCard){
     addPoints();
     document.getElementById("streak").innerHTML = streak;
     document.getElementById("score").innerHTML = "Score: " + score;
     incrementCardCount();
+    }
   }
 
   function addPoints(){ //adds score and streak
@@ -129,26 +148,28 @@ export function StudyPage(props){
   }
 
   function incrementCardCount(){ //increments card count/moves to results page
-    if(cardNumber === totalCard){
-      //sessionStorage.setItem('streak', JSON.stringify(streak));
-      //sessionStorage.setItem('score', JSON.stringify(score));
-     
-     
-     //Move to results page with streak and score
-     
-    }
-    else{
       cardNumber++;
+      if (cardNumber > totalCard){
+        document.getElementById('cardnumber').innerHTML = "Cards: Complete!";
+      }
+      else{
       document.getElementById('cardnumber').innerHTML = "Cards: " + cardNumber + " / " + totalCard;
       changeCard();
-    }
+      }
+
   }
 
  function StoreResultsValues(){ //stores data in user's current session (meant for results)
+  if(cardNumber > totalCard){
+    cardNumber = totalCard
+   }
+
+   updateUserScore(score);
+
    sessionStorage.setItem('streak', JSON.stringify(streak));
    sessionStorage.setItem('score', JSON.stringify(score));
-   sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
    sessionStorage.setItem('totalcard', JSON.stringify(totalCard));
+   sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
  }
 
  sessionStorage.clear()
