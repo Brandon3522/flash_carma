@@ -1,5 +1,6 @@
 import React from 'react';
 import { SignUp, Login, Home, EditPage, StudyPage, Results } from './pages';
+import { ViewStudyDecks } from './pages/ViewStudyDecksPage'; // transfer to ./pages
 import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -13,7 +14,7 @@ function App() {
           <Route path='/results' element={<><Navbar></Navbar><Results></Results></>} />
           <Route path='/study' element={<><Navbar></Navbar><StudyPage></StudyPage></>} />
           <Route path='/editpage' element={<><Navbar></Navbar><EditPage></EditPage></>} />
-          <Route path='/view' element={<><Navbar></Navbar></>} /> 
+          <Route path='/view' element={<><Navbar></Navbar><ViewStudyDecks></ViewStudyDecks></>} /> 
         </Routes>
       </BrowserRouter>
   );

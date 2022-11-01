@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, Linkbox, LinkOverlay } from '@chakra-ui/react';
 
-export const Results = () => {
+export const ViewStudyDecks = () => {
 
     /*JavaScript goes here*/
     var streak =  sessionStorage.getItem('streak');

@@ -19,7 +19,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
-const Links = [{name: 'View Study Decks', href: './view'}, {name: 'Study Session', href: '/study'}];
+const Links = [{name: 'View Study Decks', href: '/view'}, {name: 'Study Session', href: '/study'}];
 
 const NavLink = ({children, href}) => (
     <Link
