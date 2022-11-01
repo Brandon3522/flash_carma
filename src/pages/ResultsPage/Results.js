@@ -20,7 +20,8 @@ export const Results = () => {
            Deck completion: {cardNumber}/{totalCard}
         </Text>
 
-        {/* Number of flashcards completed out of total */}
+        {/* Study Session streak */}
+        {/* Image representing highest streak */}
         <Text fontSize="30px" textAlign="center">
         Streak: {streak}
         </Text>
@@ -30,8 +31,9 @@ export const Results = () => {
         Score: {score}
         </Text>
 
+        
 
-        {/* Image representing highest streak */}
+        <Spacer marginTop={'20px'}/>
 
         <Flex direction="row" justifyContent="space-between" >
             {/* Replay button */}
@@ -41,8 +43,8 @@ export const Results = () => {
             </Button>
             </Link>
 
-            <Spacer />
-
+            <Spacer marginLeft={'10px'}
+            marginRight={'10px'}/>
 
             {/* Home button */}
             <Link as={ReachLink} to='/home'>

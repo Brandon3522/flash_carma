@@ -120,17 +120,21 @@ export function StudyPage(props){
   }
 
   function incorrectAns(){ //when you click the incorrect buttton
+    if(cardNumber <= totalCard){
     isStreaking = false;
     streak = 0;
     document.getElementById("streak").innerHTML = streak;
     incrementCardCount();
+    }
   }
 
   function correctAns(){ //when you click the correct button
+    if(cardNumber <= totalCard){
     addPoints();
     document.getElementById("streak").innerHTML = streak;
     document.getElementById("score").innerHTML = "Score: " + score;
     incrementCardCount();
+    }
   }
 
   function addPoints(){ //adds score and streak
@@ -144,26 +148,26 @@ export function StudyPage(props){
   }
 
   function incrementCardCount(){ //increments card count/moves to results page
-    if(cardNumber === totalCard){
-      //sessionStorage.setItem('streak', JSON.stringify(streak));
-      //sessionStorage.setItem('score', JSON.stringify(score));
-     
-     
-     //Move to results page with streak and score
-     
-    }
-    else{
       cardNumber++;
+      if (cardNumber > totalCard){
+        document.getElementById('cardnumber').innerHTML = "Cards: Complete!";
+      }
+      else{
       document.getElementById('cardnumber').innerHTML = "Cards: " + cardNumber + " / " + totalCard;
       changeCard();
-    }
+      }
+
   }
 
  function StoreResultsValues(){ //stores data in user's current session (meant for results)
+  if(cardNumber > totalCard){
+    cardNumber = totalCard
+   }
+
    sessionStorage.setItem('streak', JSON.stringify(streak));
    sessionStorage.setItem('score', JSON.stringify(score));
-   sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
    sessionStorage.setItem('totalcard', JSON.stringify(totalCard));
+   sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
  }
 
  sessionStorage.clear()
