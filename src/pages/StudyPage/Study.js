@@ -4,7 +4,7 @@ import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
-import { getDocs, collection, doc, getDoc } from 'firebase/firestore';
+import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 
 
@@ -12,7 +12,6 @@ export function StudyPage(props){
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
-  const [user_score, setUsers_score] = useState(0);
   const [loading, setLoading] = useState(true);
   
 
@@ -71,18 +70,19 @@ export function StudyPage(props){
     getFlashcards()
   }, [])
 
-  // Get user score
-  useEffect(() => {
-    const getUser_score = async () => {
-      const data =  await getDoc(user_ref);
+  // Update user score
+  const updateUserScore = async (value) => {
+   const data =  await getDoc(user_ref);
 
-      const score = data.data().score;
-      console.log(score)
-      setUsers_score(score)
+    var score = data.data().score + value;
+    console.log(score) 
 
-    }
-    getUser_score();
-  }, []) 
+    await updateDoc(user_ref, {
+      score: score
+    })
+
+    console.log('Score updated');
+  }
 
 
 //loading screen buffer 
@@ -163,6 +163,8 @@ export function StudyPage(props){
   if(cardNumber > totalCard){
     cardNumber = totalCard
    }
+
+   updateUserScore(score);
 
    sessionStorage.setItem('streak', JSON.stringify(streak));
    sessionStorage.setItem('score', JSON.stringify(score));

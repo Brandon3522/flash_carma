@@ -168,3 +168,20 @@ export const auth = getAuth(app);
 
     getUsers()
   }, []) */
+
+  // Update user score
+  // Database reference: const user_ref = doc(database, 'users', userID);
+  // State: const [user_score, setUsers_score] = useState(0);
+  /* const updateUserScore = async (value) => {
+   const data =  await getDoc(user_ref);
+
+    var score = data.data().score + value;
+    console.log(score)
+    setUsers_score(score) 
+
+    await updateDoc(user_ref, {
+      score: score
+    })
+
+    console.log('Score updated');
+  } */
