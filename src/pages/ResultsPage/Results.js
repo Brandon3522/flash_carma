@@ -21,7 +21,7 @@ export const Results = () => {
         </Text>
 
         {/* Study Session streak */}
-        {/* Image representing highest streak added later */}
+        {/* Image representing highest streak */}
         <Text fontSize="30px" textAlign="center">
         Streak: {streak}
         </Text>
