@@ -13,9 +13,11 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  MenuDivider,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
+import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 const Links = ['View Study Decks', {name: 'Study Session', href: '/study'}];
 
@@ -76,7 +78,8 @@ export default function Simple() {
                 <MenuList>
                   <MenuItem>Link 1</MenuItem>
                   <MenuItem>Link 2</MenuItem>
-                  <MenuItem>Link 3</MenuItem>
+                  <MenuDivider />
+                  <ColorModeSwitcher></ColorModeSwitcher>
                 </MenuList>
               </Menu>
             </Flex>
