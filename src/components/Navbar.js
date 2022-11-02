@@ -14,10 +14,13 @@ import {
   useColorModeValue,
   Stack,
   MenuDivider,
+  Image,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
 import { ColorModeSwitcher } from './ColorModeSwitcher';
+import {Link as ReachLink} from 'react-router-dom'
+import logo from './images/logo.png'
 
 const Links = [{name: 'View Study Decks', href: '/view'}, {name: 'Study Session', href: '/study'}];
 
@@ -50,7 +53,11 @@ export default function Simple() {
               onClick={isOpen ? onClose : onOpen}
             />
             <HStack spacing={8} alignItems={'center'}>
-              <Box>Logo</Box>
+              <Box>
+                <Link as={ReachLink} to='/home'>
+                 <Image src={logo} />
+                </Link>
+              </Box>
               <HStack
                 as={'nav'}
                 spacing={4}
