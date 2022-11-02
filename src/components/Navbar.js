@@ -55,7 +55,7 @@ export default function Simple() {
             <HStack spacing={8} alignItems={'center'}>
               <Box>
                 <Link as={ReachLink} to='/home'>
-                 <Image src={logo} />
+                 <Image src={logo} width='200px' height={'100px'}/>
                 </Link>
               </Box>
               <HStack
