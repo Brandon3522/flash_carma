@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignUp, Login, Home, Edit, Study, Results, ViewStudyDecks, ProfileSettings } from './pages';
+import { SignUp, Login, Home, Edit, Study, Results, ViewStudyDecks, Settings } from './pages';
 import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ function App() {
           <Route path='/study' element={<><Navbar></Navbar><Study></Study></>} />
           <Route path='/edit' element={<><Navbar></Navbar><Edit></Edit></>} />
           <Route path='/view' element={<><Navbar></Navbar><ViewStudyDecks></ViewStudyDecks></>} />
-          <Route path='/settings' element={<><Navbar></Navbar><ProfileSettings></ProfileSettings></>} />  
+          <Route path='/settings' element={<><Navbar></Navbar><Settings></Settings></>} />  
         </Routes>
       </BrowserRouter>
   );
