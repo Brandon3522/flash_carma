@@ -13,26 +13,36 @@ export const ViewStudyDecks = () => {
        {/* Grid of Study Decks */}
        <Grid templateColumns='repeats(4, 1fr)' gap={14}>
          {/* Create new study deck button */}
-         {/* <LinkOverlay href='#'> */}
-            <GridItem w='100px' h='100px' bg='chartreuse'>Sample text</GridItem>
-         {/* </LinkOverlay> */}
+         <Linkbox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Sample text</GridItem>
+           </LinkOverlay> 
+         </Linkbox>
          
          {/* From here on, it's the user's existing study decks */}
-         {/* <LinkOverlay href='#'> */}
-           <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 1</GridItem>
-         {/* </LinkOverlay> */}
+         <Linkbox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 1</GridItem>
+           </LinkOverlay> 
+         </Linkbox>
 
-         {/* <LinkOverlay href='#'> */}
-         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 2</GridItem>
-         {/* </LinkOverlay> */}
+         <Linkbox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 2</GridItem>
+           </LinkOverlay> 
+         </Linkbox>
 
-         {/* <LinkOverlay href='#'> */}
-         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 3</GridItem>
-         {/* </LinkOverlay> */}
+         <Linkbox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 3</GridItem>
+           </LinkOverlay> 
+         </Linkbox>
 
-         {/* <LinkOverlay href='#'> */}
-         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 4</GridItem>
-         {/* </LinkOverlay> */}
+         <Linkbox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 4</GridItem>
+           </LinkOverlay> 
+         </Linkbox>
        </Grid>
      </Flex>
    )
