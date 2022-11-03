@@ -6,6 +6,7 @@ export const ViewStudyDecks = () => {
 
     /*JavaScript goes here */
  
+    
    return (
     <>
        <Heading as='h3' size='xl'>Study Decks</Heading>
