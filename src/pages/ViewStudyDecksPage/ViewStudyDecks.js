@@ -1,15 +1,17 @@
 import React from 'react'
-import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, 
-         LinkBox, LinkOverlay } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Heading, Grid, GridItem, 
+         LinkBox, LinkOverlay, Spacer } from '@chakra-ui/react';
 
 export const ViewStudyDecks = () => {
 
     /*JavaScript goes here*/
  
    return (
-    <Flex>
+    <>
        <Heading as='h3' size='xl'>Study Decks</Heading>
 
+       <Spacer marginBottom={10}/>
+      <Flex>
        {/* Grid of Study Decks */}
        <Grid templateColumns='repeat(4, 1fr)' gap={10}>
          {/* Create new study deck button */}
@@ -44,6 +46,7 @@ export const ViewStudyDecks = () => {
            </LinkOverlay> 
          </LinkBox>
        </Grid>
-     </Flex>
+       </Flex>
+     </>
    )
  }
