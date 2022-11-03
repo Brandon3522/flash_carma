@@ -4,7 +4,7 @@ import { Text, Flex, Link, Input, Button, Box, Heading, Grid, GridItem,
 
 export const ViewStudyDecks = () => {
 
-    /*JavaScript goes here*/
+    /*JavaScript goes here */
  
    return (
     <>
