@@ -4,7 +4,9 @@ import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem,
 
 export const ViewStudyDecks = () => {
 
-    /*JavaScript goes here*/
+    /*JavaScript goes here */
+ 
+    
    return (
     <Flex>
        <Heading as='h3' size='xl'>Study Decks</Heading>

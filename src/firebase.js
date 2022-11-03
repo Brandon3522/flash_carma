@@ -185,3 +185,57 @@ export const auth = getAuth(app);
 
     console.log('Score updated');
   } */
+
+  // Delete flashcard
+  // Data needed: Study deck doc ID, and flaschard doc ID
+  // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+  // State: const [flashcardName, setFlashcardName] = useState('');
+  /*const delete_flashcard = async (flashcardName) => {
+    try {
+      const q = query(flashcards_ref, where('question', '==', flashcardName), limit(1))
+      console.log(q)
+
+      const docs = await getDocs(q)
+      var doc_id = ''
+      docs.forEach((doc) => {
+        console.log(doc.data())
+        doc_id = doc.id
+        console.log(doc_id)
+      })
+
+      const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', doc_id)
+
+      await deleteDoc(flashcard);
+
+      console.log('Flashcard deleted successfully');
+        
+    } catch (error) {
+      alert(`Deletion unsuccessful: ${error.message}`);
+    }
+  }*/
+
+
+  // Delete study deck
+  // Data needed: Study deck ID
+  // Database reference: const studyDecks_ref = collection(database,'users',userID,'study-decks')
+  // State: const [delete_studyDeckName, setDelete_StudyDeckName] = useState('');
+  /*const delete_studyDeck = async (delete_studyDeckName) => {
+    try {
+      const q = query(studyDecks_ref, where('name', '==', delete_studyDeckName), limit(1));
+      console.log(q);
+
+      const docs = await getDocs(q);
+      var doc_id = ''
+      docs.forEach((doc) => {
+        doc_id = doc.id
+      })
+
+      const studyDeck = doc(database, 'users', userID, 'study-decks', doc_id);
+
+      await deleteDoc(studyDeck);
+
+      console.log('Study Deck deleted successfully');
+    } catch (error) {
+      alert(`Deletion unsuccessful: ${error.message}`);
+    }
+  }*/
