@@ -83,10 +83,12 @@ export default function Simple() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
+                  <MenuItem>
+                    <Link as={ReachLink} to='/settings'>Settings</Link>
+                  </MenuItem>
                   <MenuItem>Link 2</MenuItem>
                   <MenuDivider />
-                  <ColorModeSwitcher></ColorModeSwitcher>
+                  <MenuItem>Dark Mode<ColorModeSwitcher /></MenuItem>
                 </MenuList>
               </Menu>
             </Flex>
