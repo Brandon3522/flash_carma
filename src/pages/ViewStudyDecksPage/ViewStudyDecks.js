@@ -1,41 +1,52 @@
 import React from 'react'
-import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, 
-         Linkbox, LinkOverlay, Heading } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Heading, Grid, GridItem, 
+         LinkBox, LinkOverlay, Spacer } from '@chakra-ui/react';
 
 export const ViewStudyDecks = () => {
 
-    /*JavaScript goes here*/
+    /*JavaScript goes here */
  
    return (
-    <Flex>
-       <Heading as='h2' size='xl'>Study Decks</Heading>
+    <>
+       <Heading as='h3' size='xl'>Study Decks</Heading>
 
+       <Spacer marginBottom={10}/>
+      <Flex>
        {/* Grid of Study Decks */}
-       <Grid templateColumns='repeats(4, 1fr)' gap={14}>
+       <Grid templateColumns='repeat(4, 1fr)' gap={10}>
          {/* Create new study deck button */}
-         <LinkOverlay href='#'>
-            <GridItem w='100px' h='100px' bg='chartreuse'>
-
-            </GridItem>
-         </LinkOverlay>
+         <LinkBox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Sample text</GridItem>
+           </LinkOverlay> 
+         </LinkBox>
          
          {/* From here on, it's the user's existing study decks */}
-         <LinkOverlay href='#'>
-           <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 1</GridItem>
-         </LinkOverlay>
+         <LinkBox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 1</GridItem>
+           </LinkOverlay> 
+         </LinkBox>
 
-         <LinkOverlay href='#'>
-         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 2</GridItem>
-         </LinkOverlay>
+         <LinkBox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 2</GridItem>
+           </LinkOverlay> 
+         </LinkBox>
 
-         <LinkOverlay href='#'>
-         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 3</GridItem>
-         </LinkOverlay>
+         <LinkBox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 3</GridItem>
+           </LinkOverlay> 
+         </LinkBox>
 
-         <LinkOverlay href='#'>
-         <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 4</GridItem>
-         </LinkOverlay>
+         <LinkBox>
+           <LinkOverlay href='#'>
+             <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 4</GridItem>
+           </LinkOverlay> 
+         </LinkBox>
        </Grid>
-     </Flex>
+       </Flex>
+     </>
    )
  }
