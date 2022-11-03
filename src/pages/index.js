@@ -6,3 +6,4 @@ export * from './EditPage';
 export * from './StudyPage';
 export * from './ViewStudyDecksPage'
 export * from './ProfileSettingsPage';
+export * from './StudyDeckSelectionPage'
