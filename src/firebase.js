@@ -239,3 +239,17 @@ export const auth = getAuth(app);
       alert(`Deletion unsuccessful: ${error.message}`);
     }
   }*/
+
+  // Get all flashcards from study deck on page load with realtime updates
+  // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+  // State: const [flashcards, setFlashcards] = useState([])
+  /*useEffect (() => {
+    const unsub = onSnapshot(collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards'), (snapshot) => {
+      setFlashcards(snapshot.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+    })
+
+    setLoading(false);
+    return unsub;
+  }, [])*/
