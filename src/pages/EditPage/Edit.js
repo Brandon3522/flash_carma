@@ -3,7 +3,8 @@ import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Texta
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
 import { stringify } from '@firebase/util';
-import { getDocs, collection, doc, getDoc, addDoc } from 'firebase/firestore';
+import { getDocs, collection, doc, getDoc, addDoc, deleteDoc,
+query, where, limit} from 'firebase/firestore';
 import { database } from '../../firebase';
 
 
@@ -66,24 +67,49 @@ export function Edit(props) {
   }
 
 
-  const add_flashcard = () => {
+  const add_flashcard = (f, b) => {
     const ref = collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards');
     addDoc(ref, {
-      question: flashcard_question,
-      answer: flashcard_answer,
+     //question: flashcard_question,
+     //answer: flashcard_answer,
+      question: f,
+      answer: b,
     })
       .then(() => {
         alert('Data Added');
+        //setFlashcards([ref, ...flashcards])
       })
       .catch((err) => {
         alert(err.message);
       });
 
-      setFlashcards([ref, ...flashcards])
+     // 
 
   }
 
+  const delete_flashcard = async (flashcardName) => {
+    try {
+      const q = query(flashcards_ref, where('question', '==', flashcardName), limit(1))
+      console.log(q)
 
+      const docs = await getDocs(q)
+      var doc_id = ''
+      docs.forEach((doc) => {
+        console.log(doc.data())
+        doc_id = doc.id
+        console.log(doc_id)
+      })
+
+      const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', doc_id)
+
+      await deleteDoc(flashcard);
+
+      console.log('Flashcard deleted successfully');
+        
+    } catch (error) {
+      alert(`Deletion unsuccessful: ${error.message}`);
+    }
+  }
 
   var deckname = display_studyDeckName
 
@@ -118,9 +144,11 @@ export function Edit(props) {
     }
     else
       //addCardToList(f, b);
-      flashcard_question= f;
-      flashcard_answer= b;
-      add_flashcard();
+      //setFlashcard_question(JSON.stringify(f))
+      //setFlashcard_answer(JSON.stringify(b))
+      //flashcard_question=f;
+      //flashcard_answer=b;
+      add_flashcard(f, b);
   }
 
 
@@ -157,7 +185,7 @@ export function Edit(props) {
 
       {flashcards.map(card => (
         <Card key={card.id} id={card.id}
-          front={card.question} back={card.answer} onDelete={deleteCard} />
+          front={card.question} back={card.answer} onDelete={() => {delete_flashcard(card.question)}} />
       ))}
 
     </>

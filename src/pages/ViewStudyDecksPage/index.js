@@ -1,1 +1,1 @@
-export * from './ViewStudyDecks';
+export * from './ViewStudyDecks.js';

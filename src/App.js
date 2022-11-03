@@ -1,6 +1,7 @@
 import React from 'react';
-import { SignUp, Login, Home, Edit, Study, Results, ViewStudyDecks, Settings, StudyDeckSelection} from './pages';
+import { SignUp, Login, Home, Edit, Study, Results, Settings, StudyDeckSelection, ViewStudyDecks} from './pages';
 import Navbar from './components/Navbar'
+//import { ViewStudyDecks } from './pages/ViewStudyDecksPage/ViewStudyDecks';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
