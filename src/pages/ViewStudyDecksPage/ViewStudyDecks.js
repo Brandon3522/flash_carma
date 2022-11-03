@@ -1,14 +1,14 @@
 import React from 'react'
-import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, Linkbox, LinkOverlay } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, 
+         Linkbox, LinkOverlay, Heading } from '@chakra-ui/react';
 
 export const ViewStudyDecks = () => {
 
     /*JavaScript goes here*/
-    var streak =  sessionStorage.getItem('streak');
  
    return (
     <Flex>
-       <h1>Study Decks</h1>
+       <Heading as='h2' size='xl'>Study Decks</Heading>
 
        {/* Grid of Study Decks */}
        <Grid templateColumns='repeats(4, 1fr)' gap={14}>
