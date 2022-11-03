@@ -67,11 +67,13 @@ export function Edit(props) {
   }
 
 
-  const add_flashcard = () => {
+  const add_flashcard = (f, b) => {
     const ref = collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards');
     addDoc(ref, {
-      question: flashcard_question,
-      answer: flashcard_answer,
+     //question: flashcard_question,
+     //answer: flashcard_answer,
+      question: f,
+      answer: b,
     })
       .then(() => {
         alert('Data Added');
@@ -142,11 +144,11 @@ export function Edit(props) {
     }
     else
       //addCardToList(f, b);
-      setFlashcard_question(JSON.stringify(f))
-      setFlashcard_answer(JSON.stringify(b))
+      //setFlashcard_question(JSON.stringify(f))
+      //setFlashcard_answer(JSON.stringify(b))
       //flashcard_question=f;
       //flashcard_answer=b;
-      add_flashcard();
+      add_flashcard(f, b);
   }
 
 
