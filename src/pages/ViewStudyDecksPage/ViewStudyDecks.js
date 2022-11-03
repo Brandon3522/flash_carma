@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, 
-         Linkbox, LinkOverlay, Heading } from '@chakra-ui/react';
+         Linkbox, LinkOverlay} from '@chakra-ui/react';
 
 export const ViewStudyDecks = () => {
 

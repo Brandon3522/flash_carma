@@ -9,7 +9,7 @@ export const StudyDeckSelection = () => {
 
   return (
     <Flex>
-        {/* HTML goes here */}
+        <Heading> Study Decks </Heading>
     </Flex>
   )
 }

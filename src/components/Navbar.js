@@ -22,7 +22,7 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import {Link as ReachLink} from 'react-router-dom'
 import logo from './images/logo.png'
 
-const Links = [{name: 'View Study Decks', href: '/view'}, {name: 'Study Session', href: '/study'}];
+const Links = [{name: 'View Study Decks', href: '/viewstudydecks'}, {name: 'Study Session', href: '/studydeckselection'}];
 
 const NavLink = ({children, href}) => (
     <Link
