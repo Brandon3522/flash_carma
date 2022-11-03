@@ -8,10 +8,10 @@ export const ViewStudyDecks = () => {
  
    return (
     <Flex>
-       <Heading as='h2' size='xl'>Study Decks</Heading>
+       <Heading as='h3' size='xl'>Study Decks</Heading>
 
        {/* Grid of Study Decks */}
-       <Grid templateColumns='repeats(4, 1fr)' gap={14}>
+       <Grid templateColumns='repeat(4, 1fr)' gap={10}>
          {/* Create new study deck button */}
          <LinkBox>
            <LinkOverlay href='#'>
