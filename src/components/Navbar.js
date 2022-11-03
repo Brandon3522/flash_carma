@@ -88,7 +88,7 @@ export default function Simple() {
                   </MenuItem>
                   <MenuItem>Link 2</MenuItem>
                   <MenuDivider />
-                  <MenuItem>Dark Mode<ColorModeSwitcher /></MenuItem>
+                  <ColorModeSwitcher /> Dark Mode
                 </MenuList>
               </Menu>
             </Flex>
