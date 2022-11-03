@@ -11,6 +11,7 @@ export const ViewStudyDecks = () => {
         <>
            <Heading as='h3' size='xl'>Study Decks</Heading>
     
+    
            <Spacer marginBottom={10}/>
           <Flex>
            {/* Grid of Study Decks */}
