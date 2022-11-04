@@ -253,3 +253,19 @@ export const auth = getAuth(app);
     setLoading(false);
     return unsub;
   }, [])*/
+
+  // Get all study decks from user on page load with realtime updates
+  // Data needed: User ID
+  // Database reference: const studyDecks_ref = collection(database,'users',userID,'study-decks')
+  // State: const [studyDecks, setStudyDecks] = useState([]);
+  //        const [loading, setLoading] = useState(true);
+  /*useEffect (() => {
+    const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
+      setStudyDecks(snapshot.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+    })
+
+    setLoading(false);
+    return unsub;
+  }, [])*/
