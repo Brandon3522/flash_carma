@@ -3,7 +3,7 @@ import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Texta
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
 import { stringify } from '@firebase/util';
-import { getDocs, collection, doc, getDoc, addDoc, deleteDoc,
+import { getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
 query, where, limit} from 'firebase/firestore';
 import { database } from '../../firebase';
 
@@ -41,21 +41,15 @@ export function Edit(props) {
   }, [])
 
   // Get all flashcards from study deck on page load
-  useEffect(() => {
-    const getFlashcards = async () => {
-      const data = await getDocs(flashcards_ref);
-
-      setFlashcards(data.docs.map((doc) => ({
+  useEffect (() => {
+    const unsub = onSnapshot(collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards'), (snapshot) => {
+      setFlashcards(snapshot.docs.map((doc) => ({
         ...doc.data(), id: doc.id
       })))
+    })
 
-      data.docs.map((doc) => {
-        console.log(doc.data())
-      })
-
-      setLoading(false);
-    }
-    getFlashcards()
+    setLoading(false);
+    return unsub;
   }, [])
 
 
