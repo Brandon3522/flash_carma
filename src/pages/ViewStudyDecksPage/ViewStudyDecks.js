@@ -47,7 +47,7 @@ export const ViewStudyDecks = () => {
              {/* From here on, it's the user's existing study decks */}
              <Popover>
               <PopoverTrigger>
-                <Button>Study Deck 1</Button>
+                <Button w={100} h={100}>Study Deck 1</Button>
               </PopoverTrigger>
                 <PopoverContent>
                   <PopoverArrow />
