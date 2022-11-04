@@ -3,7 +3,8 @@ import {
   Flex, 
   Link, 
   Input, 
-  Button, 
+  Button,
+  ButtonGroup,
   Box, 
   Heading, 
   Spacer, 
@@ -44,7 +45,22 @@ export const ViewStudyDecks = () => {
              </LinkBox>
              
              {/* From here on, it's the user's existing study decks */}
-             
+             <Popover>
+              <PopoverTrigger>
+                <Button>Study Deck 1</Button>
+              </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverCloseButton />
+                  <PopoverBody>
+                    <ButtonGroup>
+                      <Button>Edit</Button>
+                      <Button>Study</Button>
+                      <Button>Delete</Button>
+                    </ButtonGroup>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
     
              <LinkBox>
                <LinkOverlay href='#'>
