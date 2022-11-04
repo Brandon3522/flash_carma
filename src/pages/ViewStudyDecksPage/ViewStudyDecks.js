@@ -53,7 +53,7 @@ export const ViewStudyDecks = () => {
                   <PopoverArrow />
                   <PopoverCloseButton />
                   <PopoverBody>
-                    <ButtonGroup display={'flex'} flexWrap={'wrap'} direc>
+                    <ButtonGroup display={'flex'} flexWrap={'wrap'} spacing='6'>
                       <Button>Edit</Button>
                       <Button>Study</Button>
                       <Button colorScheme='red'>Delete</Button>
