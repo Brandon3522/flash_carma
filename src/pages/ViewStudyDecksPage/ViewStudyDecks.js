@@ -1,6 +1,27 @@
 import React from 'react'
-import { Text, Flex, Link, Input, Button, Box, Heading, Spacer, Grid, GridItem, 
-         LinkBox, LinkOverlay } from '@chakra-ui/react';
+import {
+  Flex, 
+  Link, 
+  Input, 
+  Button,
+  ButtonGroup,
+  Box, 
+  Heading, 
+  Spacer, 
+  Grid, 
+  GridItem, 
+  LinkBox, 
+  LinkOverlay,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+} from '@chakra-ui/react';
 
 export const ViewStudyDecks = () => {
 
@@ -16,19 +37,30 @@ export const ViewStudyDecks = () => {
           <Flex>
            {/* Grid of Study Decks */}
            <Grid templateColumns='repeat(4, 1fr)' gap={10}>
-             {/* Create new study deck button */}
+             {/* Create new study deck button. MAKE A POPOVER LATER*/}
              <LinkBox>
                <LinkOverlay href='#'>
-                 <GridItem w='100px' h='100px' bg='chartreuse'>Sample text</GridItem>
+                 <GridItem w='100px' h='100px' bg='chartreuse'>Create Study Deck</GridItem>
                </LinkOverlay> 
              </LinkBox>
              
              {/* From here on, it's the user's existing study decks */}
-             <LinkBox>
-               <LinkOverlay href='#'>
-                 <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 1</GridItem>
-               </LinkOverlay> 
-             </LinkBox>
+             <Popover>
+              <PopoverTrigger>
+                <Button w={100} h={100}>Study Deck 1</Button>
+              </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverCloseButton />
+                  <PopoverBody>
+                    <ButtonGroup display={'flex'} flexWrap={'wrap'} spacing='6'>
+                      <Button>Edit</Button>
+                      <Button>Study</Button>
+                      <Button colorScheme='red'>Delete</Button>
+                    </ButtonGroup>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
     
              <LinkBox>
                <LinkOverlay href='#'>
