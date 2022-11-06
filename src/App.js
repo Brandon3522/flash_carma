@@ -1,6 +1,7 @@
 import React from 'react';
-import { SignUp, Login, Home, Edit, Study, Results, ViewStudyDecks } from './pages';
+import { SignUp, Login, Home, Edit, Study, Results, Settings, StudyDeckSelection, ViewStudyDecks} from './pages';
 import Navbar from './components/Navbar'
+//import { ViewStudyDecks } from './pages/ViewStudyDecksPage/ViewStudyDecks';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
           <Route path='/results' element={<><Navbar></Navbar><Results></Results></>} />
           <Route path='/study' element={<><Navbar></Navbar><Study></Study></>} />
           <Route path='/edit' element={<><Navbar></Navbar><Edit></Edit></>} />
-          <Route path='/view' element={<><Navbar></Navbar><ViewStudyDecks></ViewStudyDecks></>} /> 
+          <Route path='/viewstudydecks' element={<><Navbar></Navbar><ViewStudyDecks></ViewStudyDecks></>} />
+          <Route path='/settings' element={<><Navbar></Navbar><Settings></Settings></>} />  
+          <Route path='/studydeckselection' element={<><Navbar></Navbar><StudyDeckSelection></StudyDeckSelection></>} /> 
         </Routes>
       </BrowserRouter>
   );

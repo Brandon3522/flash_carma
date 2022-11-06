@@ -14,12 +14,15 @@ import {
   useColorModeValue,
   Stack,
   MenuDivider,
+  Image,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
 import { ColorModeSwitcher } from './ColorModeSwitcher';
+import {Link as ReachLink} from 'react-router-dom'
+import logo from './images/logo.png'
 
-const Links = [{name: 'View Study Decks', href: '/view'}, {name: 'Study Session', href: '/study'}];
+const Links = [{name: 'View Study Decks', href: '/viewstudydecks'}, {name: 'Study Session', href: '/studydeckselection'}];
 
 const NavLink = ({children, href}) => (
     <Link
@@ -50,7 +53,11 @@ export default function Simple() {
               onClick={isOpen ? onClose : onOpen}
             />
             <HStack spacing={8} alignItems={'center'}>
-              <Box>Logo</Box>
+              <Box>
+                <Link as={ReachLink} to='/home'>
+                 <Image src={logo} width='200px' height={'100px'}/>
+                </Link>
+              </Box>
               <HStack
                 as={'nav'}
                 spacing={4}
@@ -76,10 +83,12 @@ export default function Simple() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
+                  <MenuItem>
+                    <Link as={ReachLink} to='/settings'>Settings</Link>
+                  </MenuItem>
                   <MenuItem>Link 2</MenuItem>
                   <MenuDivider />
-                  <ColorModeSwitcher></ColorModeSwitcher>
+                  <ColorModeSwitcher /> Dark Mode
                 </MenuList>
               </Menu>
             </Flex>
