@@ -30,7 +30,20 @@ export const ViewStudyDecks = () => {
       setLoading(false);
     }
     getStudyDecks();
-  }, []) 
+  }, [])
+
+  // Get all study decks from user on page load with realtime updates
+  // Fix issue with loading state
+  // useEffect (() => {
+  //   const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
+  //     setStudyDecks(snapshot.docs.map((doc) => ({
+  //       ...doc.data(), id: doc.id
+  //     })))
+  //   })
+
+  //   setLoading(false);
+  //   return unsub;
+  // }, [])
 
   const delete_studyDeck = async (delete_studyDeckName) => {
     try {
@@ -60,17 +73,17 @@ export const ViewStudyDecks = () => {
   } 
   return (
     <>
-      <Heading as='h3' size='xl'>Study Decks</Heading>
+      <Heading as='h3' size='xl' textAlign={'center'}>Study Decks</Heading>
 
 
       <Spacer marginBottom={10} />
-      <Flex>
+      <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
-        <Grid templateColumns='repeat(4, 1fr)' gap={10}>
+        <Grid templateColumns='repeat(4, 1fr)' gap={10} >
           {/* Create new study deck button. MAKE A POPOVER LATER*/}
           <LinkBox>
             <LinkOverlay href='#'>
-              <GridItem w='100px' h='100px' bg='chartreuse'>Create Study Deck</GridItem>
+              <GridItem w='200px' h='200px' bg='chartreuse' lineHeight={'200px'} textAlign={'center'}>Create Study Deck</GridItem>
             </LinkOverlay>
           </LinkBox>
 
