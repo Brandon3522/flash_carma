@@ -79,7 +79,7 @@ export const ViewStudyDecks = () => {
       <Spacer marginBottom={10} />
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
-        <Grid templateColumns='repeat(4, 1fr)' gap={10} >
+        <Grid templateColumns='repeat(5, 1fr)' gap={10} >
           {/* Create new study deck button. MAKE A POPOVER LATER*/}
           <LinkBox>
             <LinkOverlay href='#'>
