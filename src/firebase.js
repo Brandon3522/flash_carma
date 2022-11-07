@@ -188,7 +188,7 @@ export const auth = getAuth(app);
     console.log('Score updated');
   } */
 
-  // Delete flashcard
+  // Delete flashcard by name
   // Data needed: Study deck doc ID, and flaschard doc ID
   // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
   // State: const [flashcardName, setFlashcardName] = useState('');
@@ -206,6 +206,23 @@ export const auth = getAuth(app);
       })
 
       const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', doc_id)
+
+      await deleteDoc(flashcard);
+
+      console.log('Flashcard deleted successfully');
+        
+    } catch (error) {
+      alert(`Deletion unsuccessful: ${error.message}`);
+    }
+  }*/
+
+  // Delete flashcard
+  // Data needed: Study deck doc ID, and flaschard doc ID
+  // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
+  // State: const [flashcardName, setFlashcardName] = useState('');
+  /*const delete_flashcard = async (flashcardID) => {
+    try {
+      const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', flashcardID)
 
       await deleteDoc(flashcard);
 
