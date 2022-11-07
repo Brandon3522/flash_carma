@@ -2,7 +2,18 @@ import React, { useState, useEffect } from 'react';
 import {
   Flex, Link, Input, Button, ButtonGroup, Box, Heading, Spacer,
   Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
-  PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor,
+  PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor, Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
 } from '@chakra-ui/react';
 import {
   getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
@@ -17,6 +28,8 @@ export const ViewStudyDecks = () => {
   const studyDecks_ref = collection(database, 'users', userID, 'study-decks')
   const [studyDecks, setStudyDecks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null)
 
 
 
@@ -81,12 +94,38 @@ export const ViewStudyDecks = () => {
         {/* Grid of Study Decks */}
         <Grid templateColumns='repeat(4, 1fr)' gap={10} >
           {/* Create new study deck button. MAKE A POPOVER LATER*/}
+          {/*
           <LinkBox>
             <LinkOverlay href='#'>
               <GridItem w='200px' h='200px' bg='chartreuse' lineHeight={'200px'} textAlign={'center'}>Create Study Deck</GridItem>
             </LinkOverlay>
           </LinkBox>
+          */}
 
+          <Button onClick={onOpen} w={200} h={200}>Create Study Deck</Button>
+
+          <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Create Study Deck</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <FormLabel>Study Deck Name</FormLabel>
+                  <Input ref={initialRef} placeholder='Study Deck Name' />
+                </FormControl>
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme='red' mr={3} onClick={onClose}>
+                  Close
+                </Button>
+                <Button colorScheme='blue' mr={3}>
+                  Okay
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
           {/* From here on, it's the user's existing study decks */}
 
          {studyDecks.map(deck => (
