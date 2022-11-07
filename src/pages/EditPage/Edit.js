@@ -46,9 +46,10 @@ export function Edit(props) {
       setFlashcards(snapshot.docs.map((doc) => ({
         ...doc.data(), id: doc.id
       })))
+
+      setLoading(false);
     })
 
-    setLoading(false);
     return unsub;
   }, [])
 

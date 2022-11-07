@@ -20,30 +20,31 @@ export const ViewStudyDecks = () => {
 
 
 
-  useEffect(() => {
-    const getStudyDecks = async () => {
-      const data = await getDocs(studyDecks_ref);
+  // useEffect(() => {
+  //   const getStudyDecks = async () => {
+  //     const data = await getDocs(studyDecks_ref);
 
-      setStudyDecks(data.docs.map((doc) => ({
-        ...doc.data(), id: doc.id
-      })))
-      setLoading(false);
-    }
-    getStudyDecks();
-  }, [])
+  //     setStudyDecks(data.docs.map((doc) => ({
+  //       ...doc.data(), id: doc.id
+  //     })))
+  //     setLoading(false);
+  //   }
+  //   getStudyDecks();
+  // }, [])
 
   // Get all study decks from user on page load with realtime updates
   // Fix issue with loading state
-  // useEffect (() => {
-  //   const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
-  //     setStudyDecks(snapshot.docs.map((doc) => ({
-  //       ...doc.data(), id: doc.id
-  //     })))
-  //   })
+  useEffect (() => {
+    const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
+      setStudyDecks(snapshot.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
 
-  //   setLoading(false);
-  //   return unsub;
-  // }, [])
+      setLoading(false);
+    })
+
+    return unsub;
+  }, [])
 
   const delete_studyDeck = async (delete_studyDeckName) => {
     try {
