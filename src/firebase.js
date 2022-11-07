@@ -216,10 +216,10 @@ export const auth = getAuth(app);
     }
   }*/
 
-  // Delete flashcard
+  // Delete flashcard by ID
   // Data needed: Study deck doc ID, and flaschard doc ID
   // Database reference: const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
-  // State: const [flashcardName, setFlashcardName] = useState('');
+  // State: const [flashcardNameID, setFlashcardID] = useState('');
   /*const delete_flashcard = async (flashcardID) => {
     try {
       const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', flashcardID)
@@ -233,8 +233,7 @@ export const auth = getAuth(app);
     }
   }*/
 
-
-  // Delete study deck
+  // Delete study deck by name
   // Data needed: Study deck ID
   // Database reference: const studyDecks_ref = collection(database,'users',userID,'study-decks')
   // State: const [delete_studyDeckName, setDelete_StudyDeckName] = useState('');
@@ -250,6 +249,22 @@ export const auth = getAuth(app);
       })
 
       const studyDeck = doc(database, 'users', userID, 'study-decks', doc_id);
+
+      await deleteDoc(studyDeck);
+
+      console.log('Study Deck deleted successfully');
+    } catch (error) {
+      alert(`Deletion unsuccessful: ${error.message}`);
+    }
+  }*/
+
+  // Delete study deck by ID
+  // Data needed: Study deck ID
+  // Database reference: const studyDecks_ref = collection(database,'users',userID,'study-decks')
+  // State: const [delete_studyDeckID, setDelete_StudyDeckID] = useState('');
+  /*const delete_studyDeck = async (delete_studyDeckID) => {
+    try {
+      const studyDeck = doc(database, 'users', userID, 'study-decks', delete_studyDeckID);
 
       await deleteDoc(studyDeck);
 
