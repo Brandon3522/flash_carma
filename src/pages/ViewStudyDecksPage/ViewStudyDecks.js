@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Flex, Link, Input, Button, ButtonGroup, Box, Heading, Spacer,
   Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
@@ -21,15 +21,20 @@ import {
 } from 'firebase/firestore';
 import { database } from '../../firebase';
 import { Deck } from '../../components/Deck';
+import UserContext from '../../UserContext';
 
 export const ViewStudyDecks = () => {
-  const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2';
+  //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2';
+  // User context
+  const user = useContext(UserContext)?.user;
   
-  const studyDecks_ref = collection(database, 'users', userID, 'study-decks')
+  const studyDecks_ref = collection(database, 'users', user.uid, 'study-decks')
   const [studyDecks, setStudyDecks] = useState([]);
   const [loading, setLoading] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null)
+
+  
 
 
 
@@ -70,7 +75,7 @@ export const ViewStudyDecks = () => {
         doc_id = doc.id
       })
 
-      const studyDeck = doc(database, 'users', userID, 'study-decks', doc_id);
+      const studyDeck = doc(database, 'users', user.uid, 'study-decks', doc_id);
 
       await deleteDoc(studyDeck);
 

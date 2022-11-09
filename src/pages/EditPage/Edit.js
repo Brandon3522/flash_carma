@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
@@ -6,6 +6,7 @@ import { stringify } from '@firebase/util';
 import { getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
 query, where, limit} from 'firebase/firestore';
 import { database } from '../../firebase';
+import UserContext from '../../UserContext';
 
 
 
@@ -20,12 +21,15 @@ export function Edit(props) {
   const [flashcard_question, setFlashcard_question] = useState('');
   const [flashcard_answer, setFlashcard_answer] = useState('');
 
+  // User context
+  const user = useContext(UserContext)?.user;
 
-  const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
+
+  //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
   // Database reference: 
-  const flashcards_ref = collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards');
-  const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
+  const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
+  const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
 
   // Get deck name
   useEffect(() => {
@@ -42,7 +46,7 @@ export function Edit(props) {
 
   // Get all flashcards from study deck on page load
   useEffect (() => {
-    const unsub = onSnapshot(collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards'), (snapshot) => {
+    const unsub = onSnapshot(collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards'), (snapshot) => {
       setFlashcards(snapshot.docs.map((doc) => ({
         ...doc.data(), id: doc.id
       })))
@@ -63,7 +67,7 @@ export function Edit(props) {
 
 
   const add_flashcard = (f, b) => {
-    const ref = collection(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards');
+    const ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
     addDoc(ref, {
      //question: flashcard_question,
      //answer: flashcard_answer,
@@ -95,7 +99,7 @@ export function Edit(props) {
   //       console.log(doc_id)
   //     })
 
-  //     const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', doc_id)
+  //     const flashcard = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards', doc_id)
 
   //     await deleteDoc(flashcard);
 
@@ -109,7 +113,7 @@ export function Edit(props) {
   // Delete flashcard
   const delete_flashcard = async (flashcardID) => {
     try {
-      const flashcard = doc(database, 'users', userID, 'study-decks', studyDeck_ID, 'flashcards', flashcardID)
+      const flashcard = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards', flashcardID)
 
       await deleteDoc(flashcard);
 

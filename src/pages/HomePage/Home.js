@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Heading, Text, Box, Spacer, RangeSliderThumb } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
 import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import UserContext from '../../UserContext';
 
 export const Home = () => {
-  const [user, loading, error] = useAuthState(auth);
+  //const [user, loading, error] = useAuthState(auth);
   const [username, setUsername] = useState('');
   const [user_score, setUsers_score] = useState(0);
 
+  // User context
+  const user = useContext(UserContext)?.user;
   
 
   // const getUserName = async () => {
@@ -42,18 +45,18 @@ export const Home = () => {
       setUsers_score(score)
   }
 
-  if (loading) {
-    return (
-      <Box>
-        <Heading>Loading...</Heading>
-      </Box>
-    )
-  }
-  if (error) {
-    <Box>
-      <Heading>Error!</Heading>
-    </Box>
-  }
+  // if (loading) {
+  //   return (
+  //     <Box>
+  //       <Heading>Loading...</Heading>
+  //     </Box>
+  //   )
+  // }
+  // if (error) {
+  //   <Box>
+  //     <Heading>Error!</Heading>
+  //   </Box>
+  // }
   if (user) {
     get_user_score()
 

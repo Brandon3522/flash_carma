@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background, Heading } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
@@ -6,6 +6,7 @@ import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
+import UserContext from '../../UserContext';
 
 
 export function Study(props){
@@ -13,14 +14,17 @@ export function Study(props){
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
   const [loading, setLoading] = useState(true);
+
+  // User context
+  const user = useContext(UserContext)?.user;
   
 
-  const userID = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
+  //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
   // Database reference: 
-  const flashcards_ref = collection(database,'users',userID,'study-decks',studyDeck_ID,'flashcards');
-  const studyDeckName_ref = doc(database, 'users', userID, 'study-decks', studyDeck_ID)
-  const user_ref = doc(database, 'users', userID);
+  const flashcards_ref = collection(database,'users',user.uid,'study-decks',studyDeck_ID,'flashcards');
+  const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
+  const user_ref = doc(database, 'users', user.uid);
   
   
   //card status
