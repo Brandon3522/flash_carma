@@ -1,18 +1,23 @@
 import React, { useContext, useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
-import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, onSnapshot } from 'firebase/firestore';
 import UserContext from '../../UserContext';
+import { SDeck } from '../../components/SDeck';
 
 export const Home = () => {
   //const [user, loading, error] = useAuthState(auth);
-  const [username, setUsername] = useState('');
-  const [user_score, setUsers_score] = useState(0);
+
 
   // User context
   const user = useContext(UserContext)?.user;
+  const studyDecks_ref = collection(database, 'users', user.uid, 'study-decks')
+  const [username, setUsername] = useState('');
+  const [user_score, setUsers_score] = useState(0);
+  const [studyDecks, setStudyDecks] = useState([]);
+  const [loading, setLoading] = useState(true);
   
 
   // const getUserName = async () => {
@@ -62,6 +67,26 @@ export const Home = () => {
 
     
   }
+
+  useEffect (() => {
+    const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
+      setStudyDecks(snapshot.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+
+      setLoading(false);
+    })
+
+    return unsub;
+  }, [])
+
+
+
+  if (loading) {
+    return (
+      <Heading textAlign={'center'}>Loading...</Heading>
+    )
+  } 
   
 
   return (
@@ -77,16 +102,18 @@ export const Home = () => {
       margin={'100px'}/>
 
       <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
-      <Flex h={'400px'}
-        borderWidth='1px'
-        borderRadius={'lg'}>
-        <Box
-          bg={'teal'}
-          height='400px'
-          borderWidth='1px'
-          borderRadius={'lg'}>
-        
-        </Box>
+      <Flex justifyContent={'center'}>
+        {/* Grid of Study Decks */}
+        <Grid templateColumns='repeat(5, 1fr)' gap={10} >
+
+          {/* From here on, it's the user's existing study decks */}
+
+         {studyDecks.map(deck => (
+            <SDeck key={deck.id} id={deck.id}
+              name={deck.name} />
+         ))} 
+
+        </Grid>
       </Flex>
       {/* Containder for recent decks idea */}
 
