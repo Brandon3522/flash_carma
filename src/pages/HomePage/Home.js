@@ -79,8 +79,10 @@ export const Home = () => {
       <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
        <Box
        background= 'teal'
-       height='400px'>
-
+       height='400px'
+       borderWidth='1px'
+       borderRadius={'lg'}>
+        
       </Box>
 
       {/* Containder for recent decks idea */}
