@@ -92,16 +92,20 @@ export const Home = () => {
   return (
     <Box>
       <Box>
-        <Heading>Home</Heading>
+        <Heading align={'center'}>Home</Heading>
         <Heading>{username}</Heading>
         <Text>Current User ID: {user.uid}</Text>
-        <Text>User Score: {user_score}</Text>
+        <Text align={'center'} fontSize={'1.5rem'}> User Score: {user_score}</Text>
       </Box>
 
       <Spacer
       margin={'100px'}/>
 
       <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
+
+      <Spacer
+     marginBottom={10}/>
+
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
         <Grid templateColumns='repeat(5, 1fr)' gap={10} >
