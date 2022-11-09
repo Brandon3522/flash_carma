@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
@@ -77,14 +77,17 @@ export const Home = () => {
       margin={'100px'}/>
 
       <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
-       <Box
-       background= 'teal'
-       height='400px'
-       borderWidth='1px'
-       borderRadius={'lg'}>
+      <Flex h={'400px'}
+        borderWidth='1px'
+        borderRadius={'lg'}>
+        <Box
+          bg={'teal'}
+          height='400px'
+          borderWidth='1px'
+          borderRadius={'lg'}>
         
-      </Box>
-
+        </Box>
+      </Flex>
       {/* Containder for recent decks idea */}
 
     </Box>
