@@ -70,6 +70,7 @@ export default function Simple() {
             <Flex alignItems={'center'}>
               <Menu>
                 <MenuButton
+                  marginRight={'30px'}
                   as={Button}
                   rounded={'full'}
                   variant={'link'}
