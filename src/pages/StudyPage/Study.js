@@ -9,7 +9,8 @@ import { database } from '../../firebase';
 import UserContext from '../../UserContext';
 
 
-export function Study(props){
+
+export function Study(props) {
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
@@ -17,16 +18,16 @@ export function Study(props){
 
   // User context
   const user = useContext(UserContext)?.user;
-  
+
 
   //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
   // Database reference: 
-  const flashcards_ref = collection(database,'users',user.uid,'study-decks',studyDeck_ID,'flashcards');
+  const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
   const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
   const user_ref = doc(database, 'users', user.uid);
-  
-  
+
+
   //card status
   var cardtext; //text currently on the card
   var isFlipped = false; //whether the card is facing front or back
@@ -46,7 +47,7 @@ export function Study(props){
   // Get deck name
   useEffect(() => {
     const getStudyDeckName = async () => {
-      const data =  await getDoc(studyDeckName_ref);
+      const data = await getDoc(studyDeckName_ref);
 
       const name = data.data().name;
 
@@ -76,10 +77,10 @@ export function Study(props){
 
   // Update user score
   const updateUserScore = async (value) => {
-   const data =  await getDoc(user_ref);
+    const data = await getDoc(user_ref);
 
     var score = data.data().score + value;
-    console.log(score) 
+    console.log(score)
 
     await updateDoc(user_ref, {
       score: score
@@ -89,98 +90,98 @@ export function Study(props){
   }
 
 
-//loading screen buffer 
+  //loading screen buffer 
   if (loading) {
     return (
       <Heading textAlign={'center'}>Loading...</Heading>
     )
   }
 
-  let deckName= display_studyDeckName; //name of the study deck
+  let deckName = display_studyDeckName; //name of the study deck
   totalCard = flashcards.length //updates total to how many entries there are
- 
+
 
   //initializes first card
   currentCard.front = flashcards[0].question
   currentCard.back = flashcards[0].answer
   cardtext = currentCard.front;
 
-  function changeCard(){ //swaps to next card in deck
-    currentCard.front = flashcards[cardNumber-1].question
-    currentCard.back = flashcards[cardNumber-1].answer
+  function changeCard() { //swaps to next card in deck
+    currentCard.front = flashcards[cardNumber - 1].question
+    currentCard.back = flashcards[cardNumber - 1].answer
     cardtext = currentCard.front
     document.getElementById("cardtext").innerHTML = cardtext
   }
 
-  function flipCard(){  //swaps the text on the card to the other value stored
+  function flipCard() {  //swaps the text on the card to the other value stored
     isFlipped = !isFlipped;
-    if(isFlipped === true){
-      cardtext= currentCard.back;
+    if (isFlipped === true) {
+      cardtext = currentCard.back;
     }
-    else{
-      cardtext= currentCard.front;
+    else {
+      cardtext = currentCard.front;
     }
     document.getElementById("cardtext").innerHTML = cardtext;
   }
 
-  function incorrectAns(){ //when you click the incorrect buttton
-    if(cardNumber <= totalCard){
-    isStreaking = false;
-    streak = 0;
-    document.getElementById("streak").innerHTML = streak;
-    incrementCardCount();
+  function incorrectAns() { //when you click the incorrect buttton
+    if (cardNumber <= totalCard) {
+      isStreaking = false;
+      streak = 0;
+      document.getElementById("streak").innerHTML = streak;
+      incrementCardCount();
     }
   }
 
-  function correctAns(){ //when you click the correct button
-    if(cardNumber <= totalCard){
-    addPoints();
-    document.getElementById("streak").innerHTML = streak;
-    document.getElementById("score").innerHTML = "Score: " + score;
-    incrementCardCount();
+  function correctAns() { //when you click the correct button
+    if (cardNumber <= totalCard) {
+      addPoints();
+      document.getElementById("streak").innerHTML = streak;
+      document.getElementById("score").innerHTML = "Score: " + score;
+      incrementCardCount();
     }
   }
 
-  function addPoints(){ //adds score and streak
+  function addPoints() { //adds score and streak
     score = score + 100;
-    if(isStreaking === false){
+    if (isStreaking === false) {
       isStreaking = true;
     }
-    else{
+    else {
       streak++;
     }
   }
 
-  function incrementCardCount(){ //increments card count/moves to results page
-      cardNumber++;
-      if (cardNumber > totalCard){
-        document.getElementById('cardnumber').innerHTML = "Cards: Complete!";
-      }
-      else{
+  function incrementCardCount() { //increments card count/moves to results page
+    cardNumber++;
+    if (cardNumber > totalCard) {
+      document.getElementById('cardnumber').innerHTML = "Cards: Complete!";
+    }
+    else {
       document.getElementById('cardnumber').innerHTML = "Cards: " + cardNumber + " / " + totalCard;
       changeCard();
-      }
+    }
 
   }
 
- function StoreResultsValues(){ //stores data in user's current session (meant for results)
-  if(cardNumber > totalCard){
-    cardNumber = totalCard
-   }
+  function StoreResultsValues() { //stores data in user's current session (meant for results)
+    if (cardNumber > totalCard) {
+      cardNumber = totalCard
+    }
 
-   updateUserScore(score);
+    updateUserScore(score);
 
-   sessionStorage.setItem('streak', JSON.stringify(streak));
-   sessionStorage.setItem('score', JSON.stringify(score));
-   sessionStorage.setItem('totalcard', JSON.stringify(totalCard));
-   sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
- }
+    sessionStorage.setItem('streak', JSON.stringify(streak));
+    sessionStorage.setItem('score', JSON.stringify(score));
+    sessionStorage.setItem('totalcard', JSON.stringify(totalCard));
+    sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
+  }
 
- sessionStorage.clear()
+  sessionStorage.clear()
 
 
-  
-  return(
+
+  return (
 
     <>
       {/* title of Study Session page */}
@@ -192,54 +193,54 @@ export function Study(props){
 
         {/* Results button */}
         <Link as={ReachLink} to='/results'>
-        <Button onClick={StoreResultsValues} id='endsession'> End Session </Button>
-        </Link> 
+          <Button onClick={StoreResultsValues} id='endsession'> End Session </Button>
+        </Link>
       </Flex>
 
       <Box>
-       {/* displays deck's name */}
+        {/* displays deck's name */}
         <Text fontSize={'3rem'} align='center'> {deckName} </Text>
 
         {/* displays user's current streak */}
-        <Text fontSize={'2rem'} align='center'id='streak'> {streak} </Text> 
+        <Text fontSize={'2rem'} align='center' id='streak'> {streak} </Text>
 
         {/* displays user's current score */}
         <Text fontSize={'2rem'} align='center' id='score'> Score: {score} </Text>
       </Box>
 
-    {/* displays a card and the text inside the card */}
-    <Flex justifyContent={'center'}>
-      <Box id='flashcard' onClick={flipCard}>
-        <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
-        color='black'> {cardtext} </Text>
-      </Box>
-    </Flex>
-    
-    <Flex justifyContent={'center'}>
-      {/* incorrect */}
+      {/* displays a card and the text inside the card */}
+      <Flex justifyContent={'center'}>
+        <Box id='flashcard' onClick={flipCard}>
+          <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
+            color='black'> {cardtext} </Text>
+        </Box>
+      </Flex>
+
+      <Flex justifyContent={'center'}>
+        {/* incorrect */}
         <Box>
           <Image
             boxSize='500px'
             objectFit='cover'
             src={incorrect}
-            alt='incorrect' 
-            onClick={incorrectAns}/>
+            alt='incorrect'
+            onClick={incorrectAns} />
         </Box>
 
         {/* correct */}
-        <Box> 
+        <Box>
           <Image
             boxSize='500px'
             objectFit='cover'
             src={correct}
             alt='correct'
-            onClick={correctAns}/>
-           
+            onClick={correctAns} />
+
         </Box>
       </Flex></>
 
   );
-  
+
 
 
 }

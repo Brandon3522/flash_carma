@@ -3,7 +3,7 @@ import {
     Flex, Input, Button, ButtonGroup, Box, Heading, Spacer, Link,
     Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
     PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor,
-  } from '@chakra-ui/react';
+} from '@chakra-ui/react';
 
 export function Deck({ id, name, onDelete }) {
 

@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter } from '@chakra-ui/react';
+import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter, Spacer } from '@chakra-ui/react';
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
 import { stringify } from '@firebase/util';
-import { getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
-query, where, limit} from 'firebase/firestore';
+import {
+  getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
+  query, where, limit, setDoc, updateDoc
+} from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
-
+import { Editable, EditableInput, EditableTextarea, EditablePreview, } from '@chakra-ui/react'
 
 
 export function Edit(props) {
@@ -16,7 +18,7 @@ export function Edit(props) {
 
   // State: 
   const [flashcards, setFlashcards] = useState([]);
-  const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
+  const [display_studyDeckName, setDisplay_studyDeckName] = useState('');
   const [loading, setLoading] = useState(true);
   const [flashcard_question, setFlashcard_question] = useState('');
   const [flashcard_answer, setFlashcard_answer] = useState('');
@@ -38,14 +40,14 @@ export function Edit(props) {
 
       const name = data.data().name;
 
-      setDislpay_studyDeckName(name);
+      setDisplay_studyDeckName(name);
       console.log(name);
     }
     getStudyDeckName();
   }, [])
 
   // Get all flashcards from study deck on page load
-  useEffect (() => {
+  useEffect(() => {
     const unsub = onSnapshot(collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards'), (snapshot) => {
       setFlashcards(snapshot.docs.map((doc) => ({
         ...doc.data(), id: doc.id
@@ -57,6 +59,17 @@ export function Edit(props) {
     return unsub;
   }, [])
 
+  function update_studyDeckName() {
+    updateDoc(studyDeckName_ref, {
+        name: display_studyDeckName,
+    })
+        .then(() => {
+            alert('Data Updated');
+        })
+        .catch((err) => {
+            alert(err.message);
+        });
+  };
 
   //loading screen buffer 
   if (loading) {
@@ -69,8 +82,8 @@ export function Edit(props) {
   const add_flashcard = (f, b) => {
     const ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
     addDoc(ref, {
-     //question: flashcard_question,
-     //answer: flashcard_answer,
+      //question: flashcard_question,
+      //answer: flashcard_answer,
       question: f,
       answer: b,
     })
@@ -82,7 +95,7 @@ export function Edit(props) {
         alert(err.message);
       });
 
-     // 
+    // 
 
   }
 
@@ -104,7 +117,7 @@ export function Edit(props) {
   //     await deleteDoc(flashcard);
 
   //     console.log('Flashcard deleted successfully');
-        
+
   //   } catch (error) {
   //     alert(`Deletion unsuccessful: ${error.message}`);
   //   }
@@ -118,7 +131,7 @@ export function Edit(props) {
       await deleteDoc(flashcard);
 
       console.log('Flashcard deleted successfully');
-        
+
     } catch (error) {
       alert(`Deletion unsuccessful: ${error.message}`);
     }
@@ -170,11 +183,19 @@ export function Edit(props) {
   }
 
 
-
   return (
     <>
       <Text fontSize={'4rem'} align='center'> Edit Deck </Text>
-      <Text align='center' fontSize={'2rem'}> Deck Name: {deckname} </Text>
+      <Flex justifyContent={'center'}>
+      <Text fontSize={'2rem'} margin='2'> Deck Name:</Text>
+
+      <Editable defaultValue={deckname} placeholder="Deck name"
+      fontSize={'2rem'}
+      onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}>
+        <EditablePreview />
+        <EditableInput />
+      </Editable>
+     </Flex>
 
       <Flex justifyContent={'center'}>
         <Box id='textprompt'>
@@ -194,11 +215,11 @@ export function Edit(props) {
           onClick={getTextToAdd}> Create a new card </Button>
       </Flex>
 
-      <Text fontSize={'2rem'} align={'center'}> Cards: </Text>
+      <Text fontSize={'2rem'} align={'center'}> Card List: </Text>
 
       {flashcards.map(card => (
         <Card key={card.id} id={card.id}
-          front={card.question} back={card.answer} onDelete={() => {delete_flashcard(card.id)}} />
+          front={card.question} back={card.answer} onDelete={() => { delete_flashcard(card.id) }} />
       ))}
 
     </>
