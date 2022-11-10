@@ -34,7 +34,8 @@ export const ViewStudyDecks = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null)
 
-  
+  const user_studyDeck_ref = collection(database, 'users', user.uid, 'study-decks');
+  const [studyDeck_name, setStudyDeck_name] = useState('');
 
 
 
@@ -85,6 +86,18 @@ export const ViewStudyDecks = () => {
     }
   } 
 
+  function add_studyDeck() {
+    addDoc(user_studyDeck_ref, {
+        name: studyDeck_name,
+    })
+        .then(() => {
+            alert('Data Added');
+        })
+        .catch((err) => {
+            alert(err.message);
+        });
+  }
+
   if (loading) {
     return (
       <Heading textAlign={'center'}>Loading...</Heading>
@@ -118,7 +131,8 @@ export const ViewStudyDecks = () => {
               <ModalBody>
                 <FormControl>
                   <FormLabel>Study Deck Name</FormLabel>
-                  <Input ref={initialRef} placeholder='Study Deck Name' />
+                  <Input ref={initialRef} placeholder='Study Deck Name'
+                  onChange={e => setStudyDeck_name(e.target.value)} />
                 </FormControl>
               </ModalBody>
 
@@ -126,7 +140,7 @@ export const ViewStudyDecks = () => {
                 <Button colorScheme='red' mr={3} onClick={onClose}>
                   Close
                 </Button>
-                <Button colorScheme='blue' mr={3}>
+                <Button colorScheme='blue' mr={3} onClick={add_studyDeck}>
                   Okay
                 </Button>
               </ModalFooter>
