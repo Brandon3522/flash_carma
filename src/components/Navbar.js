@@ -43,7 +43,7 @@ export default function Simple() {
   
     return (
       <>
-        <Box bg={useColorModeValue('white')} px={4} shadow='md'>
+        <Box bg={useColorModeValue('white')} px={4} shadow='sm'>
           <Flex h={'100px'} alignItems={'center'} justifyContent={'space-between'}>
             <IconButton
               size={'md'}
