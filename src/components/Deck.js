@@ -13,7 +13,7 @@ export function Deck({ id, name, onDelete }) {
         <>
             <Popover>
                 <PopoverTrigger>
-                    <Button w={200} h={200}> {name} </Button>
+                    <Button w={200} h={200} shadow='md' borderRadius={'lg'}> {name} </Button>
                 </PopoverTrigger>
                 <PopoverContent>
                     <PopoverArrow />

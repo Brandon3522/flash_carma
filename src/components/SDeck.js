@@ -13,7 +13,7 @@ export function SDeck({ id, name }) {
     <>
       <LinkBox>
         <LinkOverlay href='/study'>
-          <Button w={200} h={200}> {name} </Button>
+          <Button w={200} h={200} shadow='md' borderRadius={'lg'}> {name} </Button>
         </LinkOverlay>
       </LinkBox>
 

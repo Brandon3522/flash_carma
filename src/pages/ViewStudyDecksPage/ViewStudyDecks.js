@@ -121,7 +121,7 @@ export const ViewStudyDecks = () => {
           </LinkBox>
           */}
 
-          <Button onClick={onOpen} w={200} h={200} fontSize={'10rem'} paddingBottom={'30px'}> + </Button>
+          <Button onClick={onOpen} w={200} h={200} fontSize={'10rem'} paddingBottom={'30px'} shadow='md' borderRadius={'lg'}> + </Button>
 
           <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
