@@ -35,6 +35,7 @@ export const Settings = () =>{
     return (
         <Box>
           <Box>
+            <Spacer marginTop={10} />
             <Heading>Settings</Heading>
             <Heading>{username}</Heading>
             <Text>Current User ID: {user.uid}</Text>

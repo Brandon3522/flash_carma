@@ -92,6 +92,7 @@ export const Home = () => {
   return (
     <Box>
       <Box>
+        <Spacer marginTop={10} />
         <Heading align={'center'}>Home</Heading>
         <Heading>{username}</Heading>
         {/* For testing purposes.

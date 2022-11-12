@@ -105,6 +105,7 @@ export const ViewStudyDecks = () => {
   } 
   return (
     <>
+      <Spacer marginTop={10} />
       <Heading as='h3' size='xl' textAlign={'center'}>Study Decks</Heading>
 
 

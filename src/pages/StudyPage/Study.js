@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Heading } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "./Study.css"
@@ -184,6 +184,7 @@ export function Study(props) {
   return (
 
     <>
+      <Spacer marginTop={10} />
       {/* title of Study Session page */}
       <Text fontSize={'4rem'} align='center'> Study Session </Text>
 
