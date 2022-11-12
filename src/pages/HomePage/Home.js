@@ -3,7 +3,7 @@ import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid } from '@chakr
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
-import { collection, getDocs, query, where, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, onSnapshot, limit } from 'firebase/firestore';
 import UserContext from '../../UserContext';
 import { SDeck } from '../../components/SDeck';
 
@@ -18,6 +18,7 @@ export const Home = () => {
   const [user_score, setUsers_score] = useState(0);
   const [studyDecks, setStudyDecks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [studyDecks_limit, setStudyDecks_limit] = useState([]);
   
 
   // const getUserName = async () => {
@@ -69,7 +70,17 @@ export const Home = () => {
   }
 
   useEffect (() => {
-    const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
+    const q = query(studyDecks_ref, limit(4))
+    const getStudyDecks_limit = async () => {
+      const data =  await getDocs(q);
+
+      setStudyDecks_limit(data.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+
+    }
+    getStudyDecks_limit();
+    const unsub = onSnapshot(q, (snapshot) => {
       setStudyDecks(snapshot.docs.map((doc) => ({
         ...doc.data(), id: doc.id
       })))
@@ -80,7 +91,18 @@ export const Home = () => {
     return unsub;
   }, [])
 
+ /* useEffect(() => {
+    const q = query(studyDecks_ref, limit(4))
+    const getStudyDecks_limit = async () => {
+      const data =  await getDocs(q);
 
+      setStudyDecks_limit(data.docs.map((doc) => ({
+        ...doc.data(), id: doc.id
+      })))
+
+    }
+    getStudyDecks_limit();
+  }, []) */
 
   if (loading) {
     return (
