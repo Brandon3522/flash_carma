@@ -121,7 +121,7 @@ export const Home = () => {
         </Grid>
       </Flex>
       {/* Containder for recent decks idea */}
-      <Spacer marginTop={50}/>
+      <Spacer marginTop={10}/>
     </Box>
   )
 }

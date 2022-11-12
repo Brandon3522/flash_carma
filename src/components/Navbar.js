@@ -79,6 +79,8 @@ export default function Simple() {
                   <Avatar
                     size={'sm'}
                     bg='teal'
+                    border='black'
+                    borderStyle={'solid'}
                   />
                 </MenuButton>
                 <MenuList>
