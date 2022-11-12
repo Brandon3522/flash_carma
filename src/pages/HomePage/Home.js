@@ -98,13 +98,11 @@ export const Home = () => {
         <Text align={'center'} fontSize={'1.5rem'}> User Score: {user_score}</Text>
       </Box>
 
-      <Spacer
-      margin={'100px'}/>
+      <Spacer margin={'100px'}/>
 
       <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
 
-      <Spacer
-     marginBottom={10}/>
+      <Spacer marginBottom={10}/>
 
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
