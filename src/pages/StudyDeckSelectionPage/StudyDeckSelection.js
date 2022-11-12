@@ -46,6 +46,7 @@ export const StudyDeckSelection = () => {
    } 
   return (
     <>
+      <Spacer marginTop={10} />
         <Heading align={'center'}> Study Decks </Heading>
 
         <Spacer marginBottom={10} />
