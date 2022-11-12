@@ -177,6 +177,7 @@ export const ViewStudyDecks = () => {
 
         </Grid>
       </Flex>
+      <Spacer marginTop={10}/>
     </>
   )
 }

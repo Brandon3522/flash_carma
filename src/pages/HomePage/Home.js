@@ -95,7 +95,9 @@ export const Home = () => {
         <Spacer marginTop={10} />
         <Heading align={'center'}>Home</Heading>
         <Heading>{username}</Heading>
-        <Text>Current User ID: {user.uid}</Text>
+        {/* For testing purposes.
+            <Text>Current User ID: {user.uid}</Text> 
+        */}
         <Text align={'center'} fontSize={'1.5rem'}> User Score: {user_score}</Text>
       </Box>
 
@@ -119,7 +121,7 @@ export const Home = () => {
         </Grid>
       </Flex>
       {/* Containder for recent decks idea */}
-
+      <Spacer marginTop={10}/>
     </Box>
   )
 }
