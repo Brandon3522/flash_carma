@@ -78,9 +78,7 @@ export default function Simple() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={
-                      profile
-                    }
+                    bg='teal'
                   />
                 </MenuButton>
                 <MenuList>
