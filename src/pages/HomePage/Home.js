@@ -92,6 +92,7 @@ export const Home = () => {
   return (
     <Box>
       <Box>
+        <Spacer marginTop={10} />
         <Heading align={'center'}>Home</Heading>
         <Heading>{username}</Heading>
         <Text>Current User ID: {user.uid}</Text>
