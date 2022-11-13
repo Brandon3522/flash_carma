@@ -63,6 +63,7 @@ export const StudyDeckSelection = () => {
 
         </Grid>
       </Flex>
+      <Spacer marginTop={10}/>
     </>
   )
 }
