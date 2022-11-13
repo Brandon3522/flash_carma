@@ -94,7 +94,9 @@ export const Home = () => {
       <Box>
         <Heading align={'center'}>Home</Heading>
         <Heading>{username}</Heading>
-        <Text>Current User ID: {user.uid}</Text>
+        {/* For testing purposes.
+            <Text>Current User ID: {user.uid}</Text> 
+        */}
         <Text align={'center'} fontSize={'1.5rem'}> User Score: {user_score}</Text>
       </Box>
 
@@ -103,8 +105,7 @@ export const Home = () => {
 
       <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
 
-      <Spacer
-     marginBottom={10}/>
+      <Spacer marginBottom={10}/>
 
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
@@ -120,7 +121,7 @@ export const Home = () => {
         </Grid>
       </Flex>
       {/* Containder for recent decks idea */}
-
+      <Spacer marginTop={50}/>
     </Box>
   )
 }
