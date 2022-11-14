@@ -7,6 +7,10 @@ import {
 
 export function Deck({ id, name, onDelete }) {
 
+function getDeckName(id){
+    //console.log(id)
+sessionStorage.setItem('deckid', id)
+}
 
 
     return (
@@ -21,11 +25,11 @@ export function Deck({ id, name, onDelete }) {
                     <PopoverBody>
                         <ButtonGroup display={'flex'} flexWrap={'wrap'} spacing='6'>
                             <Link as={ReachLink} to='/edit'>
-                                <Button>Edit</Button>
+                                <Button onClick={() => getDeckName(id)} >Edit</Button>
                             </Link>
 
                             <Link as={ReachLink} to='/study'>
-                                <Button>Study</Button>
+                                <Button onClick={() => getDeckName(id)} >Study</Button>
                             </Link>
 
                             <Button colorScheme='red' onClick={() => onDelete(id)}>Delete</Button>

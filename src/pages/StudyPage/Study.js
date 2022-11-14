@@ -19,9 +19,11 @@ export function Study(props) {
   // User context
   const user = useContext(UserContext)?.user;
 
-
+  //var deckid = sessionStorage.getItem('deckid')
+  //console.log(deckid)
   //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
+  //const studyDeck_ID = deckid
   // Database reference: 
   const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
   const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
