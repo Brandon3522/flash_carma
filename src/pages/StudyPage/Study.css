@@ -7,6 +7,16 @@
    align-content: center;
 }
 
+#flashcard_flipped{ 
+    background: white;
+    height:300px;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 8px;
+   align-content: center;
+   transform: rotateY('180deg');
+}
+
 #cardtext{
     word-wrap: break-word;
     margin-top: 10px;

@@ -7,6 +7,7 @@ import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
+import { transform } from 'framer-motion';
 
 
 
@@ -129,9 +130,13 @@ if(totalCard === 0){
   function flipCard() {  //swaps the text on the card to the other value stored
     isFlipped = !isFlipped;
     if (isFlipped === true) {
+      //rotate card 180 degrees
+      //currentCard.classList.toggle('flashcard_flipped');
       cardtext = currentCard.back;
     }
     else {
+      //rotate card 180 degrees
+      //currentCard.classList.toggle('flashcard_flipped');
       cardtext = currentCard.front;
     }
     document.getElementById("cardtext").innerHTML = cardtext;
