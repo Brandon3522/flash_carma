@@ -140,7 +140,12 @@ var order
   } 
 
   function add_studyDeck() {
-    addDoc(user_studyDeck_ref, {
+    if(trimtext(studyDeck_name) === ""){
+      alert("Please provide a deck name")
+    }
+    else{
+
+      addDoc(user_studyDeck_ref, {
         name: studyDeck_name,
     })
         .then(() => {
@@ -149,6 +154,12 @@ var order
         .catch((err) => {
             alert(err.message);
         });
+
+    }
+  }
+
+  function trimtext(text) {
+    return text.replace(/^\s+|\s+$/g, '');
   }
 
   if (loading) {
