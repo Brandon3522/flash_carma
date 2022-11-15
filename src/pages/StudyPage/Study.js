@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "./Study.css"
@@ -7,6 +7,7 @@ import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
+import { transform } from 'framer-motion';
 
 
 
@@ -29,6 +30,13 @@ export function Study(props) {
   const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
   const user_ref = doc(database, 'users', user.uid);
 
+  //animation to rotate card
+  const animation = keyframes`
+    from { transform: rotateY(0deg) }
+
+    to { transform: rotateY(180deg) }
+  `;
+  const rotateAnimation = `${animation} infinite 2s`;
 
   //card status
   var cardtext; //text currently on the card
@@ -224,7 +232,7 @@ if(totalCard === 0){
 
       {/* displays a card and the text inside the card */}
       <Flex justifyContent={'center'}>
-        <Box id='flashcard' onClick={flipCard}>
+        <Box id='flashcard' onClick={flipCard} _hover={{animation: rotateAnimation}}>
           <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
             color='black'> {cardtext} </Text>
         </Box>

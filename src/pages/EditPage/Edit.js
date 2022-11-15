@@ -65,6 +65,12 @@ export function Edit(props) {
   }, [])
 
   function update_studyDeckName() {
+
+    if(trimtext(display_studyDeckName) === ""){
+      display_studyDeckName = "Deck Name"
+    }
+
+
     updateDoc(studyDeckName_ref, {
         name: display_studyDeckName,
     })
@@ -94,6 +100,8 @@ export function Edit(props) {
     })
       .then(() => {
         alert('Data Added');
+        document.getElementById('TBfront').value = ''
+        document.getElementById('TBback').value = ''
         //setFlashcards([ref, ...flashcards])
       })
       .catch((err) => {

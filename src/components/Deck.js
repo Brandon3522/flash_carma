@@ -2,10 +2,20 @@ import { Link as ReachLink } from 'react-router-dom';
 import {
     Flex, Input, Button, ButtonGroup, Box, Heading, Spacer, Link,
     Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
-    PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor,
+    PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor, Modal, ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure
 } from '@chakra-ui/react';
+import React from 'react';
 
 export function Deck({ id, name, onDelete }) {
+
+const { isOpen, onOpen, onClose } = useDisclosure();
+const initialRef = React.useRef(null)
 
 function getDeckName(id){
     //console.log(id)
@@ -32,7 +42,23 @@ sessionStorage.setItem('deckid', id)
                                 <Button onClick={() => getDeckName(id)} >Study</Button>
                             </Link>
 
-                            <Button colorScheme='red' onClick={() => onDelete(id)}>Delete</Button>
+                            <Button colorScheme='red' onClick={onOpen}>Delete</Button>
+
+                            <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+                                <ModalOverlay />
+                                <ModalContent>
+                                    <ModalHeader>Are You Sure You Want To Delete This Deck?</ModalHeader>
+                                    <ModalCloseButton />
+                                    <ModalFooter>
+                                        <ButtonGroup>
+                                            <Button colorScheme='red' onClick={() => onDelete(id)}>Yes</Button>
+                                            <Button onClick={onClose}>No</Button>
+                                        </ButtonGroup>
+                                    </ModalFooter>
+                                </ModalContent>
+
+                                
+                            </Modal>
                         </ButtonGroup>
                     </PopoverBody>
                 </PopoverContent>
