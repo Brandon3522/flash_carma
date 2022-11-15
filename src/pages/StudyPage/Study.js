@@ -19,9 +19,11 @@ export function Study(props) {
   // User context
   const user = useContext(UserContext)?.user;
 
-
+  var deckid = sessionStorage.getItem('deckid')
+  console.log(deckid)
   //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
-  const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
+  //const studyDeck_ID = '06uZaXE3PAPD7igsAl2f'
+  const studyDeck_ID = deckid
   // Database reference: 
   const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
   const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
@@ -101,6 +103,17 @@ export function Study(props) {
   totalCard = flashcards.length //updates total to how many entries there are
 
 
+if(totalCard === 0){
+  return (
+    <>
+    <Text fontSize={'4rem'} align='center'> Study Session </Text>
+    <Text fontSize={'2rem'} align='center'> This deck is empty</Text>
+    <Text fontSize={'1.5rem'} align='center'> Please add at least one card to the deck </Text>
+
+    </>
+  )
+}
+
   //initializes first card
   currentCard.front = flashcards[0].question
   currentCard.back = flashcards[0].answer
@@ -177,7 +190,7 @@ export function Study(props) {
     sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
   }
 
-  sessionStorage.clear()
+  //sessionStorage.clear()
 
 
 

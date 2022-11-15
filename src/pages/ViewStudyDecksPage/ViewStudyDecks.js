@@ -14,10 +14,11 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Radio,
 } from '@chakra-ui/react';
 import {
   getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
-  query, where, limit
+  query, where, limit, orderBy
 } from 'firebase/firestore';
 import { database } from '../../firebase';
 import { Deck } from '../../components/Deck';
@@ -37,7 +38,12 @@ export const ViewStudyDecks = () => {
   const user_studyDeck_ref = collection(database, 'users', user.uid, 'study-decks');
   const [studyDeck_name, setStudyDeck_name] = useState('');
 
+  //const [acending_order, setAcending_order] = useState(true);
+ // const [studyDecks_order, setStudyDecks_order] = useState([]);
 
+  //var ascending = true;
+
+  var deckname
 
   // useEffect(() => {
   //   const getStudyDecks = async () => {
@@ -64,6 +70,53 @@ export const ViewStudyDecks = () => {
 
     return unsub;
   }, [])
+
+
+
+/*useEffect (() => {
+  const unsub = onSnapshot(studyDecks_ref, (snapshot) => {
+    
+    setStudyDecks(snapshot.docs.map((doc) => ({
+      ...doc.data(), id: doc.id
+    })))
+
+    setLoading(false);
+  })
+
+  return unsub;
+}, [])*/
+
+/*useEffect (() => {
+var order
+  if(acending_order){
+    order = 'asc'
+  }
+  else{
+    order = 'desc'
+  }
+
+
+  const q = query(studyDecks_ref, orderBy('name', order))
+
+  const getStudyDecks_order = async () => {
+    const data =  await getDocs(q);
+
+    setStudyDecks_order(data.docs.map((doc) => ({
+      ...doc.data(), id: doc.id
+    })))
+
+  }
+  getStudyDecks_order();
+  const unsub = onSnapshot(q, (snapshot) => {
+    setStudyDecks(snapshot.docs.map((doc) => ({
+      ...doc.data(), id: doc.id
+    })))
+
+    setLoading(false);
+  })
+
+  return unsub;
+}, [])*/
 
   const delete_studyDeck = async (delete_studyDeckName) => {
     try {
@@ -108,19 +161,10 @@ export const ViewStudyDecks = () => {
       <Spacer marginTop={10} />
       <Heading as='h3' size='xl' textAlign={'center'}>Study Decks</Heading>
 
-
       <Spacer marginBottom={10} />
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
         <Grid templateColumns='repeat(5, 1fr)' gap={10} >
-          {/* Create new study deck button. MAKE A POPOVER LATER*/}
-          {/*
-          <LinkBox>
-            <LinkOverlay href='#'>
-              <GridItem w='200px' h='200px' bg='chartreuse' lineHeight={'200px'} textAlign={'center'}>Create Study Deck</GridItem>
-            </LinkOverlay>
-          </LinkBox>
-          */}
 
           <Button onClick={onOpen} w={200} h={200} fontSize={'10rem'} paddingBottom={'30px'} shadow='md' borderRadius={'lg'}> + </Button>
 
@@ -151,28 +195,10 @@ export const ViewStudyDecks = () => {
 
          {studyDecks.map(deck => (
             <Deck key={deck.id} id={deck.id}
-              name={deck.name} onDelete={() => { delete_studyDeck(deck.name) }} />
+              name={deck.name} onDelete={() => { delete_studyDeck(deck.name) }} 
+              //getDeckName={() => {getDeckName(deck.id)}}
+              />
          ))} 
-
-
-
-          {/* <LinkBox>
-            <LinkOverlay href='#'>
-              <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 2</GridItem>
-            </LinkOverlay>
-          </LinkBox>
-
-          <LinkBox>
-            <LinkOverlay href='#'>
-              <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 3</GridItem>
-            </LinkOverlay>
-          </LinkBox>
-
-          <LinkBox>
-            <LinkOverlay href='#'>
-              <GridItem w='100px' h='100px' bg='chartreuse'>Study Deck 4</GridItem>
-            </LinkOverlay>
-         </LinkBox> */}
 
 
         </Grid>
