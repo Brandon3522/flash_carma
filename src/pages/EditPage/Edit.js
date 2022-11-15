@@ -65,6 +65,12 @@ export function Edit(props) {
   }, [])
 
   function update_studyDeckName() {
+
+    if(trimtext(display_studyDeckName) === ""){
+      display_studyDeckName = "Deck Name"
+    }
+
+
     updateDoc(studyDeckName_ref, {
         name: display_studyDeckName,
     })
