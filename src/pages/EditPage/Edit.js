@@ -100,6 +100,8 @@ export function Edit(props) {
     })
       .then(() => {
         alert('Data Added');
+        document.getElementById('TBfront').value = ''
+        document.getElementById('TBback').value = ''
         //setFlashcards([ref, ...flashcards])
       })
       .catch((err) => {
