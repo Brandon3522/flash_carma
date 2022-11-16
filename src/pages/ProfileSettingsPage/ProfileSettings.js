@@ -125,6 +125,7 @@ export const Settings = () =>{
     }
   }
 
+  // Navigate to login page
   const reauthenticate = () => {
     alert('Redirecting to login');
     navigate('/');
