@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import "./Study.css"
@@ -30,6 +30,13 @@ export function Study(props) {
   const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
   const user_ref = doc(database, 'users', user.uid);
 
+  //animation to rotate card
+  const animation = keyframes`
+    from { transform: rotateY(0deg) }
+
+    to { transform: rotateY(180deg) }
+  `;
+  const rotateAnimation = `${animation} infinite 2s`;
 
   //card status
   var cardtext; //text currently on the card
@@ -130,13 +137,9 @@ if(totalCard === 0){
   function flipCard() {  //swaps the text on the card to the other value stored
     isFlipped = !isFlipped;
     if (isFlipped === true) {
-      //rotate card 180 degrees
-      //currentCard.classList.toggle('flashcard_flipped');
       cardtext = currentCard.back;
     }
     else {
-      //rotate card 180 degrees
-      //currentCard.classList.toggle('flashcard_flipped');
       cardtext = currentCard.front;
     }
     document.getElementById("cardtext").innerHTML = cardtext;
@@ -229,7 +232,7 @@ if(totalCard === 0){
 
       {/* displays a card and the text inside the card */}
       <Flex justifyContent={'center'}>
-        <Box id='flashcard' onClick={flipCard}>
+        <Box id='flashcard' onClick={flipCard} _hover={{animation: rotateAnimation}}>
           <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
             color='black'> {cardtext} </Text>
         </Box>
