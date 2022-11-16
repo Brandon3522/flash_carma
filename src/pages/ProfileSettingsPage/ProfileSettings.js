@@ -56,6 +56,7 @@ export const Settings = () =>{
   // Update Auth email
   const updateAuthEmail = () => {
     updateEmail(auth.currentUser, email).then(() => {
+      console.log(auth.currentUser)
       alert("Email updated successfully");
       alert(email)
       console.log(email);
@@ -69,7 +70,8 @@ export const Settings = () =>{
     updatePassword(auth.currentUser, password).then(() => {
       alert('Password updated successfully');
     }).catch((error) => {
-      alert(error.message);
+      // Add message for re-authentication
+      alert("Error! Press the Re-authenticate button to authenticate a password change.");
     });
   }
 
@@ -119,7 +121,8 @@ export const Settings = () =>{
       updateEmail();
       updateAuthEmail();
     }
-    if (password.length > 0 && password !== ' ') {
+    if (password.length > 0 
+        && password !== ' ') {
       updatePassowrd();
       updateAuthPassword();
     }
@@ -180,10 +183,8 @@ export const Settings = () =>{
             }}>
             Re-authenticate
           </Button>
-        </Flex>
-        
+        </Flex> 
       </Stack>
-      
     </Box>
   )
 }
