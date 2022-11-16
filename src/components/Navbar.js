@@ -19,8 +19,10 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import {Link as ReachLink} from 'react-router-dom'
+import {Link as ReachLink, useNavigate} from 'react-router-dom'
 import logo from './images/logo.png'
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
 const Links = [{name: 'View Study Decks', href: '/viewstudydecks'}, {name: 'Study Session', href: '/studydeckselection'}];
 
@@ -40,6 +42,18 @@ const NavLink = ({children, href}) => (
 
 export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const navigate = useNavigate();
+
+    const logout = () => {
+      signOut(auth)
+        .then(() => {
+          // navigate to login page
+          alert('Logout successful')
+          navigate('/')
+        }).catch((error) => {
+          console.log(error.message);
+        });
+    }
   
     return (
       <>
@@ -87,7 +101,9 @@ export default function Simple() {
                   <MenuItem>
                     <Link as={ReachLink} to='/settings'>Settings</Link>
                   </MenuItem>
-                  <MenuItem>Link 2</MenuItem>
+                  <MenuItem>
+                    <Button variant={'link'} onClick={logout}>Logout</Button>
+                  </MenuItem>
                   <MenuDivider />
                   <ColorModeSwitcher /> Dark Mode
                 </MenuList>

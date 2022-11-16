@@ -116,7 +116,7 @@ export const Settings = () =>{
   if (loading) {
     return (
       <Box>
-        <Heading>Loading...</Heading>
+        <Heading textAlign={'center'}>Loading...</Heading>
       </Box>
     )
     }
