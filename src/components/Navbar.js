@@ -44,6 +44,7 @@ export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
 
+    // Logout current authenticated user
     const logout = () => {
       signOut(auth)
         .then(() => {
