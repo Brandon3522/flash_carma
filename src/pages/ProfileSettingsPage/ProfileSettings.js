@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input, Stack, Button } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input, Stack, Button, Flex } from '@chakra-ui/react'
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
 import { updateEmail, updatePassword } from "firebase/auth";
@@ -18,6 +19,8 @@ export const Settings = () =>{
 
   // User reference
   const user_ref = doc(database, 'users', user.uid);
+
+  const navigate = useNavigate();
 
   // Get username and email
   useEffect(() => {
@@ -50,15 +53,6 @@ export const Settings = () =>{
     
   }, [])
 
-
-  // const get_user = async () => {
-  //   const user_ref = doc(database, 'users', user.uid);
-  //   const data =  await getDoc(user_ref);
-    
-  //   setLoading(false);
-    
-  // }
-
   // Update Auth email
   const updateAuthEmail = () => {
     updateEmail(auth.currentUser, email).then(() => {
@@ -70,6 +64,7 @@ export const Settings = () =>{
     });
   }
 
+  // Update Auth password
   const updateAuthPassword = () => {
     updatePassword(auth.currentUser, password).then(() => {
       alert('Password updated successfully');
@@ -78,6 +73,7 @@ export const Settings = () =>{
     });
   }
 
+  // Update database email
   const updateEmail = async () => {
     try {
       await updateDoc(user_ref, {
@@ -89,8 +85,19 @@ export const Settings = () =>{
     }
   }
 
-  
+  // Update database password
+  const updatePassowrd = async () => {
+    try {
+      await updateDoc(user_ref, {
+        password: password
+      })
+      console.log('Password updated');
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
+  // Update database username
   const updateUsername = async () => {
     try {
       await updateDoc(user_ref, {
@@ -102,15 +109,25 @@ export const Settings = () =>{
     }
   }
 
+  // Update all fields > 0 in length
   const updateUser = () => {
-    updateUsername();
+    // Update database and authentication info
+    if (username.length > 0) {
+      updateUsername();
+    }
+    if (email.length > 0) {
+      updateEmail();
+      updateAuthEmail();
+    }
+    if (password.length > 0 && password !== ' ') {
+      updatePassowrd();
+      updateAuthPassword();
+    }
+  }
 
-    updateEmail();
-
-    updateAuthEmail();
-
-    updateAuthPassword();
-
+  const reauthenticate = () => {
+    alert('Redirecting to login');
+    navigate('/');
   }
 
   if (loading) {
@@ -120,18 +137,11 @@ export const Settings = () =>{
       </Box>
     )
     }
-  //   if (user != null) {
-  //     get_user()
-  
-      
-  //   }
 
   return (
     <Box>
       <Spacer marginTop={10} />
       <Heading as='h3' size='xl' textAlign={'center'}>Settings</Heading>
-      <Heading>{username}</Heading>
-      <Text>Current User ID: {user.uid}</Text>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <FormControl id="username" >
           <FormLabel>User Name</FormLabel>
@@ -143,20 +153,34 @@ export const Settings = () =>{
         </FormControl>
         <FormControl id="password" >
           <FormLabel>Password</FormLabel>
-          <Input type="text" value={password} onChange={e => setPassword(e.target.value)}/>
+          <Input type="text" placeholder={'Change Password'} onChange={e => setPassword(e.target.value)}/>
         </FormControl>
-        <Button
-          onClick={updateUser}
-          loadingText="Submitting"
-          size="lg"
-          w={150}
-          bg={'blue.400'}
-          color={'white'}
-          _hover={{
-            bg: 'blue.500',
-          }}>
-          Update
-        </Button>
+        <Flex>
+          <Button
+            onClick={updateUser}
+            size="lg"
+            w={150}
+            bg={'blue.400'}
+            color={'white'}
+            _hover={{
+              bg: 'blue.500',
+            }}>
+            Update
+          </Button>
+          <Button
+            onClick={reauthenticate}
+            size="lg"
+            w={150}
+            bg={'blue.400'}
+            color={'white'}
+            marginLeft={'auto'}
+            _hover={{
+              bg: 'blue.500',
+            }}>
+            Re-authenticate
+          </Button>
+        </Flex>
+        
       </Stack>
       
     </Box>
