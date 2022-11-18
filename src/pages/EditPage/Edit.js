@@ -208,7 +208,7 @@ export function Edit(props) {
       >
         <EditablePreview />
 
-        <Input maxLength={20} as={EditableInput}/>
+        <Input maxLength={22} as={EditableInput}/>
   </Editable> 
 
  
