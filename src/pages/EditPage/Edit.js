@@ -202,25 +202,32 @@ export function Edit(props) {
       <Flex justifyContent={'center'}>
       <Text fontSize={'2rem'} margin='2'> Deck Name:</Text>
 
-      <Editable defaultValue={deckname} placeholder="Deck name"
+    <Editable defaultValue={deckname} placeholder="Deck name"
       fontSize={'2rem'}
-      onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}>
+      onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}
+      >
         <EditablePreview />
-        <EditableInput />
-      </Editable>
+
+        <Input maxLength={20} as={EditableInput}/>
+  </Editable> 
+
+ 
      </Flex>
 
       <Flex justifyContent={'center'}>
         <Box id='textprompt'>
-          <Text> Front: </Text> <Textarea id='TBfront'>  </Textarea>
+          <Text> Front: </Text> {/*<Textarea id='TBfront'>  </Textarea> */}
+          <Input maxLength={200} id='TBfront'/>
         </Box>
 
         <Box id='textprompt'>
-          <Text> Back: </Text> <Textarea id='TBback'> </Textarea>
+          <Text> Back: </Text> 
+          {/*<Textarea id='TBback'> 
+          </Textarea> */}
+          <Input maxLength={200} id='TBback'/>
         </Box>
       </Flex>
-
-
+    
 
 
       <Flex justifyContent={'center'}>
