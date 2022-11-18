@@ -188,7 +188,7 @@ var order
                 <FormControl>
                   <FormLabel>Study Deck Name</FormLabel>
                   <Input ref={initialRef} placeholder='Study Deck Name'
-                  onChange={e => setStudyDeck_name(e.target.value)} />
+                  onChange={e => setStudyDeck_name(e.target.value)} maxLength={20}/>
                 </FormControl>
               </ModalBody>
 
