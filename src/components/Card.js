@@ -8,18 +8,20 @@ export function Card({ id, front, back, onDelete }) {
                 <>
                         <Box id='card'>
                                 <Flex justifyContent={'center'}>
-                                        <Box>
+                                        <Box height={250}>
                                                 <Text color='black'> Front Side: </Text>
 
                                                 <Text id='cardtext' fontSize={"1.5rem"} flex='wrap'
-                                                        color='black' width={'500px'}>   {front} </Text>
+                                                        color='black' width={'500px'}
+                                                        overflowWrap='break-word'>   {front} </Text>
 
 
                                         </Box>
-                                        <Box>
+                                        <Box height={250}>
                                                 <Text color='black'> Back Side: </Text>
                                                 <Text id='cardtext' fontSize={"1.5rem"} flex='wrap'
-                                                        color='black' width={'500px'}> {back} </Text>
+                                                        color='black' width={'500px'}
+                                                        overflowWrap='break-word'> {back} </Text>
                                         </Box>
 
                                 </Flex>

@@ -208,7 +208,7 @@ export function Edit(props) {
       >
         <EditablePreview />
 
-        <Input maxLength={20} as={EditableInput}/>
+        <Input maxLength={22} as={EditableInput}/>
   </Editable> 
 
  
@@ -217,14 +217,16 @@ export function Edit(props) {
       <Flex justifyContent={'center'}>
         <Box id='textprompt'>
           <Text> Front: </Text> {/*<Textarea id='TBfront'>  </Textarea> */}
-          <Input maxLength={200} id='TBfront'/>
+          <Input maxLength={201} id='TBfront'
+          width={500} />
         </Box>
 
         <Box id='textprompt'>
           <Text> Back: </Text> 
           {/*<Textarea id='TBback'> 
           </Textarea> */}
-          <Input maxLength={200} id='TBback'/>
+          <Input maxLength={201} id='TBback'
+          width={500} />
         </Box>
       </Flex>
     
