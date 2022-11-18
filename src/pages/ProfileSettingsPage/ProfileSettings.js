@@ -57,8 +57,9 @@ export const Settings = () =>{
   const updateAuthEmail = () => {
     updateEmail(auth.currentUser, email).then(() => {
       alert("Email updated successfully");
-      alert(email)
+      console.log(auth.currentUser)
       console.log(email);
+      console.log(`Auth email after: ${auth.currentUser.email}`)
     }).catch((error) => {
       alert(error.message);
     });
@@ -109,19 +110,36 @@ export const Settings = () =>{
     }
   }
 
-  // Update all fields > 0 in length
-  const updateUser = () => {
-    // Update database and authentication info
-    if (username.length > 0) {
+  // Update username onclick
+  const updateUserUsername = () => {
+    if (username.length > 0 && username.trim() != '') {
+      console.log(username.trim())
       updateUsername();
     }
-    if (email.length > 0) {
+    else {
+      alert('PLease enter a valid username.')
+    }
+  }
+
+  // Update email onclick
+  const updateUserEmail = () => {
+    if (email.length > 0 && email.trim() != '') {
       updateEmail();
       updateAuthEmail();
     }
-    if (password.length > 0 && password !== ' ') {
+    else {
+      alert('PLease enter a valid email.')
+    }
+  }
+
+  // Update password onclick
+  const updateUserPassword = () => {
+    if (password.length > 0 && password.trim() != '') {
       updatePassowrd();
       updateAuthPassword();
+    }
+    else {
+      alert('PLease enter a valid password.')
     }
   }
 
@@ -145,20 +163,42 @@ export const Settings = () =>{
       <Heading as='h3' size='xl' textAlign={'center'}>Settings</Heading>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <FormControl id="username" >
-          <FormLabel>User Name</FormLabel>
+          <FormLabel>Username</FormLabel>
           <Input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
         </FormControl>
+        <Button
+          onClick={updateUserUsername}
+          size="lg"
+          w={150}
+          bg={'blue.400'}
+          color={'white'}
+          _hover={{
+            bg: 'blue.500',
+          }}>
+          Update Username
+        </Button>
         <FormControl id="email" >
           <FormLabel>Email Address</FormLabel>
           <Input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
         </FormControl>
+        <Button
+          onClick={updateUserEmail}
+          size="lg"
+          w={150}
+          bg={'blue.400'}
+          color={'white'}
+          _hover={{
+            bg: 'blue.500',
+          }}>
+          Update Email
+        </Button>
         <FormControl id="password" >
           <FormLabel>Password</FormLabel>
           <Input type="text" placeholder={'Change Password'} onChange={e => setPassword(e.target.value)}/>
         </FormControl>
         <Flex>
           <Button
-            onClick={updateUser}
+            onClick={updateUserPassword}
             size="lg"
             w={150}
             bg={'blue.400'}
@@ -166,7 +206,7 @@ export const Settings = () =>{
             _hover={{
               bg: 'blue.500',
             }}>
-            Update
+            Update Password
           </Button>
           <Button
             onClick={reauthenticate}
@@ -180,10 +220,8 @@ export const Settings = () =>{
             }}>
             Re-authenticate
           </Button>
-        </Flex>
-        
-      </Stack>
-      
+        </Flex>  
+      </Stack> 
     </Box>
   )
 }
