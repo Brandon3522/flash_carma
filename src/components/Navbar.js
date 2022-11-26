@@ -15,6 +15,7 @@ import {
   Stack,
   MenuDivider,
   Image,
+  Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import profile from './images/profile_img.png'
@@ -22,7 +23,10 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import {Link as ReachLink, useNavigate} from 'react-router-dom'
 import logo from './images/logo.png'
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, database } from '../firebase';
+import { getDoc, doc } from 'firebase/firestore';
+import UserContext from '../UserContext';
+import { useContext, useState, useEffect } from 'react';
 
 const Links = [{name: 'View Study Decks', href: '/viewstudydecks'}, {name: 'Study Session', href: '/studydeckselection'}];
 
@@ -43,6 +47,29 @@ const NavLink = ({children, href}) => (
 export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+
+    // User context
+    const user = useContext(UserContext)?.user;
+
+    // User reference
+    const user_ref = doc(database, 'users', user.uid);
+
+    // Get username
+    useEffect(() => {
+      const getUsername = async () => {
+        try {
+          const data = await getDoc(user_ref);
+  
+          setUsername(data.data().username)
+          console.log(data.data().username)
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+  
+      getUsername();      
+    }, [])
 
     // Logout current authenticated user
     const logout = () => {
@@ -68,9 +95,9 @@ export default function Simple() {
               onClick={isOpen ? onClose : onOpen}
             />
             <HStack spacing={8} alignItems={'center'}>
-              <Box>
+              <Box pl={-10}>
                 <Link as={ReachLink} to='/home'>
-                 <Image src={logo} width='200px' height={'100px'}/>
+                 <Image  src={logo} width='200px' height={'100px'}/>
                 </Link>
               </Box>
               <HStack
@@ -83,6 +110,10 @@ export default function Simple() {
               </HStack>
             </HStack>
             <Flex alignItems={'center'}>
+              <Text
+                pr={5}>
+                Hello, {username ? username: null}
+              </Text>
               <Menu>
                 <MenuButton
                   marginRight={'30px'}
