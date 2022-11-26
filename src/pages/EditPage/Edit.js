@@ -28,7 +28,7 @@ export function Edit(props) {
 
   var deckid = sessionStorage.getItem('deckid')
 
- // console.log("Deck ID" + deckid)
+  // console.log("Deck ID" + deckid)
 
   //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
   //const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
@@ -66,20 +66,20 @@ export function Edit(props) {
 
   function update_studyDeckName() {
 
-    if(trimtext(display_studyDeckName) === ""){
+    if (trimtext(display_studyDeckName) === "") {
       display_studyDeckName = "Deck Name"
     }
 
 
     updateDoc(studyDeckName_ref, {
-        name: display_studyDeckName,
+      name: display_studyDeckName,
     })
-        .then(() => {
-            alert('Data Updated');
-        })
-        .catch((err) => {
-            alert(err.message);
-        });
+      .then(() => {
+        alert('Data Updated');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   //loading screen buffer 
@@ -89,7 +89,7 @@ export function Edit(props) {
         position={"fixed"}
         top={"50%"}
         left={"50%"}
-        transform={"translate(-50%, 50%)"}    
+        transform={"translate(-50%, 50%)"}
         thickness='4px'
         speed='0.65s'
         emptyColor='gray.200'
@@ -210,37 +210,37 @@ export function Edit(props) {
     <>
       <Text fontSize={'4rem'} align='center'> Edit Deck </Text>
       <Flex justifyContent={'center'}>
-      <Text fontSize={'2rem'} margin='2'> Deck Name:</Text>
+        <Text fontSize={'2rem'} margin='2'> Deck Name:</Text>
 
-    <Editable defaultValue={deckname} placeholder="Deck name"
-      fontSize={'2rem'}
-      onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}
-      marginTop='1.5'
-      >
-        <EditablePreview />
+        <Editable defaultValue={deckname} placeholder="Deck name"
+          fontSize={'2rem'}
+          onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}
+          marginTop='1.5'
+        >
+          <EditablePreview />
 
-        <Input maxLength={22} as={EditableInput}/>
-  </Editable> 
+          <Input maxLength={22} as={EditableInput} />
+        </Editable>
 
- 
-     </Flex>
+
+      </Flex>
 
       <Flex justifyContent={'center'}>
         <Box id='textprompt'>
           <Text> Front: </Text> {/*<Textarea id='TBfront'>  </Textarea> */}
           <Input maxLength={201} id='TBfront'
-          width={500} />
+            width={500} />
         </Box>
 
         <Box id='textprompt'>
-          <Text> Back: </Text> 
+          <Text> Back: </Text>
           {/*<Textarea id='TBback'> 
           </Textarea> */}
           <Input maxLength={201} id='TBback'
-          width={500} />
+            width={500} />
         </Box>
       </Flex>
-    
+
 
 
       <Flex justifyContent={'center'}>
@@ -254,7 +254,7 @@ export function Edit(props) {
         <Card key={card.id} id={card.id}
           front={card.question} back={card.answer} onDelete={() => { delete_flashcard(card.id) }} />
       ))}
-
+      <Spacer marginTop={10} />
     </>
   );
 
