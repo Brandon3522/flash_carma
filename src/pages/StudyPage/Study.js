@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes, Spinner } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import streak1 from "../../components/images/streak_icon.png"
@@ -104,7 +104,17 @@ export function Study(props) {
   //loading screen buffer 
   if (loading) {
     return (
-      <Heading textAlign={'center'}>Loading...</Heading>
+      <Spinner
+        position={"fixed"}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, 50%)"}    
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='#4299e1'
+        size='xl'
+      />
     )
   }
 

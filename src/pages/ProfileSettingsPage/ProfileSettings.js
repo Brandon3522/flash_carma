@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input, Stack, Button, Flex } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input, Stack, Button, Flex, Spinner } from '@chakra-ui/react'
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -154,9 +154,17 @@ export const Settings = () =>{
 
   if (loading) {
     return (
-      <Box>
-        <Heading textAlign={'center'}>Loading...</Heading>
-      </Box>
+      <Spinner
+        position={"fixed"}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, 50%)"}    
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='#4299e1'
+        size='xl'
+      />
     )
     }
 
@@ -180,7 +188,8 @@ export const Settings = () =>{
           }}>
           Update Username
         </Button>
-        <FormControl id="email" >
+        {/* Authentication email not updating */}
+        {/* <FormControl id="email" >
           <FormLabel>Email Address</FormLabel>
           <Input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
         </FormControl>
@@ -194,7 +203,7 @@ export const Settings = () =>{
             bg: 'blue.500',
           }}>
           Update Email
-        </Button>
+        </Button> */}
         <FormControl id="password" >
           <FormLabel>Password</FormLabel>
           <Input type="text" placeholder={'Change Password'} onChange={e => setPassword(e.target.value)}/>

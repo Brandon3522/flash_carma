@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid, Spinner } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
@@ -98,7 +98,17 @@ export const Home = () => {
 
   if (loading) {
     return (
-      <Heading textAlign={'center'}>Loading...</Heading>
+      <Spinner
+        position={"fixed"}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, 50%)"}    
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='#4299e1'
+        size='xl'
+      />
     )
   } 
   
