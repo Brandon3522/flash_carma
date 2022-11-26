@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter, Spacer } from '@chakra-ui/react';
+import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter, Spacer, Spinner } from '@chakra-ui/react';
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
 import { stringify } from '@firebase/util';
@@ -85,7 +85,17 @@ export function Edit(props) {
   //loading screen buffer 
   if (loading) {
     return (
-      <Heading textAlign={'center'}>Loading...</Heading>
+      <Spinner
+        position={"fixed"}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, 50%)"}    
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='#4299e1'
+        size='xl'
+      />
     )
   }
 

@@ -29,6 +29,8 @@ export const Login = () => {
     // Firebase sign in
     signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
+        // Get username
+        //sessionStorage.setItem('username', id)
         alert('Login successful')
         navigate('/home')
       })
