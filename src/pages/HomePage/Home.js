@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, SimpleGrid } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
@@ -131,7 +131,7 @@ export const Home = () => {
 
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
-        <Grid templateColumns='repeat(4, 1fr)' gap={10}>
+        <SimpleGrid templateColumns='repeat(4, 1fr)' gap={10}>
 
           {/* From here on, it's the user's existing study decks */}
 
@@ -140,7 +140,7 @@ export const Home = () => {
               name={deck.name} />
          ))} 
 
-        </Grid>
+        </SimpleGrid>
       </Flex>
       {/* Containder for recent decks idea */}
       <Spacer marginTop={10}/>
