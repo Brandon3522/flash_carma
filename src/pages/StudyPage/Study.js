@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
+import streak1 from "../../components/images/streak_icon.png"
 import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -167,6 +168,7 @@ if(totalCard === 0){
     score = score + 100;
     if (isStreaking === false) {
       isStreaking = true;
+      streak++;
     }
     else {
       streak++;
@@ -211,7 +213,7 @@ if(totalCard === 0){
 
       {/* Displays the number of cards studied out of the total in the deck*/}
       <Flex justifyContent={'center'}>
-        <Text fontSize={'1.5rem'} id='cardnumber'> Cards: {cardNumber} / {totalCard} </Text>
+        <Text fontSize={'1.5rem'} id='cardnumber' marginRight={"500px"}> Cards: {cardNumber} / {totalCard} </Text>
 
         {/* Results button */}
         <Link as={ReachLink} to='/results'>
@@ -224,7 +226,11 @@ if(totalCard === 0){
         <Text fontSize={'3rem'} align='center'> {deckName} </Text>
 
         {/* displays user's current streak */}
-        <Text fontSize={'2rem'} align='center' id='streak'> {streak} </Text>
+
+        <Box class="container" align={'center'}>
+          {/*Image src={streak1} alt={'streak'} boxSize={'50px'}/> */}
+        <Box fontSize={'30px'} class='streaksymbol'> {streak} </Box>
+        </Box>
 
         {/* displays user's current score */}
         <Text fontSize={'2rem'} align='center' id='score'> Score: {score} </Text>

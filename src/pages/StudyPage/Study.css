@@ -14,5 +14,16 @@
 
 #endsession{
     background: red;
-    margin-left: 500px;
+}
+
+.container{
+    position: relative;
+    text-align: center;
+}
+
+.streaksymbol{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, 75%);
 }

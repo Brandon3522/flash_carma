@@ -70,7 +70,7 @@ export const Home = () => {
   }
 
   useEffect (() => {
-    const q = query(studyDecks_ref, orderBy("timestamp", "desc"), limit(4))
+    const q = query(studyDecks_ref, orderBy("timestamp", "desc"), limit(5))
     const getStudyDecks_limit = async () => {
       const data =  await getDocs(q);
 
@@ -107,17 +107,17 @@ export const Home = () => {
     <Box>
       <Box>
         <Spacer marginTop={10} />
-        <Heading align={'center'}>Home</Heading>
-        <Heading>{username}</Heading>
+        <Heading align={'center'} fontSize={'2.5rem'}>Home</Heading>
+      {/*  <Heading>{username}</Heading> */}
         {/* For testing purposes.
             <Text>Current User ID: {user.uid}</Text> 
         */}
-        <Text align={'center'} fontSize={'1.5rem'}> User Score: {user_score}</Text>
+        <Text align={'center'} fontSize={'1.5rem'}> Overall Score: {user_score}</Text>
       </Box>
 
       <Spacer margin={'100px'}/>
 
-      <Text fontSize={'2rem'} marginLeft='20px'> Recent Decks: </Text>
+      <Text fontSize={'2.5rem'} textAlign={'center'} fontWeight={'bold'}> Recently Created Decks </Text>
 
       <Spacer marginBottom={10}/>
 
