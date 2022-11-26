@@ -3,7 +3,7 @@ import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid } from '@chakr
 import { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
-import { collection, getDocs, query, where, doc, getDoc, onSnapshot, limit } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, onSnapshot, limit, orderBy, Timestamp } from 'firebase/firestore';
 import UserContext from '../../UserContext';
 import { SDeck } from '../../components/SDeck';
 
@@ -70,25 +70,17 @@ export const Home = () => {
   }
 
   useEffect (() => {
-    const q = query(studyDecks_ref, limit(4))
+    const q = query(studyDecks_ref, orderBy("timestamp", "desc"), limit(4))
     const getStudyDecks_limit = async () => {
       const data =  await getDocs(q);
 
-      setStudyDecks_limit(data.docs.map((doc) => ({
+      setStudyDecks(data.docs.map((doc) => ({
         ...doc.data(), id: doc.id
       })))
-
-    }
-    getStudyDecks_limit();
-    const unsub = onSnapshot(q, (snapshot) => {
-      setStudyDecks(snapshot.docs.map((doc) => ({
-        ...doc.data(), id: doc.id
-      })))
-
       setLoading(false);
-    })
-
-    return unsub;
+    }
+    
+    getStudyDecks_limit();
   }, [])
 
  /* useEffect(() => {

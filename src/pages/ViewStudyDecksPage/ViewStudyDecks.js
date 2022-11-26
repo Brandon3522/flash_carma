@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import {
   getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
-  query, where, limit, orderBy
+  query, where, limit, orderBy, serverTimestamp
 } from 'firebase/firestore';
 import { database } from '../../firebase';
 import { Deck } from '../../components/Deck';
@@ -147,6 +147,7 @@ var order
 
       addDoc(user_studyDeck_ref, {
         name: studyDeck_name,
+        timestamp: serverTimestamp()
     })
         .then(() => {
             alert('Data Added');
