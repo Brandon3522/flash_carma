@@ -178,7 +178,7 @@ if(totalCard === 0){
     score = score + 100;
     if (isStreaking === false) {
       isStreaking = true;
-      streak++;
+     streak++;
     }
     else {
       streak++;
@@ -238,8 +238,8 @@ if(totalCard === 0){
         {/* displays user's current streak */}
 
         <Box class="container" align={'center'}>
-          {/*Image src={streak1} alt={'streak'} boxSize={'50px'}/> */}
-        <Box fontSize={'30px'} class='streaksymbol'> {streak} </Box>
+          {/*Image src={streak1} alt={'streak_symbol'} boxSize={'50px'}/> */}
+        <Box fontSize={'30px'} class='streaksymbol' id='streak'> {streak} </Box>
         </Box>
 
         {/* displays user's current score */}

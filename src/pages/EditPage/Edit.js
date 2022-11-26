@@ -205,6 +205,7 @@ export function Edit(props) {
     <Editable defaultValue={deckname} placeholder="Deck name"
       fontSize={'2rem'}
       onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}
+      marginTop='1.5'
       >
         <EditablePreview />
 
