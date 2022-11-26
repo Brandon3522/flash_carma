@@ -133,12 +133,12 @@ export const Home = () => {
         {/* Grid of Study Decks */}
         <SimpleGrid templateColumns='repeat(4, 1fr)' gap={10}>
 
-          {/* From here on, it's the user's existing study decks */}
+        {/* From here on, it's the user's existing study decks */}
 
-         {studyDecks.map(deck => (
+        {studyDecks.map(deck => (
             <SDeck key={deck.id} id={deck.id}
               name={deck.name} />
-         ))} 
+        ))} 
 
         </SimpleGrid>
       </Flex>
