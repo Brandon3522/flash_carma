@@ -17,7 +17,7 @@ sessionStorage.setItem('deckid', id)
     <>
       <LinkBox>
         <LinkOverlay href='/study'>
-          <Button w={200} h={200} shadow='md' borderRadius={'lg'}
+          <Button w={[150, 200]} h={200} shadow='md' borderRadius={'lg'}
           onClick={() => getDeckName(id)}> {name} </Button>
         </LinkOverlay>
       </LinkBox>

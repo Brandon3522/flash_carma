@@ -133,7 +133,7 @@ export const Home = () => {
 
       <Flex justifyContent={'center'}>
         {/* Grid of Study Decks */}
-        <Grid templateColumns='repeat(4, 1fr)' gap={10}>
+        <Grid templateColumns='repeat(5, 1fr)' gap={10}>
 
         {/* From here on, it's the user's existing study decks */}
 
