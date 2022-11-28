@@ -10,7 +10,7 @@ export function SDeck({ id, name }) {
 
 function getDeckName(id){
     //console.log(id)
-sessionStorage.setItem('deckid', id)
+  sessionStorage.setItem('deckid', id)
 }
 
   return (
