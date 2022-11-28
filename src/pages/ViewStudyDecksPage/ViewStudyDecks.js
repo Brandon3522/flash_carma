@@ -15,6 +15,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   Radio,
+  Spinner
 } from '@chakra-ui/react';
 import {
   getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
@@ -165,7 +166,17 @@ var order
 
   if (loading) {
     return (
-      <Heading textAlign={'center'}>Loading...</Heading>
+      <Spinner
+        position={"fixed"}
+        top={"50%"}
+        left={"50%"}
+        transform={"translate(-50%, 50%)"}    
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='#4299e1'
+        size='xl'
+      />
     )
   } 
   return (
