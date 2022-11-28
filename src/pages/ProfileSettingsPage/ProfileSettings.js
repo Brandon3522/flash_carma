@@ -180,7 +180,7 @@ export const Settings = () =>{
         <Button
           onClick={updateUserUsername}
           size="lg"
-          w={150}
+          w={200}
           bg={'blue.400'}
           color={'white'}
           _hover={{
@@ -212,7 +212,7 @@ export const Settings = () =>{
           <Button
             onClick={updateUserPassword}
             size="lg"
-            w={150}
+            w={200}
             bg={'blue.400'}
             color={'white'}
             _hover={{
@@ -223,7 +223,7 @@ export const Settings = () =>{
           <Button
             onClick={reauthenticate}
             size="lg"
-            w={150}
+            w={200}
             bg={'blue.400'}
             color={'white'}
             marginLeft={'auto'}
