@@ -44,7 +44,7 @@ export const ViewStudyDecks = () => {
 
   //var ascending = true;
 
-  var deckname
+  //var deckname
 
   // useEffect(() => {
   //   const getStudyDecks = async () => {
@@ -151,7 +151,7 @@ var order
         timestamp: serverTimestamp()
     })
         .then(() => {
-            alert('Data Added');
+           // alert('Data Added');
         })
         .catch((err) => {
             alert(err.message);
