@@ -8,7 +8,7 @@ import {
 export function SDeck({ id, name }) {
 
 
-  function getDeckName(id){
+function getDeckName(id){
     //console.log(id)
 sessionStorage.setItem('deckid', id)
 }
