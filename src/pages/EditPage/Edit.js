@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Heading, Flex, Link, Input, Button, Box, Image, background, Textarea, filter, Spacer, Spinner } from '@chakra-ui/react';
+import { Text, Flex, Input, Button, Box, Spacer, Spinner } from '@chakra-ui/react';
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
-import { stringify } from '@firebase/util';
-import {
-  getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
-  query, where, limit, setDoc, updateDoc
-} from 'firebase/firestore';
+import { collection, doc, getDoc, addDoc, deleteDoc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
-import { Editable, EditableInput, EditableTextarea, EditablePreview, } from '@chakra-ui/react'
+import { Editable, EditableInput, EditablePreview, } from '@chakra-ui/react'
 
 
 export function Edit(props) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes, Spinner } from '@chakra-ui/react';
+import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import streak1 from "../../components/images/streak_icon.png"
@@ -8,7 +8,6 @@ import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
-import { transform } from 'framer-motion';
 
 
 

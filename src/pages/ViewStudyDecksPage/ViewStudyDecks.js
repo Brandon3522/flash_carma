@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import {
-  Flex, Link, Input, Button, ButtonGroup, Box, Heading, Spacer,
-  Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
-  PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor, Modal,
+  Flex, 
+  Input, 
+  Button, 
+  Heading, 
+  Spacer,
+  Grid, 
+  Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -12,9 +16,6 @@ import {
   useDisclosure,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Radio,
   Spinner
 } from '@chakra-ui/react';
 import {

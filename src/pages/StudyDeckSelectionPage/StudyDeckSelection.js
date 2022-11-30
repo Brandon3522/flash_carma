@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  Flex, Link, Input, Button, ButtonGroup, Box, Heading, Spacer,
-  Grid, GridItem, LinkBox, LinkOverlay, useDisclosure, Spinner
-} from '@chakra-ui/react';
-import {
-  getDocs, collection, doc, getDoc, addDoc, deleteDoc, onSnapshot,
-  query, where, limit
-} from 'firebase/firestore';
+import { Flex, Heading, Spacer, Grid, useDisclosure, Spinner } from '@chakra-ui/react';
+import {collection, onSnapshot} from 'firebase/firestore';
 import { database } from '../../firebase';
 import { SDeck } from '../../components/SDeck'
 import UserContext from '../../UserContext';
