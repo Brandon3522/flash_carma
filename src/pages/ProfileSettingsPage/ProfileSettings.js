@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input,
    Stack, Button, Flex, Spinner, InputGroup, InputRightElement } from '@chakra-ui/react'
-   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";

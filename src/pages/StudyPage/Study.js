@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes, Spinner } from '@chakra-ui/react';
+import { Text, Flex, Link, Input, Button, Box, Image, background, Heading, Spacer, keyframes, Spinner, Center } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import streak1 from "../../components/images/streak_icon.png"
@@ -129,7 +129,21 @@ if(totalCard === 0){
     <Text fontSize={'4rem'} align='center'> Study Session </Text>
     <Text fontSize={'2rem'} align='center'> This deck is empty</Text>
     <Text fontSize={'1.5rem'} align='center'> Please add at least one card to the deck </Text>
-    <Link as={ReachLink} to='/edit'>Edit</Link>
+    <Center >
+      <Link  style={{ textDecoration: 'none' }} as={ReachLink} to='/edit'>
+        <Spacer marginTop={10} />
+        <Button
+            size={'lg'} 
+            bg={'blue.400'}
+            color={'white'}
+            _hover={{
+              bg: 'blue.500'
+            }}>
+            Edit
+          </Button>
+      </Link>
+    </Center>
+    
 
     </>
   )
