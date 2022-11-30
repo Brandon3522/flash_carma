@@ -38,7 +38,6 @@ import {
       setDoc(user_ref, {
           username: username,
           email: email,
-          password: password,
           score: score
       })
           .then(() => {
