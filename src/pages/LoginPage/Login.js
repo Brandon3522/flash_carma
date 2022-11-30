@@ -74,14 +74,17 @@ export const Login = () => {
               </Button>
             </Stack>
             <Stack spacing={10}>
-              <Button 
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'blue.500'
-                }}>
-                  <Link as={ReachLink} to='/signup'>Sign Up</Link>
-              </Button>
+              <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/signup'>
+                <Button 
+                    width={"100%"}
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500'
+                    }}>
+                    Sign Up
+                  </Button>
+              </Link>
             </Stack>
           </Stack>
         </Box>
