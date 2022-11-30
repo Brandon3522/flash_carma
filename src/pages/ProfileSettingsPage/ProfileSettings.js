@@ -179,7 +179,6 @@ export const Settings = () =>{
         </FormControl>
         <Button
           onClick={updateUserUsername}
-          size="lg"
           w={200}
           bg={'blue.400'}
           color={'white'}
@@ -211,7 +210,6 @@ export const Settings = () =>{
         <Flex>
           <Button
             onClick={updateUserPassword}
-            size="lg"
             w={200}
             bg={'blue.400'}
             color={'white'}
@@ -222,7 +220,6 @@ export const Settings = () =>{
           </Button>
           <Button
             onClick={reauthenticate}
-            size="lg"
             w={200}
             bg={'blue.400'}
             color={'white'}
