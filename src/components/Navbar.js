@@ -138,11 +138,11 @@ export default function Simple() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>
-                    <Link as={ReachLink} to='/settings'>Settings</Link>
+                  <MenuItem as={ReachLink} to='/settings'>
+                    Settings
                   </MenuItem>
-                  <MenuItem>
-                    <Button color={"inherit"} fontWeight={'normal'} variant={'link'} onClick={logout}>Logout</Button>
+                  <MenuItem onClick={logout}>
+                    Logout
                   </MenuItem>
                   <MenuDivider />
                   <ColorModeSwitcher /> Dark Mode
