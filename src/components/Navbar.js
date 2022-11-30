@@ -132,7 +132,7 @@ export default function Simple() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    bg='teal'
+                    bg='blue.400'
                     border='black'
                     borderStyle={'solid'}
                   />
