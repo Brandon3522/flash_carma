@@ -75,7 +75,7 @@ export function Edit(props) {
       name: display_studyDeckName,
     })
       .then(() => {
-        alert('Data Updated');
+       // alert('Data Updated');
       })
       .catch((err) => {
         alert(err.message);
