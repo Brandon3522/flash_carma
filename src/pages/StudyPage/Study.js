@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner } from '@chakra-ui/react';
+import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner, Center } from '@chakra-ui/react';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import streak1 from "../../components/images/streak_icon.png"
