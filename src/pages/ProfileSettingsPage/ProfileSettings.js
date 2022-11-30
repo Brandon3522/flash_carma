@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input, Stack, Button, Flex, Spinner } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input,
+   Stack, Button, Flex, Spinner, InputGroup, InputRightElement } from '@chakra-ui/react'
+   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -13,6 +15,7 @@ export const Settings = () =>{
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   // User context
   const user = useContext(UserContext)?.user;
@@ -205,7 +208,18 @@ export const Settings = () =>{
         </Button> */}
         <FormControl id="password" >
           <FormLabel>Password</FormLabel>
-          <Input type="text" placeholder={'Change Password'} onChange={e => setPassword(e.target.value)}/>
+          <InputGroup>
+            <Input type={showPassword ? 'text' : 'password'} onChange={e => setPassword(e.target.value)} />
+            <InputRightElement h={'full'}>
+              <Button
+                variant={'ghost'}
+                onClick={() =>
+                  setShowPassword((showPassword) => !showPassword)
+                }>
+                {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
         </FormControl>
         <Flex>
           <Button
