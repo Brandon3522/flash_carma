@@ -1,12 +1,19 @@
 import { Link as ReachLink } from 'react-router-dom';
 import {
-    Flex, Input, Button, ButtonGroup, Box, Heading, Spacer, Link,
-    Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
-    PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor, Modal, ModalOverlay,
+    Button, 
+    ButtonGroup, 
+    Link,
+    Popover, 
+    PopoverTrigger, 
+    PopoverContent, 
+    PopoverBody,
+    PopoverArrow, 
+    PopoverCloseButton, 
+    Modal, 
+    ModalOverlay,
     ModalContent,
     ModalHeader,
     ModalFooter,
-    ModalBody,
     ModalCloseButton,
     useDisclosure
 } from '@chakra-ui/react';

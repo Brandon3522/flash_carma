@@ -1,9 +1,4 @@
-import { Link as ReachLink } from 'react-router-dom';
-import {
-  Flex, Input, Button, ButtonGroup, Box, Heading, Spacer, Link,
-  Grid, GridItem, LinkBox, LinkOverlay, Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody,
-  PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor,
-} from '@chakra-ui/react';
+import { Button, LinkBox, LinkOverlay } from '@chakra-ui/react';
 
 export function SDeck({ id, name }) {
 

@@ -1,9 +1,6 @@
 import { Text, Button, Box, Flex } from '@chakra-ui/react';
 
 export function Card({ id, front, back, onDelete }) {
-
-
-
         return (
                 <>
                         <Box id='card'>
