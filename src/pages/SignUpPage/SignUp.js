@@ -18,7 +18,7 @@ import {
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   import { Link as ReachLink, useNavigate } from 'react-router-dom';
   import { auth } from '../../firebase';
-  import { createUserWithEmailAndPassword } from 'firebase/auth';
+  import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
   import { setDoc, doc } from 'firebase/firestore';
   import { database } from '../../firebase';
   
@@ -49,6 +49,17 @@ import {
           });
     };
 
+    // Set display name
+    // const set_displayName = (auth) => {
+    //   updateProfile(auth.currentUser, {
+    //     displayName: username
+    //   }).then(() => {
+    //     console.log('Display name')
+    //   }).catch((error) => {
+    //     alert(error.message);
+    //   })
+    // }
+
     // Register user
     const register = (e) => {
       e.preventDefault(); // Prevent entire page refresh
@@ -59,9 +70,17 @@ import {
           if (auth) {
             // Create user in database
             add_user(auth)
+
+            updateProfile(auth.currentUser, {
+              displayName: username
+            }).then(() => {
+              console.log('Display name')
+            }).catch((error) => {
+              alert(error.message);
+            })
             
-            alert('Registration successful')
-            navigate('/')
+            // alert('Registration successful')
+            // navigate('/')
           }
         })
         .catch((error) => alert(error.message))

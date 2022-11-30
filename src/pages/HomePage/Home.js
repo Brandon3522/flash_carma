@@ -65,6 +65,7 @@ export const Home = () => {
   // }
   if (user) {
     get_user_score()
+    console.log(`Display name: ${user.displayName}`)
 
     
   }
@@ -79,7 +80,7 @@ export const Home = () => {
       })))
       setLoading(false);
     }
-    
+
     getStudyDecks_limit();
   }, [])
 
