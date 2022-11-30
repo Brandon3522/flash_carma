@@ -226,7 +226,7 @@ if(totalCard === 0){
         <Text fontSize={'1.5rem'} id='cardnumber' marginRight={"500px"}> Cards: {cardNumber} / {totalCard} </Text>
 
         {/* Results button */}
-        <Link as={ReachLink} to='/results'>
+        <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/results'>
           <Button onClick={StoreResultsValues} id='endsession'> End Session </Button>
         </Link>
       </Flex>
