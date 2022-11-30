@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, Flex, Grid, Spinner } from '@chakra-ui/react'
+import { Heading, Text, Box, Spacer, Flex, Grid, Spinner } from '@chakra-ui/react'
 import { useState } from 'react';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, database } from '../../firebase';
-import { collection, getDocs, query, where, doc, getDoc, onSnapshot, limit, orderBy, Timestamp } from 'firebase/firestore';
+import { database } from '../../firebase';
+import { collection, getDocs, query, doc, getDoc, limit, orderBy } from 'firebase/firestore';
 import UserContext from '../../UserContext';
 import { SDeck } from '../../components/SDeck';
 

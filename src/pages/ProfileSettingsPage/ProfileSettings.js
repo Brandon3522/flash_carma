@@ -1,13 +1,24 @@
 import React, { useEffect } from 'react'
-import { Heading, Text, Box, Spacer, RangeSliderThumb, FormControl, FormLabel, Input,
-   Stack, Button, Flex, Spinner, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { 
+  Heading, 
+  Box, 
+  Spacer, 
+  FormControl, 
+  FormLabel, 
+  Input,
+  Stack, 
+  Button, 
+  Flex, 
+  Spinner, 
+  InputGroup, 
+  InputRightElement
+} from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, database } from '../../firebase';
-import { updateEmail, updatePassword } from "firebase/auth";
-import { collection, getDocs, query, where, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { updatePassword } from "firebase/auth";
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import UserContext from '../../UserContext';
 
 export const Settings = () =>{

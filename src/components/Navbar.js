@@ -18,7 +18,6 @@ import {
   Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import profile from './images/profile_img.png'
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import {Link as ReachLink, useNavigate} from 'react-router-dom'
 import logo from './images/logo.png'
