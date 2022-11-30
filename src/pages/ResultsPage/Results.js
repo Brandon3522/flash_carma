@@ -12,8 +12,8 @@ export const Results = () => {
 
   return (
     <Flex align="center" direction="column">
-        <Heading textAlign="center">Results</Heading>
-
+        <Spacer marginTop={10} />
+        <Heading as='h3' size='xl' textAlign={'center'}>Results</Heading>
 
         {/* Number of flashcards completed out of total */}
         <Text fontSize="30px" textAlign="center">
@@ -31,26 +31,36 @@ export const Results = () => {
         Score: {score}
         </Text>
 
-        
-
         <Spacer marginTop={'20px'}/>
 
         <Flex direction="row" justifyContent="space-between" >
             {/* Replay button */}
-            <Link as={ReachLink} to='/study'>
-            <Button size="sm">
-                Replay
-            </Button>
+            <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/study'>
+                <Button
+                    size="lg"
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                    bg: 'blue.500',
+                    }}>
+                    Replay
+                </Button>
             </Link>
 
             <Spacer marginLeft={'10px'}
             marginRight={'10px'}/>
 
             {/* Home button */}
-            <Link as={ReachLink} to='/home'>
-            <Button size="sm">
-                Home
-            </Button>
+            <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/home'>
+                <Button
+                    size="lg"
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                    bg: 'blue.500',
+                    }}>
+                    Home
+                </Button>
             </Link>
 
         </Flex>
