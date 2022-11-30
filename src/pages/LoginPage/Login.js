@@ -5,12 +5,15 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Stack,
   Button,
   Heading,
   useColorModeValue,
   Link
 } from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReachLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { auth } from '../../firebase.js';
@@ -19,6 +22,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -60,7 +64,18 @@ export const Login = () => {
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" onChange={e => setPassword(e.target.value)}/>
+              <InputGroup>
+                  <Input type={showPassword ? 'text' : 'password'} onChange={e => setPassword(e.target.value)} />
+                  <InputRightElement h={'full'}>
+                    <Button
+                      variant={'ghost'}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }>
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
             </FormControl>
             <Stack spacing={10}>
               <Button
