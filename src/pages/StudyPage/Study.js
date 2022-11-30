@@ -12,7 +12,8 @@ import { transform } from 'framer-motion';
 
 
 
-export function Study(props) {
+
+export function Study() {
   // State: 
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
@@ -128,6 +129,7 @@ if(totalCard === 0){
     <Text fontSize={'4rem'} align='center'> Study Session </Text>
     <Text fontSize={'2rem'} align='center'> This deck is empty</Text>
     <Text fontSize={'1.5rem'} align='center'> Please add at least one card to the deck </Text>
+    <Link as={ReachLink} to='/edit'>Edit</Link>
 
     </>
   )
