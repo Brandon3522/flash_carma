@@ -48,6 +48,7 @@ export default function Simple() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
+    const [loading, setLoading] = useState(true);
 
     // User context
     const user = useContext(UserContext)?.user;
@@ -63,6 +64,7 @@ export default function Simple() {
   
           setUsername(data.data().username)
           console.log(data.data().username)
+          setLoading(false);
         } catch (error) {
           console.log(error.message);
         }
@@ -82,10 +84,16 @@ export default function Simple() {
           console.log(error.message);
         });
     }
+
+    if (loading) {
+      return (
+        <></>
+      )
+    }
   
     return (
       <>
-        <Box bg={useColorModeValue('white')} px={4} shadow='sm'>
+        <Box  px={4} shadow='sm'>
           <Flex h={'100px'} alignItems={'center'} justifyContent={'space-between'}>
             <IconButton
               size={'md'}
@@ -134,7 +142,7 @@ export default function Simple() {
                     <Link as={ReachLink} to='/settings'>Settings</Link>
                   </MenuItem>
                   <MenuItem>
-                    <Button variant={'link'} onClick={logout}>Logout</Button>
+                    <Button color={"inherit"} fontWeight={'normal'} variant={'link'} onClick={logout}>Logout</Button>
                   </MenuItem>
                   <MenuDivider />
                   <ColorModeSwitcher /> Dark Mode

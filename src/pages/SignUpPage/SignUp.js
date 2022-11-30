@@ -49,17 +49,6 @@ import {
           });
     };
 
-    // Set display name
-    // const set_displayName = (auth) => {
-    //   updateProfile(auth.currentUser, {
-    //     displayName: username
-    //   }).then(() => {
-    //     console.log('Display name')
-    //   }).catch((error) => {
-    //     alert(error.message);
-    //   })
-    // }
-
     // Register user
     const register = (e) => {
       e.preventDefault(); // Prevent entire page refresh
@@ -69,18 +58,10 @@ import {
         .then((auth) => {
           if (auth) {
             // Create user in database
-            add_user(auth)
-
-            updateProfile(auth.currentUser, {
-              displayName: username
-            }).then(() => {
-              console.log('Display name')
-            }).catch((error) => {
-              alert(error.message);
-            })
+            add_user(auth);
             
-            // alert('Registration successful')
-            // navigate('/')
+            alert('Registration successful')
+            navigate('/')
           }
         })
         .catch((error) => alert(error.message))
