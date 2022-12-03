@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner, Center } from '@chakra-ui/react';
-import correct from "../../components/images/correctButton.png"
-import incorrect from "../../components/images/incorrectButton.png"
+import correct from "../../components/images/correctButton.PNG"
+import incorrect from "../../components/images/incorrectButton.PNG"
 import streak1 from "../../components/images/streak_icon.png"
 import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
 import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
-
 
 
 
@@ -108,7 +107,7 @@ export function Study() {
         position={"fixed"}
         top={"50%"}
         left={"50%"}
-        transform={"translate(-50%, 50%)"}    
+        transform={"translate(-50%, 50%)"}
         thickness='4px'
         speed='0.65s'
         emptyColor='gray.200'
@@ -122,31 +121,31 @@ export function Study() {
   totalCard = flashcards.length //updates total to how many entries there are
 
 
-if(totalCard === 0){
-  return (
-    <>
-    <Text fontSize={'4rem'} align='center'> Study Session </Text>
-    <Text fontSize={'2rem'} align='center'> This deck is empty</Text>
-    <Text fontSize={'1.5rem'} align='center'> Please add at least one card to the deck </Text>
-    <Center >
-      <Link  style={{ textDecoration: 'none' }} as={ReachLink} to='/edit'>
-        <Spacer marginTop={10} />
-        <Button
-            size={'lg'} 
-            bg={'blue.400'}
-            color={'white'}
-            _hover={{
-              bg: 'blue.500'
-            }}>
-            Edit
-          </Button>
-      </Link>
-    </Center>
-    
+  if (totalCard === 0) {
+    return (
+      <>
+        <Text fontSize={'4rem'} align='center'> Study Session </Text>
+        <Text fontSize={'2rem'} align='center'> This deck is empty</Text>
+        <Text fontSize={'1.5rem'} align='center'> Please add at least one card to the deck </Text>
+        <Center >
+          <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/edit'>
+            <Spacer marginTop={10} />
+            <Button
+              size={'lg'}
+              bg={'blue.400'}
+              color={'white'}
+              _hover={{
+                bg: 'blue.500'
+              }}>
+              Edit
+            </Button>
+          </Link>
+        </Center>
 
-    </>
-  )
-}
+
+      </>
+    )
+  }
 
   //initializes first card
   currentCard.front = flashcards[0].question
@@ -193,7 +192,7 @@ if(totalCard === 0){
     score = score + 100;
     if (isStreaking === false) {
       isStreaking = true;
-     streak++;
+      streak++;
     }
     else {
       streak++;
@@ -254,7 +253,7 @@ if(totalCard === 0){
 
         <Box class="container" align={'center'}>
           {/*Image src={streak1} alt={'streak_symbol'} boxSize={'50px'}/> */}
-        <Box fontSize={'30px'} class='streaksymbol' id='streak'> {streak} </Box>
+          <Box fontSize={'30px'} class='streaksymbol' id='streak'> {streak} </Box>
         </Box>
 
         {/* displays user's current score */}
@@ -263,17 +262,22 @@ if(totalCard === 0){
 
       {/* displays a card and the text inside the card */}
       <Flex justifyContent={'center'}>
-        <Box id='flashcard' onClick={flipCard} _hover={{animation: rotateAnimation}}>
+        <Box id='flashcard' onClick={flipCard} _hover={{ animation: rotateAnimation }}>
           <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
             color='black'> {cardtext} </Text>
         </Box>
       </Flex>
 
+      <Spacer
+        margin={'40px'} />
+
       <Flex justifyContent={'center'}>
         {/* incorrect */}
         <Box>
           <Image
-            boxSize='500px'
+            height={'200px'}
+            width={'300px'}
+            marginRight={'20px'}
             objectFit='cover'
             src={incorrect}
             alt='incorrect'
@@ -283,14 +287,20 @@ if(totalCard === 0){
         {/* correct */}
         <Box>
           <Image
-            boxSize='500px'
+            height={'200px'}
+            width={'300px'}
+            marginLeft={'20px'}
             objectFit='cover'
             src={correct}
             alt='correct'
             onClick={correctAns} />
 
         </Box>
-      </Flex></>
+      </Flex>
+
+      <Spacer
+        margin={'40px'} />
+    </>
 
   );
 
