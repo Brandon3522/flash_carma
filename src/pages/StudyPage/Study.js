@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner, Center } from '@chakra-ui/react';
-import correct from "../../components/images/correctButton.PNG"
-import incorrect from "../../components/images/incorrectButton.PNG"
+import correct from "../../components/images/correctButton.png"
+import incorrect from "../../components/images/incorrectButton.png"
 import streak1 from "../../components/images/streak_icon.png"
 import "./Study.css"
 import { Link as ReachLink } from 'react-router-dom';
