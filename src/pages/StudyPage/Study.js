@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner, Center } from '@chakra-ui/react';
+import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner, Center, IconButton } from '@chakra-ui/react';
+import { CloseIcon, CheckIcon } from '@chakra-ui/icons';
 import correct from "../../components/images/correctButton.png"
 import incorrect from "../../components/images/incorrectButton.png"
 import streak1 from "../../components/images/streak_icon.png"
@@ -274,26 +275,46 @@ export function Study() {
       <Flex justifyContent={'center'}>
         {/* incorrect */}
         <Box>
-          <Image
+          {/*<Image
             height={'200px'}
             width={'300px'}
             marginRight={'20px'}
             objectFit='cover'
             src={incorrect}
             alt='incorrect'
-            onClick={incorrectAns} />
+            onClick={incorrectAns} />*/}
+            <IconButton 
+            icon={<CloseIcon boxSize={20}/>}
+            height={'200px'}
+            width={'300px'}
+            marginRight={'20px'}
+            objectFit='cover'
+            src={incorrect}
+            alt='incorrect'
+            onClick={incorrectAns}
+            bg={'red'} />
         </Box>
 
         {/* correct */}
         <Box>
-          <Image
+          {/*<Image
             height={'200px'}
             width={'300px'}
             marginLeft={'20px'}
             objectFit='cover'
             src={correct}
             alt='correct'
-            onClick={correctAns} />
+            onClick={correctAns} />*/}
+            <IconButton 
+            icon={<CheckIcon boxSize={20}/>}
+            height={'200px'}
+            width={'300px'}
+            marginRight={'20px'}
+            objectFit='cover'
+            src={incorrect}
+            alt='incorrect'
+            onClick={correctAns}
+            bg={'green'} />
 
         </Box>
       </Flex>
