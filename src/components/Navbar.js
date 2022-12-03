@@ -144,7 +144,7 @@ export default function Simple() {
                     Logout
                   </MenuItem>
                   <MenuDivider />
-                  <ColorModeSwitcher /> Dark Mode
+                  <ColorModeSwitcher /> Switch Theme
                 </MenuList>
               </Menu>
             </Flex>
