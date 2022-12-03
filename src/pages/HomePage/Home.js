@@ -70,7 +70,7 @@ export const Home = () => {
   }
 
   useEffect (() => {
-    const q = query(studyDecks_ref, orderBy("timestamp", "desc"), limit(5))
+    const q = query(studyDecks_ref, orderBy("timestamp", "desc"), limit(4))
     const getStudyDecks_limit = async () => {
       const data =  await getDocs(q);
 
