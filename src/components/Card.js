@@ -1,4 +1,4 @@
-import { Text, Input, Button, Box, Flex } from '@chakra-ui/react';
+import { Text, Input, Button, Box, Flex, Textarea, EditableTextarea } from '@chakra-ui/react';
 import { collection, doc, getDoc, addDoc, deleteDoc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { database } from '../firebase';
 import UserContext from '../UserContext';
@@ -62,7 +62,7 @@ export function Card({ id, front, back, deck, onDelete }) {
                                                 >
                                                         <EditablePreview />
 
-                                                        <Input maxLength={201} as={EditableInput}  />
+                                                        <Textarea maxLength={201} as={EditableTextarea} />
                                                 </Editable>
 
 
@@ -82,7 +82,7 @@ overflowWrap='break-word'> {back} </Text>*/}
                                                 >
                                                         <EditablePreview />
 
-                                                        <Input maxLength={201} as={EditableInput} />
+                                                        <Textarea maxLength={201} as={EditableTextarea} />
                                                 </Editable>
                                         </Box>
 
