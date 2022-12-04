@@ -8,6 +8,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 
 
+
 export function Card({ id, front, back, deck, onDelete }) {
         const [frontText, setfrontText] = useState(front);
         const [backText, setbackText] = useState(back);
