@@ -12,7 +12,7 @@ export function Card({ id, front, back, deck, onDelete }) {
         const [frontText, setfrontText] = useState('');
         const [backText, setbackText] = useState('');
         const user = useContext(UserContext)?.user;
-        const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', deck, 'flashcards');
+        const flashcards_ref = doc(database, 'users', user.uid, 'study-decks', deck, 'flashcards', id);
 
         function update_cardText() {
 
@@ -23,7 +23,7 @@ export function Card({ id, front, back, deck, onDelete }) {
                 
             console.log(frontText)
             console.log(backText)
-               /* updateDoc(flashcards_ref, {
+                updateDoc(flashcards_ref, {
                   question: frontText,
                   answer: backText
                 })
@@ -32,7 +32,7 @@ export function Card({ id, front, back, deck, onDelete }) {
                   })
                   .catch((err) => {
                     alert(err.message);
-                  });*/
+                  });
               };
 
 
