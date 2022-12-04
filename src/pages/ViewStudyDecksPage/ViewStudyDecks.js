@@ -135,7 +135,7 @@ var order
 
       await deleteDoc(studyDeck);
 
-      console.log('Study Deck deleted successfully');
+      //console.log('Study Deck deleted successfully');
     } catch (error) {
       alert(`Deletion unsuccessful: ${error.message}`);
     }

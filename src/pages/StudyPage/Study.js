@@ -22,10 +22,9 @@ export function Study() {
   const user = useContext(UserContext)?.user;
 
   var deckid = sessionStorage.getItem('deckid')
-  console.log(deckid)
-  //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
-  //const studyDeck_ID = '06uZaXE3PAPD7igsAl2f'
+  //console.log(deckid)
   const studyDeck_ID = deckid
+
   // Database reference: 
   const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
   const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
@@ -63,7 +62,7 @@ export function Study() {
       const name = data.data().name;
 
       setDislpay_studyDeckName(name);
-      console.log(name);
+      //console.log(name);
     }
     getStudyDeckName();
   }, [])
@@ -77,9 +76,9 @@ export function Study() {
         ...doc.data(), id: doc.id
       })))
 
-      data.docs.map((doc) => {
-        console.log(doc.data())
-      })
+      // data.docs.map((doc) => {
+      //   console.log(doc.data())
+      // })
 
       setLoading(false);
     }
@@ -91,7 +90,7 @@ export function Study() {
     const data = await getDoc(user_ref);
 
     var score = data.data().score + value;
-    console.log(score)
+    //console.log(score)
 
     await updateDoc(user_ref, {
       score: score

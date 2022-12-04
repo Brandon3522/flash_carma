@@ -62,7 +62,7 @@ export default function Simple() {
           const data = await getDoc(user_ref);
   
           setUsername(data.data().username)
-          console.log(data.data().username)
+          //console.log(data.data().username)
           setLoading(false);
         } catch (error) {
           console.log(error.message);
@@ -77,7 +77,7 @@ export default function Simple() {
       signOut(auth)
         .then(() => {
           // navigate to login page
-          alert('Logout successful')
+          //alert('Logout successful')
           navigate('/')
         }).catch((error) => {
           console.log(error.message);

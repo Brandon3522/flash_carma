@@ -46,7 +46,7 @@ export const Home = () => {
       const data =  await getDoc(user_ref);
 
       const score = data.data().score;
-      console.log(score)
+      //console.log(score)
       setUsers_score(score)
   }
 
@@ -63,10 +63,7 @@ export const Home = () => {
   //   </Box>
   // }
   if (user) {
-    get_user_score()
-    console.log(`Display name: ${user.displayName}`)
-
-    
+    get_user_score()    
   }
 
   useEffect (() => {

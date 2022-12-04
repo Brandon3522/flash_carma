@@ -35,7 +35,7 @@ export const Login = () => {
       .then((auth) => {
         // Get username
         //sessionStorage.setItem('username', id)
-        alert('Login successful')
+        //alert('Login successful')
         navigate('/home')
       })
       .catch((error) => alert(error.message))

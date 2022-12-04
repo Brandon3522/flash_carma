@@ -41,7 +41,7 @@ import {
           score: score
       })
           .then(() => {
-              alert('Data Added');
+              //alert('Data Added');
           })
           .catch((err) => {
               alert(err.message);
@@ -59,7 +59,7 @@ import {
             // Create user in database
             add_user(auth);
             
-            alert('Registration successful')
+            //alert('Registration successful')
             navigate('/')
           }
         })

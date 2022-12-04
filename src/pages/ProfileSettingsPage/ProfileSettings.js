@@ -43,7 +43,7 @@ export const Settings = () =>{
         const data = await getDoc(user_ref);
 
         setUsername(data.data().username)
-        console.log(data.data().username)
+        //console.log(data.data().username)
       } catch (error) {
         console.log(error.message);
       }
@@ -54,7 +54,7 @@ export const Settings = () =>{
         const data = await getDoc(user_ref);
 
         setEmail(data.data().email)
-        console.log(data.data().email)
+        //console.log(data.data().email)
 
         setLoading(false);
       } catch (error) {
@@ -68,17 +68,17 @@ export const Settings = () =>{
   }, [])
 
   // Update Auth email
-  const updateAuthEmail = () => {
-    updateEmail(auth.currentUser, email).then(() => {
-      console.log(auth.currentUser)
-      alert("Email updated successfully");
-      console.log(auth.currentUser)
-      console.log(email);
-      console.log(`Auth email after: ${auth.currentUser.email}`)
-    }).catch((error) => {
-      alert(error.message);
-    });
-  }
+  // const updateAuthEmail = () => {
+  //   updateEmail(auth.currentUser, email).then(() => {
+  //     console.log(auth.currentUser)
+  //     alert("Email updated successfully");
+  //     console.log(auth.currentUser)
+  //     console.log(email);
+  //     console.log(`Auth email after: ${auth.currentUser.email}`)
+  //   }).catch((error) => {
+  //     alert(error.message);
+  //   });
+  // }
 
   // Update Auth password
   const updateAuthPassword = () => {
@@ -96,7 +96,7 @@ export const Settings = () =>{
       await updateDoc(user_ref, {
         email: email
       })
-      console.log('Email updated');
+      //console.log('Email updated');
     } catch (error) {
       console.log(error.message);
     }
@@ -108,7 +108,7 @@ export const Settings = () =>{
       await updateDoc(user_ref, {
         password: password
       })
-      console.log('Password updated');
+      //console.log('Password updated');
     } catch (error) {
       console.log(error.message);
     }
@@ -120,7 +120,7 @@ export const Settings = () =>{
       await updateDoc(user_ref, {
         username: username
       })
-      console.log('Username updated');
+      //console.log('Username updated');
     } catch (error) {
       console.log(error.message);
     }
@@ -128,7 +128,7 @@ export const Settings = () =>{
 
   // Update username onclick
   const updateUserUsername = () => {
-    if (username.length > 0 && username.trim() != '') {
+    if (username.length > 0 && username.trim() !== '') {
       console.log(username.trim())
       updateUsername();
     }
@@ -138,25 +138,24 @@ export const Settings = () =>{
   }
 
   // Update email onclick
-  const updateUserEmail = () => {
-    if (email.length > 0 && email.trim() != '') {
-      updateEmail();
-      updateAuthEmail();
-    }
-    else {
-      alert('PLease enter a valid email.')
-    }
-  }
+  // const updateUserEmail = () => {
+  //   if (email.length > 0 && email.trim() !== '') {
+  //     updateEmail();
+  //   }
+  //   else {
+  //     alert('PLease enter a valid email.')
+  //   }
+  // }
 
   // Update password onclick
   const updateUserPassword = () => {
     if (password.length > 0 
-        && password.trim() != '') {
+        && password.trim() !== '') {
       updatePassowrd();
       updateAuthPassword();
     }
     else {
-      alert('PLease enter a valid password.')
+      alert('Please enter a valid password.')
     }
   }
 

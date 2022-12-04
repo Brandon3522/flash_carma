@@ -42,7 +42,7 @@ export function Edit(props) {
       const name = data.data().name;
 
       setDisplay_studyDeckName(name);
-      console.log(name);
+      //console.log(name);
     }
     getStudyDeckName();
   }, [])
@@ -105,7 +105,7 @@ export function Edit(props) {
       answer: b,
     })
       .then(() => {
-        alert('Data Added');
+        //alert('Data Added');
         document.getElementById('TBfront').value = ''
         document.getElementById('TBback').value = ''
         //setFlashcards([ref, ...flashcards])
@@ -149,7 +149,7 @@ export function Edit(props) {
 
       await deleteDoc(flashcard);
 
-      console.log('Flashcard deleted successfully');
+      //console.log('Flashcard deleted successfully');
 
     } catch (error) {
       alert(`Deletion unsuccessful: ${error.message}`);
