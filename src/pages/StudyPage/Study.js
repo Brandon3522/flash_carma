@@ -310,8 +310,8 @@ export function Study() {
             width={'300px'}
             marginRight={'20px'}
             objectFit='cover'
-            src={incorrect}
-            alt='incorrect'
+            src={correct}
+            alt='correct'
             onClick={correctAns}
             bg={'green'} />
 

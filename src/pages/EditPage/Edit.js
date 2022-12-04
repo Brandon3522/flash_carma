@@ -247,7 +247,7 @@ export function Edit(props) {
       <Text fontSize={'2rem'} align={'center'}> Card List: </Text>
 
       {flashcards.map(card => (
-        <Card key={card.id} id={card.id}
+        <Card key={card.id} id={card.id} deck={deckid}
           front={card.question} back={card.answer} onDelete={() => { delete_flashcard(card.id) }} />
       ))}
       <Spacer marginTop={10} />

@@ -1,6 +1,47 @@
-import { Text, Button, Box, Flex } from '@chakra-ui/react';
+import { Text, Input, Button, Box, Flex } from '@chakra-ui/react';
+import { collection, doc, getDoc, addDoc, deleteDoc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { database } from '../firebase';
+import UserContext from '../UserContext';
+import { Editable, EditableInput, EditablePreview, } from '@chakra-ui/react'
+import React, { useState, useEffect, useContext } from 'react';
 
-export function Card({ id, front, back, onDelete }) {
+     
+
+
+export function Card({ id, front, back, deck, onDelete }) {
+        const [frontText, setfrontText] = useState('');
+        const [backText, setbackText] = useState('');
+        const user = useContext(UserContext)?.user;
+        const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', deck, 'flashcards');
+
+        function update_cardText() {
+
+                if (trimtext(frontText) === "" || trimtext(backText) ==="" ){
+                        setfrontText("Front text")
+                        setbackText("Back text")
+                }
+                
+            console.log(frontText)
+            console.log(backText)
+               /* updateDoc(flashcards_ref, {
+                  question: frontText,
+                  answer: backText
+                })
+                  .then(() => {
+                    //alert('Data Updated');
+                  })
+                  .catch((err) => {
+                    alert(err.message);
+                  });*/
+              };
+
+
+
+              function trimtext(text) {
+                return text.replace(/^\s+|\s+$/g, '');
+              }
+        
+
         return (
                 <>
                         <Box id='card'>
@@ -8,17 +49,40 @@ export function Card({ id, front, back, onDelete }) {
                                         <Box height={250}>
                                                 <Text color='black'> Front Side: </Text>
 
-                                                <Text id='cardtext' fontSize={"1.5rem"} flex='wrap'
+                                                {/*<Text id='cardtext' fontSize={"1.5rem"} flex='wrap'
                                                         color='black' width={'500px'}
-                                                        overflowWrap='break-word'>   {front} </Text>
+        overflowWrap='break-word'>   {front} </Text>*/}
+         <Editable defaultValue={front} placeholder="Front text"
+           id='cardtext' fontSize={"1.5rem"} flex='wrap'
+           color='black' width={'500px'}
+overflowWrap='break-word'
+          onSubmit={update_cardText} onChange={setfrontText}
+          marginTop='1.5'
+        >
+          <EditablePreview />
+
+          <Input maxLength={22} as={EditableInput} />
+        </Editable>
 
 
                                         </Box>
                                         <Box height={250}>
                                                 <Text color='black'> Back Side: </Text>
-                                                <Text id='cardtext' fontSize={"1.5rem"} flex='wrap'
+                                               {/* <Text id='cardtext' fontSize={"1.5rem"} flex='wrap'
                                                         color='black' width={'500px'}
-                                                        overflowWrap='break-word'> {back} </Text>
+overflowWrap='break-word'> {back} </Text>*/}
+
+ <Editable defaultValue={back} placeholder="Back text"
+           id='cardtext' fontSize={"1.5rem"} flex='wrap'
+           color='black' width={'500px'}
+overflowWrap='break-word'
+          onSubmit={update_cardText} onChange={setbackText}
+          marginTop='1.5'
+        >
+          <EditablePreview />
+
+          <Input maxLength={22} as={EditableInput} />
+        </Editable>
                                         </Box>
 
                                 </Flex>
