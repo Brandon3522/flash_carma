@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Input, Button, Box, Spacer, Spinner } from '@chakra-ui/react';
+import { Text, Flex, Input, Button, Box, Spacer, Spinner, Textarea } from '@chakra-ui/react';
 import "./Edit.css";
 import { Card } from "../../components/Card.js";
 import { collection, doc, getDoc, addDoc, deleteDoc, onSnapshot, updateDoc } from 'firebase/firestore';
@@ -224,7 +224,7 @@ export function Edit(props) {
       <Flex justifyContent={'center'}>
         <Box id='textprompt'>
           <Text> Front: </Text> {/*<Textarea id='TBfront'>  </Textarea> */}
-          <Input maxLength={201} id='TBfront'
+          <Textarea maxLength={201} id='TBfront'
             width={500} />
         </Box>
 
@@ -232,7 +232,7 @@ export function Edit(props) {
           <Text> Back: </Text>
           {/*<Textarea id='TBback'> 
           </Textarea> */}
-          <Input maxLength={201} id='TBback'
+          <Textarea maxLength={201} id='TBback'
             width={500} />
         </Box>
       </Flex>
