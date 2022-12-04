@@ -62,7 +62,7 @@ export function Card({ id, front, back, deck, onDelete }) {
                                                 >
                                                         <EditablePreview />
 
-                                                        <Input maxLength={22} as={EditableInput} />
+                                                        <Input maxLength={201} as={EditableInput}  />
                                                 </Editable>
 
 
@@ -82,7 +82,7 @@ overflowWrap='break-word'> {back} </Text>*/}
                                                 >
                                                         <EditablePreview />
 
-                                                        <Input maxLength={22} as={EditableInput} />
+                                                        <Input maxLength={201} as={EditableInput} />
                                                 </Editable>
                                         </Box>
 
