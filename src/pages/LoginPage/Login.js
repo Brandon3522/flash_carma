@@ -11,7 +11,7 @@ import {
   Button,
   Heading,
   useColorModeValue,
-  Link
+  Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReachLink, useNavigate } from 'react-router-dom';
@@ -26,28 +26,26 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const signIn = (e) => {
+  const signIn = e => {
     // Prevent entire page refresh
     e.preventDefault();
 
     // Firebase sign in
     signInWithEmailAndPassword(auth, email, password)
-      .then((auth) => {
-        // Get username
-        //sessionStorage.setItem('username', id)
+      .then(auth => {
         //alert('Login successful')
-        navigate('/home')
+        navigate('/home');
       })
-      .catch((error) => alert(error.message))
-  } 
-
+      .catch(error => alert('Invalid email or password.'));
+  };
 
   return (
     <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      bg={useColorModeValue('gray.50', 'gray.800')}
+    >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
@@ -56,26 +54,31 @@ export const Login = () => {
           rounded={'lg'}
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
-          p={8}>
+          p={8}
+        >
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" onChange={e => setEmail(e.target.value)}/>
+              <Input type="email" onChange={e => setEmail(e.target.value)} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} onChange={e => setPassword(e.target.value)} />
-                  <InputRightElement h={'full'}>
-                    <Button
-                      variant={'ghost'}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }>
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={e => setPassword(e.target.value)}
+                />
+                <InputRightElement h={'full'}>
+                  <Button
+                    variant={'ghost'}
+                    onClick={() =>
+                      setShowPassword(showPassword => !showPassword)
+                    }
+                  >
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
             <Stack spacing={10}>
               <Button
@@ -84,21 +87,27 @@ export const Login = () => {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+              >
                 Sign In
               </Button>
             </Stack>
             <Stack spacing={10}>
-              <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/signup'>
-                <Button 
-                    width={"100%"}
-                    bg={'blue.400'}
-                    color={'white'}
-                    _hover={{
-                      bg: 'blue.500'
-                    }}>
-                    Sign Up
-                  </Button>
+              <Link
+                style={{ textDecoration: 'none' }}
+                as={ReachLink}
+                to="/signup"
+              >
+                <Button
+                  width={'100%'}
+                  bg={'blue.400'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'blue.500',
+                  }}
+                >
+                  Sign Up
+                </Button>
               </Link>
             </Stack>
           </Stack>
@@ -106,4 +115,4 @@ export const Login = () => {
       </Stack>
     </Flex>
   );
-}
+};

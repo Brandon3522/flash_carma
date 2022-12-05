@@ -1,19 +1,35 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, Flex, Link, Button, Box, Image, Spacer, keyframes, Spinner, Center, IconButton } from '@chakra-ui/react';
+import {
+  Text,
+  Flex,
+  Link,
+  Button,
+  Box,
+  Image,
+  Spacer,
+  keyframes,
+  Spinner,
+  Center,
+  IconButton,
+} from '@chakra-ui/react';
 import { CloseIcon, CheckIcon } from '@chakra-ui/icons';
-import correct from "../../components/images/correctButton.png"
-import incorrect from "../../components/images/incorrectButton.png"
-import streak1 from "../../components/images/streak_icon.png"
-import "./Study.css"
+import correct from '../../components/images/correctButton.png';
+import incorrect from '../../components/images/incorrectButton.png';
+import streak1 from '../../components/images/streak_icon.png';
+import './Study.css';
 import { Link as ReachLink } from 'react-router-dom';
-import { getDocs, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
+import {
+  getDocs,
+  collection,
+  doc,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
 
-
-
 export function Study() {
-  // State: 
+  // State:
   const [flashcards, setFlashcards] = useState([]);
   const [display_studyDeckName, setDislpay_studyDeckName] = useState('');
   const [loading, setLoading] = useState(true);
@@ -21,13 +37,26 @@ export function Study() {
   // User context
   const user = useContext(UserContext)?.user;
 
-  var deckid = sessionStorage.getItem('deckid')
+  var deckid = sessionStorage.getItem('deckid');
   //console.log(deckid)
-  const studyDeck_ID = deckid
+  const studyDeck_ID = deckid;
 
-  // Database reference: 
-  const flashcards_ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
-  const studyDeckName_ref = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID)
+  // Database reference:
+  const flashcards_ref = collection(
+    database,
+    'users',
+    user.uid,
+    'study-decks',
+    studyDeck_ID,
+    'flashcards'
+  );
+  const studyDeckName_ref = doc(
+    database,
+    'users',
+    user.uid,
+    'study-decks',
+    studyDeck_ID
+  );
   const user_ref = doc(database, 'users', user.uid);
 
   //animation to rotate card
@@ -50,9 +79,9 @@ export function Study() {
   var score = 0; //score for the session
 
   let currentCard = {
-    front: "",
-    back: ""
-  }
+    front: '',
+    back: '',
+  };
 
   // Get deck name
   useEffect(() => {
@@ -63,157 +92,166 @@ export function Study() {
 
       setDislpay_studyDeckName(name);
       //console.log(name);
-    }
+    };
     getStudyDeckName();
-  }, [])
+  }, []);
 
   // Get all flashcards from study deck on page load
   useEffect(() => {
     const getFlashcards = async () => {
       const data = await getDocs(flashcards_ref);
 
-      setFlashcards(data.docs.map((doc) => ({
-        ...doc.data(), id: doc.id
-      })))
-
-      // data.docs.map((doc) => {
-      //   console.log(doc.data())
-      // })
+      setFlashcards(
+        data.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
 
       setLoading(false);
-    }
-    getFlashcards()
-  }, [])
+    };
+    getFlashcards();
+  }, []);
 
   // Update user score
-  const updateUserScore = async (value) => {
+  const updateUserScore = async value => {
     const data = await getDoc(user_ref);
 
     var score = data.data().score + value;
     //console.log(score)
 
     await updateDoc(user_ref, {
-      score: score
-    })
+      score: score,
+    });
 
     console.log('Score updated');
-  }
+  };
 
-
-  //loading screen buffer 
+  //loading screen buffer
   if (loading) {
     return (
       <Spinner
-        position={"fixed"}
-        top={"50%"}
-        left={"50%"}
-        transform={"translate(-50%, 50%)"}
-        thickness='4px'
-        speed='0.65s'
-        emptyColor='gray.200'
-        color='#4299e1'
-        size='xl'
+        position={'fixed'}
+        top={'50%'}
+        left={'50%'}
+        transform={'translate(-50%, 50%)'}
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="#4299e1"
+        size="xl"
       />
-    )
+    );
   }
 
   let deckName = display_studyDeckName; //name of the study deck
-  totalCard = flashcards.length //updates total to how many entries there are
-
+  totalCard = flashcards.length; //updates total to how many entries there are
 
   if (totalCard === 0) {
     return (
       <>
-        <Text fontSize={'4rem'} align='center'> Study Session </Text>
-        <Text fontSize={'2rem'} align='center'> This deck is empty</Text>
-        <Text fontSize={'1.5rem'} align='center'> Please add at least one card to the deck </Text>
-        <Center >
-          <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/edit'>
+        <Text fontSize={'4rem'} align="center">
+          {' '}
+          Study Session{' '}
+        </Text>
+        <Text fontSize={'2rem'} align="center">
+          {' '}
+          This deck is empty
+        </Text>
+        <Text fontSize={'1.5rem'} align="center">
+          {' '}
+          Please add at least one card to the deck{' '}
+        </Text>
+        <Center>
+          <Link style={{ textDecoration: 'none' }} as={ReachLink} to="/edit">
             <Spacer marginTop={10} />
             <Button
               size={'lg'}
               bg={'blue.400'}
               color={'white'}
               _hover={{
-                bg: 'blue.500'
-              }}>
+                bg: 'blue.500',
+              }}
+            >
               Edit
             </Button>
           </Link>
         </Center>
-
-
       </>
-    )
+    );
   }
 
   //initializes first card
-  currentCard.front = flashcards[0].question
-  currentCard.back = flashcards[0].answer
+  currentCard.front = flashcards[0].question;
+  currentCard.back = flashcards[0].answer;
   cardtext = currentCard.front;
 
-  function changeCard() { //swaps to next card in deck
-    currentCard.front = flashcards[cardNumber - 1].question
-    currentCard.back = flashcards[cardNumber - 1].answer
-    cardtext = currentCard.front
-    document.getElementById("cardtext").innerHTML = cardtext
+  function changeCard() {
+    //swaps to next card in deck
+    currentCard.front = flashcards[cardNumber - 1].question;
+    currentCard.back = flashcards[cardNumber - 1].answer;
+    cardtext = currentCard.front;
+    document.getElementById('cardtext').innerHTML = cardtext;
   }
 
-  function flipCard() {  //swaps the text on the card to the other value stored
+  function flipCard() {
+    //swaps the text on the card to the other value stored
     isFlipped = !isFlipped;
     if (isFlipped === true) {
       cardtext = currentCard.back;
-    }
-    else {
+    } else {
       cardtext = currentCard.front;
     }
-    document.getElementById("cardtext").innerHTML = cardtext;
+    document.getElementById('cardtext').innerHTML = cardtext;
   }
 
-  function incorrectAns() { //when you click the incorrect buttton
+  function incorrectAns() {
+    //when you click the incorrect buttton
     if (cardNumber <= totalCard) {
       isStreaking = false;
       streak = 0;
-      document.getElementById("streak").innerHTML = streak;
+      document.getElementById('streak').innerHTML = streak;
       incrementCardCount();
     }
   }
 
-  function correctAns() { //when you click the correct button
+  function correctAns() {
+    //when you click the correct button
     if (cardNumber <= totalCard) {
       addPoints();
-      document.getElementById("streak").innerHTML = streak;
-      document.getElementById("score").innerHTML = "Score: " + score;
+      document.getElementById('streak').innerHTML = streak;
+      document.getElementById('score').innerHTML = 'Score: ' + score;
       incrementCardCount();
     }
   }
 
-  function addPoints() { //adds score and streak
+  function addPoints() {
+    //adds score and streak
     score = score + 100;
     if (isStreaking === false) {
       isStreaking = true;
       streak++;
-    }
-    else {
+    } else {
       streak++;
     }
   }
 
-  function incrementCardCount() { //increments card count/moves to results page
+  function incrementCardCount() {
+    //increments card count/moves to results page
     cardNumber++;
     if (cardNumber > totalCard) {
-      document.getElementById('cardnumber').innerHTML = "Cards: Complete!";
-    }
-    else {
-      document.getElementById('cardnumber').innerHTML = "Cards: " + cardNumber + " / " + totalCard;
+      document.getElementById('cardnumber').innerHTML = 'Cards: Complete!';
+    } else {
+      document.getElementById('cardnumber').innerHTML =
+        'Cards: ' + cardNumber + ' / ' + totalCard;
       changeCard();
     }
-
   }
 
-  function StoreResultsValues() { //stores data in user's current session (meant for results)
+  function StoreResultsValues() {
+    //stores data in user's current session (meant for results)
     if (cardNumber > totalCard) {
-      cardNumber = totalCard
+      cardNumber = totalCard;
     }
 
     updateUserScore(score);
@@ -226,52 +264,74 @@ export function Study() {
 
   //sessionStorage.clear()
 
-
-
   return (
-
     <>
       <Spacer marginTop={10} />
       {/* title of Study Session page */}
-      <Text fontSize={'4rem'} align='center'> Study Session </Text>
+      <Text fontSize={'4rem'} align="center">
+        {' '}
+        Study Session{' '}
+      </Text>
 
       {/* Displays the number of cards studied out of the total in the deck*/}
       <Flex justifyContent={'center'}>
-        <Text fontSize={'1.5rem'} id='cardnumber' marginRight={"500px"}> Cards: {cardNumber} / {totalCard} </Text>
+        <Text fontSize={'1.5rem'} id="cardnumber" marginRight={'500px'}>
+          {' '}
+          Cards: {cardNumber} / {totalCard}{' '}
+        </Text>
 
         {/* Results button */}
-        <Link style={{ textDecoration: 'none' }} as={ReachLink} to='/results'>
-          <Button onClick={StoreResultsValues} id='endsession'> End Session </Button>
+        <Link style={{ textDecoration: 'none' }} as={ReachLink} to="/results">
+          <Button onClick={StoreResultsValues} id="endsession">
+            {' '}
+            End Session{' '}
+          </Button>
         </Link>
       </Flex>
 
       <Box>
         {/* displays deck's name */}
-        <Text fontSize={'3rem'} align='center'> {deckName} </Text>
+        <Text fontSize={'3rem'} align="center">
+          {' '}
+          {deckName}{' '}
+        </Text>
 
         {/* displays user's current streak */}
 
         <Box class="container" align={'center'}>
           {/*Image src={streak1} alt={'streak_symbol'} boxSize={'50px'}/> */}
-          <Box fontSize={'30px'} class='streaksymbol' id='streak'> {streak} </Box>
+          <Box fontSize={'30px'} class="streaksymbol" id="streak">
+            {' '}
+            {streak}{' '}
+          </Box>
         </Box>
 
         {/* displays user's current score */}
-        <Text fontSize={'2rem'} align='center' id='score'> Score: {score} </Text>
+        <Text fontSize={'2rem'} align="center" id="score">
+          {' '}
+          Score: {score}{' '}
+        </Text>
       </Box>
 
       {/* displays a card and the text inside the card */}
       <Flex justifyContent={'center'}>
-        <Box id='flashcard' onClick={flipCard}>
-        {/*_hover={{ animation: rotateAnimation }}*/}
+        <Box id="flashcard" onClick={flipCard}>
+          {/*_hover={{ animation: rotateAnimation }}*/}
 
-          <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
-            color='black'> {cardtext} </Text>
+          <Text
+            id="cardtext"
+            fontSize={'1.5rem'}
+            align="center"
+            flexWrap={'wrap'}
+            color="black"
+          >
+            {' '}
+            {cardtext}{' '}
+          </Text>
         </Box>
       </Flex>
 
-      <Spacer
-        margin={'40px'} />
+      <Spacer margin={'40px'} />
 
       <Flex justifyContent={'center'}>
         {/* incorrect */}
@@ -284,16 +344,17 @@ export function Study() {
             src={incorrect}
             alt='incorrect'
             onClick={incorrectAns} />*/}
-            <IconButton 
-            icon={<CloseIcon boxSize={20}/>}
+          <IconButton
+            icon={<CloseIcon boxSize={20} />}
             height={'200px'}
             width={'300px'}
             marginRight={'20px'}
-            objectFit='cover'
+            objectFit="cover"
             src={incorrect}
-            alt='incorrect'
+            alt="incorrect"
             onClick={incorrectAns}
-            bg={'red'} />
+            bg={'red'}
+          />
         </Box>
 
         {/* correct */}
@@ -306,29 +367,21 @@ export function Study() {
             src={correct}
             alt='correct'
             onClick={correctAns} />*/}
-            <IconButton 
-            icon={<CheckIcon boxSize={20}/>}
+          <IconButton
+            icon={<CheckIcon boxSize={20} />}
             height={'200px'}
             width={'300px'}
             marginRight={'20px'}
-            objectFit='cover'
+            objectFit="cover"
             src={correct}
-            alt='correct'
+            alt="correct"
             onClick={correctAns}
-            bg={'green'} />
-
+            bg={'green'}
+          />
         </Box>
       </Flex>
 
-      <Spacer
-        margin={'40px'} />
+      <Spacer margin={'40px'} />
     </>
-
   );
-
-
-
 }
-
-
-

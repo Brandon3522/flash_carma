@@ -26,8 +26,6 @@ export function Edit(props) {
 
   // console.log("Deck ID" + deckid)
 
-  //const user = 'f6RoGmfu7uVUC7UBSKO7jQtmc4F2'
-  //const studyDeck_ID = 'GDpNJPUaBb9Xhe4fOsbZ'
   const studyDeck_ID = deckid
 
   // Database reference: 
@@ -117,30 +115,6 @@ export function Edit(props) {
     // 
 
   }
-
-  // const delete_flashcard = async (flashcardName) => {
-  //   try {
-  //     const q = query(flashcards_ref, where('question', '==', flashcardName), limit(1))
-  //     console.log(q)
-
-  //     const docs = await getDocs(q)
-  //     var doc_id = ''
-  //     docs.forEach((doc) => {
-  //       console.log(doc.data())
-  //       doc_id = doc.id
-  //       console.log(doc_id)
-  //     })
-
-  //     const flashcard = doc(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards', doc_id)
-
-  //     await deleteDoc(flashcard);
-
-  //     console.log('Flashcard deleted successfully');
-
-  //   } catch (error) {
-  //     alert(`Deletion unsuccessful: ${error.message}`);
-  //   }
-  // }
 
   // Delete flashcard
   const delete_flashcard = async (flashcardID) => {
