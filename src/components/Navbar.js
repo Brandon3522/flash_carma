@@ -23,7 +23,7 @@ import { Link as ReachLink, useNavigate } from 'react-router-dom';
 import logo from './images/logo.png';
 import { signOut } from 'firebase/auth';
 import { auth, database } from '../firebase';
-import { getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc, onSnapshot } from 'firebase/firestore';
 import UserContext from '../UserContext';
 import { useContext, useState, useEffect } from 'react';
 
@@ -59,21 +59,14 @@ export default function Simple() {
   // User reference
   const user_ref = doc(database, 'users', user.uid);
 
-  // Get username
-  useEffect(() => {
-    const getUsername = async () => {
-      try {
-        const data = await getDoc(user_ref);
+    useEffect(() => {
+    const unsub = onSnapshot(user_ref, snapshot => {
+      setUsername(snapshot.data().username);
 
-        setUsername(data.data().username);
-        //console.log(data.data().username)
-        setLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
+      setLoading(false);
+    });
 
-    getUsername();
+    return unsub;
   }, []);
 
   // Logout current authenticated user

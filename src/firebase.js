@@ -303,3 +303,33 @@ export const auth = getAuth(app);
     setLoading(false);
     return unsub;
   }, [])*/
+
+  // Get Username with realtime updates
+   /* useEffect(() => {
+    const unsub = onSnapshot(studyDecks_ref, snapshot => {
+      setStudyDecks(
+        snapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+
+      setLoading(false);
+    }); */
+
+  // Get username
+  /* useEffect(() => {
+    const getUsername = async () => {
+      try {
+        const data = await getDoc(user_ref);
+
+        setUsername(data.data().username);
+        //console.log(data.data().username)
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    getUsername();
+  }, []); */
