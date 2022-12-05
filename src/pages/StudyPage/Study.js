@@ -262,7 +262,9 @@ export function Study() {
 
       {/* displays a card and the text inside the card */}
       <Flex justifyContent={'center'}>
-        <Box id='flashcard' onClick={flipCard} _hover={{ animation: rotateAnimation }}>
+        <Box id='flashcard' onClick={flipCard}>
+        {/*_hover={{ animation: rotateAnimation }}*/}
+
           <Text id='cardtext' fontSize={'1.5rem'} align='center' flexWrap={'wrap'}
             color='black'> {cardtext} </Text>
         </Box>
