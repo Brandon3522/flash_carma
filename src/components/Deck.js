@@ -42,11 +42,11 @@ export function Deck({ id, name, onDelete }) {
           <PopoverCloseButton />
           <PopoverBody>
             <ButtonGroup display={'flex'} flexWrap={'wrap'} spacing="6">
-              <Link as={ReachLink} to="/edit">
+              <Link style={{ textDecoration: 'none' }} as={ReachLink} to="/edit">
                 <Button onClick={() => getDeckName(id)}>Edit</Button>
               </Link>
 
-              <Link as={ReachLink} to="/study">
+              <Link style={{ textDecoration: 'none' }} as={ReachLink} to="/study">
                 <Button onClick={() => getDeckName(id)}>Study</Button>
               </Link>
 
