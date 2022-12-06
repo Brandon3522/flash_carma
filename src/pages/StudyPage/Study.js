@@ -18,12 +18,7 @@ import incorrect from '../../components/images/incorrectButton.png';
 import streak1 from '../../components/images/streak_icon.png';
 import './Study.css';
 import { Link as ReachLink } from 'react-router-dom';
-import {
-  getDocs,
-  collection,
-  doc,
-  getDoc,
-  updateDoc,
+import {getDocs, collection, doc, getDoc, updateDoc,
 } from 'firebase/firestore';
 import { database } from '../../firebase';
 import UserContext from '../../UserContext';
@@ -112,20 +107,6 @@ export function Study() {
     };
     getFlashcards();
   }, []);
-
-  // Update user score
-  const updateUserScore = async value => {
-    const data = await getDoc(user_ref);
-
-    var score = data.data().score + value;
-    //console.log(score)
-
-    await updateDoc(user_ref, {
-      score: score,
-    });
-
-    console.log('Score updated');
-  };
 
   //loading screen buffer
   if (loading) {
@@ -253,8 +234,6 @@ export function Study() {
     if (cardNumber > totalCard) {
       cardNumber = totalCard;
     }
-
-    updateUserScore(score);
 
     sessionStorage.setItem('streak', JSON.stringify(streak));
     sessionStorage.setItem('score', JSON.stringify(score));
