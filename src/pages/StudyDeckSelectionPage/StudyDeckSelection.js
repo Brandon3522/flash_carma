@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  Flex,
-  Heading,
-  Spacer,
-  Grid,
-  useDisclosure,
-  Spinner,
+import {  Flex, Heading, Spacer, Grid, useDisclosure, Spinner,
 } from '@chakra-ui/react';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { database } from '../../firebase';

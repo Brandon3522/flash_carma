@@ -1,23 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import {
-  Heading,
-  Text,
-  Box,
-  Spacer,
-  Flex,
-  Grid,
-  Spinner,
+import {  Heading, Text, Box, Spacer, Flex, Grid, Spinner,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { database } from '../../firebase';
-import {
-  collection,
-  getDocs,
-  query,
-  doc,
-  getDoc,
-  limit,
-  orderBy,
+import {  collection, getDocs, query, doc, getDoc, limit, orderBy,
 } from 'firebase/firestore';
 import UserContext from '../../UserContext';
 import { SDeck } from '../../components/SDeck';

@@ -1,17 +1,7 @@
 import React, { useEffect } from 'react';
-import {
-  Heading,
-  Box,
-  Spacer,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
-  Button,
-  Flex,
-  Spinner,
-  InputGroup,
-  InputRightElement,
+import { Heading,  Box, Spacer, FormControl,
+  FormLabel, Input, Stack, Button, Flex,
+  Spinner, InputGroup, InputRightElement,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useState, useContext } from 'react';
