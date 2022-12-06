@@ -1,12 +1,40 @@
-import React from 'react';
+
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, Flex, Link, Button, Heading, Spacer } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router-dom';
+import {getDocs, collection, doc, getDoc, updateDoc,
+  } from 'firebase/firestore';
+  import { database } from "../../firebase";
+import UserContext from "../../UserContext";
+
 
 export const Results = () => {
   var streak = sessionStorage.getItem('streak');
   var score = sessionStorage.getItem('score');
   var cardNumber = sessionStorage.getItem('cardnumber');
   var totalCard = sessionStorage.getItem('totalcard');
+score = parseInt(score)
+ 
+ // User context
+ const user = useContext(UserContext)?.user;
+ const user_ref = doc(database, 'users', user.uid);
+
+
+
+
+  // Update user score
+  const updateUserScore = async value => {
+    const data = await getDoc(user_ref);
+
+    var score = data.data().score + value;
+    //console.log(score)
+
+    await updateDoc(user_ref, {
+      score: score,
+    });
+
+    console.log('Score updated');
+  };
 
   return (
     <Flex align="center" direction="column">
@@ -43,6 +71,7 @@ export const Results = () => {
             _hover={{
               bg: 'blue.500',
             }}
+            onClick={() => updateUserScore(score)}
           >
             Replay
           </Button>
@@ -59,6 +88,7 @@ export const Results = () => {
             _hover={{
               bg: 'blue.500',
             }}
+            onClick={() => updateUserScore(score)}
           >
             Home
           </Button>
