@@ -1,20 +1,7 @@
-import {
-  Text,
-  Input,
-  Button,
-  Box,
-  Flex,
-  Textarea,
-  EditableTextarea,
+import {  Text,  Input,  Button,  Box, Flex, Textarea, EditableTextarea,
 } from '@chakra-ui/react';
-import {
-  collection,
-  doc,
-  getDoc,
-  addDoc,
-  deleteDoc,
-  onSnapshot,
-  updateDoc,
+import { collection, doc, getDoc, addDoc, deleteDoc,
+  onSnapshot, updateDoc,
 } from 'firebase/firestore';
 import { database } from '../firebase';
 import UserContext from '../UserContext';

@@ -1,21 +1,6 @@
-import {
-  Box,
-  Flex,
-  Avatar,
-  HStack,
-  Link,
-  IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  MenuDivider,
-  Image,
-  Text,
+import { Box, Flex, Avatar, HStack, Link, IconButton,
+   Button, Menu, MenuButton, MenuList, MenuItem, useDisclosure,
+  useColorModeValue, Stack, MenuDivider, Image, Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
