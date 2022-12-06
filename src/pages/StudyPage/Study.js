@@ -1,16 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import {
-  Text,
-  Flex,
-  Link,
-  Button,
-  Box,
-  Image,
-  Spacer,
-  keyframes,
-  Spinner,
-  Center,
-  IconButton,
+Text, Flex, Link,  Button, Box, Image, Spacer,
+ keyframes, Spinner, Center, IconButton,
 } from '@chakra-ui/react';
 import { CloseIcon, CheckIcon } from '@chakra-ui/icons';
 import correct from '../../components/images/correctButton.png';

@@ -132,17 +132,6 @@ export function Edit(props) {
 
   var deckname = display_studyDeckName
 
-  const addCardToList = (front, back, id) => { //adds a card to list
-
-    const card = {
-      front,
-      back,
-      id
-    }
-    setCards([card, ...cardset])
-
-  }
-
   function trimtext(text) {
     return text.replace(/^\s+|\s+$/g, '');
   }
@@ -162,19 +151,8 @@ export function Edit(props) {
       return false;
     }
     else
-      //addCardToList(f, b);
-      //setFlashcard_question(JSON.stringify(f))
-      //setFlashcard_answer(JSON.stringify(b))
-      //flashcard_question=f;
-      //flashcard_answer=b;
       add_flashcard(f, b);
   }
-
-
-  function deleteCard(id) { //removes a card from list based on id
-    setCards(cardset.filter(card => card.id !== id))
-  }
-
 
   return (
     <>
