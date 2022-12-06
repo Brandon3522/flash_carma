@@ -35,7 +35,7 @@ export const Settings = () => {
 
   const navigate = useNavigate();
 
-  // Get username and email
+  // Get username
   useEffect(() => {
     const getUsername = async () => {
       try {
@@ -65,18 +65,6 @@ export const Settings = () => {
       });
   };
 
-  // Update database password
-  const updatePassowrd = async () => {
-    try {
-      await updateDoc(user_ref, {
-        password: password,
-      });
-      //console.log('Password updated');
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   // Update database username
   const updateUsername = async () => {
     try {
@@ -95,14 +83,13 @@ export const Settings = () => {
       console.log(username.trim());
       updateUsername();
     } else {
-      alert('PLease enter a valid username.');
+      alert('Please enter a valid username.');
     }
   };
 
   // Update password onclick
   const updateUserPassword = () => {
     if (password.length > 0 && password.trim() !== '') {
-      updatePassowrd();
       updateAuthPassword();
     } else {
       alert('Please enter a valid password.');
