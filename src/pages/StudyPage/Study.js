@@ -376,7 +376,7 @@ export function Study() {
             src={correct}
             alt="correct"
             onClick={correctAns}
-            bg={'green'}
+            bg={'chartreuse'}
           />
         </Box>
       </Flex>
