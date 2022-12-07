@@ -97,8 +97,6 @@ export function Edit(props) {
   const add_flashcard = (f, b) => {
     const ref = collection(database, 'users', user.uid, 'study-decks', studyDeck_ID, 'flashcards');
     addDoc(ref, {
-      //question: flashcard_question,
-      //answer: flashcard_answer,
       question: f,
       answer: b,
     })
@@ -106,7 +104,6 @@ export function Edit(props) {
         //alert('Data Added');
         document.getElementById('TBfront').value = ''
         document.getElementById('TBback').value = ''
-        //setFlashcards([ref, ...flashcards])
       })
       .catch((err) => {
         alert(err.message);
@@ -137,8 +134,9 @@ export function Edit(props) {
   }
 
   function getTextToAdd() { //gets texts and prepares it to be added to the card list
-    var f = document.getElementById('TBfront').value
-    var b = document.getElementById('TBback').value
+
+    var f = document.getElementById('TBfront').value //front of card
+    var b = document.getElementById('TBback').value //back of card
 
     if (trimtext(f) == '') //checks if frontside textarea is empty
     {
@@ -160,6 +158,7 @@ export function Edit(props) {
       <Flex justifyContent={'center'}>
         <Text fontSize={'2rem'} margin='2'> Deck Name:</Text>
 
+        {/* Editable Deck name */}
         <Editable defaultValue={deckname} placeholder="Deck name"
           fontSize={'2rem'}
           onSubmit={update_studyDeckName} onChange={setDisplay_studyDeckName}
@@ -174,23 +173,23 @@ export function Edit(props) {
       </Flex>
 
       <Flex justifyContent={'center'}>
+
+        {/* Text promt for front of card */}
         <Box id='textprompt'>
-          <Text> Front: </Text> {/*<Textarea id='TBfront'>  </Textarea> */}
+          <Text> Front: </Text> 
           <Textarea maxLength={201} id='TBfront'
             width={500} />
         </Box>
 
+        {/* Text prompt for back of card */}
         <Box id='textprompt'>
           <Text> Back: </Text>
-          {/*<Textarea id='TBback'> 
-          </Textarea> */}
           <Textarea maxLength={201} id='TBback'
             width={500} />
         </Box>
       </Flex>
 
-
-
+      {/* Button to create new card */}
       <Flex justifyContent={'center'}>
         <Button id='newdeck' align={'center'} fontSize={'1.5rem'}
           onClick={getTextToAdd}> Create a new card </Button>
@@ -198,6 +197,7 @@ export function Edit(props) {
 
       <Text fontSize={'2rem'} align={'center'}> Card List: </Text>
 
+      {/*  Generates a list of cards */}
       {flashcards.map(card => (
         <Card key={card.id} id={card.id} deck={deckid}
           front={card.question} back={card.answer} onDelete={() => { delete_flashcard(card.id) }} />

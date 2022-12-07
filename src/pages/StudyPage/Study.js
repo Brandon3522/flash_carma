@@ -64,7 +64,7 @@ export function Study() {
   var streak = 0; //streak for the session
   var score = 0; //score for the session
 
-  let currentCard = {
+  let currentCard = { //card that is currently being studied
     front: '',
     back: '',
   };
@@ -126,15 +126,19 @@ export function Study() {
           {' '}
           Study Session{' '}
         </Text>
+
         <Text fontSize={'2rem'} align="center">
           {' '}
           This deck is empty
         </Text>
+
         <Text fontSize={'1.5rem'} align="center">
           {' '}
           Please add at least one card to the deck{' '}
         </Text>
         <Center>
+
+          {/* Button to head to edit page */}
           <Link style={{ textDecoration: 'none' }} as={ReachLink} to="/edit">
             <Spacer marginTop={10} />
             <Button
@@ -231,8 +235,6 @@ export function Study() {
     sessionStorage.setItem('totalcard', JSON.stringify(totalCard));
     sessionStorage.setItem('cardnumber', JSON.stringify(cardNumber));
   }
-
-  //sessionStorage.clear()
 
   return (
     <>
