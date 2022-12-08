@@ -22,10 +22,6 @@ export const database = getFirestore(app)
 
 export const auth = getAuth(app);
 
-/////////////////////////////////////////////////////////////////////////////
-// Examples in my github repo: react_chakra_firebase_testing - src/home.js
-/////////////////////////////////////////////////////////////////////////////
-
 // Each function is contained in a block comment: /* Funcion */
 
 // The use effect function runs automatically when the page is loaded

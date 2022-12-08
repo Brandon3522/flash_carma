@@ -13,7 +13,7 @@ export const Results = () => {
   var score = sessionStorage.getItem('score');
   var cardNumber = sessionStorage.getItem('cardnumber');
   var totalCard = sessionStorage.getItem('totalcard');
-score = parseInt(score)
+  score = parseInt(score)
  
  // User context
  const user = useContext(UserContext)?.user;

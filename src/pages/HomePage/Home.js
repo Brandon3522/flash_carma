@@ -31,6 +31,7 @@ export const Home = () => {
     get_user_score();
   }
 
+  // Get the 4 most recently created study decks
   useEffect(() => {
     const q = query(studyDecks_ref, orderBy('timestamp', 'desc'), limit(4));
     const getStudyDecks_limit = async () => {

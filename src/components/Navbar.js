@@ -44,12 +44,13 @@ export default function Simple() {
   // User reference
   const user_ref = doc(database, 'users', user.uid);
 
-    useEffect(() => {
-    const unsub = onSnapshot(user_ref, snapshot => {
-      setUsername(snapshot.data().username);
+  // Set username
+  useEffect(() => {
+  const unsub = onSnapshot(user_ref, snapshot => {
+    setUsername(snapshot.data().username);
 
-      setLoading(false);
-    });
+    setLoading(false);
+  });
 
     return unsub;
   }, []);

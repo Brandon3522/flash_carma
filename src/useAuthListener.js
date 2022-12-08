@@ -6,6 +6,7 @@ export default function useAuthListener() {
     JSON.parse(localStorage.getItem('authUser') || '{}'),
   );
 
+  // Listen for authentication changes in the currently authenticated user
   useEffect(() => {
     const listener = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
