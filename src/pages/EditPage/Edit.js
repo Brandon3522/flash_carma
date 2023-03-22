@@ -177,14 +177,14 @@ export function Edit(props) {
         {/* Text promt for front of card */}
         <Box id='textprompt'>
           <Text> Front: </Text> 
-          <Textarea maxLength={201} id='TBfront'
+          <Textarea id='TBfront'
             width={500} />
         </Box>
 
         {/* Text prompt for back of card */}
         <Box id='textprompt'>
           <Text> Back: </Text>
-          <Textarea maxLength={201} id='TBback'
+          <Textarea id='TBback'
             width={500} />
         </Box>
       </Flex>
